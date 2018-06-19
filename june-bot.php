@@ -27,7 +27,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $json2;
+    $arrPostData['messages'][0]['text'] = $data2;
           //  if( sizeof($rec2->answer) >= 0){
 
                 // $result = file_get_contents( 
@@ -105,8 +105,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 
     // $arrPostData = array();
     // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-     $arrPostData['messages'][2]['type'] = "text";
-     $arrPostData['messages'][2]['text'] = $data2;
+    //  $arrPostData['messages'][2]['type'] = "text";
+    //  $arrPostData['messages'][2]['text'] = $data2;
     // $arrPostData['messages'][4]['type'] = "text";
     // $arrPostData['messages'][4]['text'] = 'งง';
   }
