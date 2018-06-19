@@ -16,7 +16,7 @@ $isData=sizeof($data);
 
 $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"จุนฮเว"}');
 $data2 = json_decode($json2);
-foreach($data2 as $rec2){
+foreach($data2 as $value){
   echo "$value <br>";
 }
 
