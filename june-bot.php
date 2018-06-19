@@ -12,7 +12,7 @@ $url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
-echo $data;
+echo file_get_contents($data);
 
 if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
