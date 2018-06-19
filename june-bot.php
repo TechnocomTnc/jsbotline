@@ -22,6 +22,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     //Post New Data
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
     $data2 = json_decode($json2);
+    
     // foreach($data2 as $rec2){
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -63,8 +64,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
             //}
             // else{ 
               // $newData = json_encode(  
@@ -85,12 +86,12 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     // $context = stream_context_create($opts);
     // $returnValue = file_get_contents($url,false,$context);
 
-    $arrPostData = array();
-    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $_question;
-    $arrPostData['messages'][1]['type'] = "text";
-    $arrPostData['messages'][1]['text'] = 'งง';
+    // $arrPostData = array();
+    // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][3]['type'] = "text";
+    $arrPostData['messages'][3]['text'] = $_question;
+    $arrPostData['messages'][4]['type'] = "text";
+    $arrPostData['messages'][4]['text'] = 'งง';
   }
 }
 else{
