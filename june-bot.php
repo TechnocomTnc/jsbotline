@@ -22,8 +22,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     //Post New Data
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
     $data2 = json_decode($json2);
-    foreach($data2 as $value){
-           if( sizeof($value->answer) == 0){
+    foreach($data2 as $rec){
+           if( sizeof($rec->answer) >= 0){
                 $postdata = http_build_query($่json2); 
                 $opts = array(
                         'http' => array(
