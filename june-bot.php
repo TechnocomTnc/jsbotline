@@ -32,7 +32,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = 'มันมีแล้วอ่ะครับ (´▽｀)';
+                $arrPostData['messages'][0]['text'] = sizeof($value->answer);
         }else{
                 $newData = json_encode(  
                   array(
