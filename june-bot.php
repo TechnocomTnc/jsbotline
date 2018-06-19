@@ -37,7 +37,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 //       'http' => array( 
                 //         'method' => 'DELETE' ) )) );
                 $result = file_get_contents(
-                  'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}', 
+                  'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'', 
                   false, 
                   stream_context_create(array(
                       'http' => array(
