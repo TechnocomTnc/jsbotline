@@ -44,13 +44,13 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                   'method' => "POST",
                   'header' => "Content-type: application/json",
                   'content' => $newData ));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents($url,false,$context);
+                // $context = stream_context_create($opts);
+                // $returnValue = file_get_contents($url,false,$context);
             }
     }
     
-    $context = stream_context_create($opts);
-    $returnValue = file_get_contents($url,false,$context);
+    // $context = stream_context_create($opts);
+    // $returnValue = file_get_contents($url,false,$context);
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
