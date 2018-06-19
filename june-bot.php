@@ -16,6 +16,7 @@ $isData=sizeof($data);
 
 
 
+
 if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
@@ -25,6 +26,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     //Post New Data
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
     $data2 = json_decode($json2);
+    $url2 = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
     $isData2=sizeof($data2);
     if($isData2!== 0){
       foreach($data2 as $value){
@@ -44,7 +46,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                       'header' => "Content-type: application/json",
                       'content' => $newData));
                 $context = stream_context_create($opts);
-                $returnValue = file_get_contents($่json2,false,$context);
+                $returnValue = file_get_contents($url2,false,$context);
 
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
