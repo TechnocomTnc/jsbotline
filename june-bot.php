@@ -33,6 +33,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                             'method' => "POST",
                             'header' => "Content-type: application/json",
                             'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url,false,$context);
             }else{ $newData = json_encode(  
                 array(
                   'question' => $_question,
@@ -42,6 +44,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                   'method' => "POST",
                   'header' => "Content-type: application/json",
                   'content' => $newData ));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url,false,$context);
             }
       }
     } 
