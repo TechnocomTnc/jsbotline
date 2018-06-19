@@ -36,18 +36,26 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 //     array( 
                 //       'http' => array( 
                 //         'method' => 'DELETE' ) )) );
-
+                $result = file_get_contents(
+                  'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}', 
+                  false, 
+                  stream_context_create(array(
+                      'http' => array(
+                          'method' => 'DELETE'
+                      )
+                  ))
+              );
 
 
                 // $postdata = http_build_query($่param); 
-                 $opts = array(
-                         'http' => array(
-                             'method' => "DELETE",
-                //             'header' => "Content-type: application/json",
-                //             'content' => $postdata
-                  ));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}',false,$context);
+                //  $opts = array(
+                //          'http' => array(
+                //              'method' => "DELETE",
+                // //             'header' => "Content-type: application/json",
+                // //             'content' => $postdata
+                //   ));
+                // $context = stream_context_create($opts);
+                // $returnValue = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}',false,$context);
                 
                 // $newData = json_encode(  
                 //   array(
