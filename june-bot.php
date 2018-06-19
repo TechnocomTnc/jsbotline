@@ -62,8 +62,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 // $returnValue = file_get_contents($url,false,$context);
 
 
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                // $arrPostData = array();
+                // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][1]['type'] = "text";
                 $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
             //}
@@ -88,10 +88,10 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 
     // $arrPostData = array();
     // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    $arrPostData['messages'][3]['type'] = "text";
-    $arrPostData['messages'][3]['text'] = $_question;
-    $arrPostData['messages'][4]['type'] = "text";
-    $arrPostData['messages'][4]['text'] = 'งง';
+    // $arrPostData['messages'][3]['type'] = "text";
+    // $arrPostData['messages'][3]['text'] = $_question;
+    // $arrPostData['messages'][4]['type'] = "text";
+    // $arrPostData['messages'][4]['text'] = 'งง';
   }
 }
 else{
