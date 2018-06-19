@@ -35,6 +35,25 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = sizeof($value->answer);
+
+                $newData = json_encode(  
+                  array(
+                    'question' => $_question,
+                    'answer'=> $_answer));  
+                $opts = array(
+                  'http' => array(
+                      'method' => "POST",
+                      'header' => "Content-type: application/json",
+                      'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url2,false,$context);
+
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][2]['type'] = "text";
+                $arrPostData['messages'][2]['text'] = sizeof($value->answer);
         }else{            
                 $newData = json_encode(  
                   array(
