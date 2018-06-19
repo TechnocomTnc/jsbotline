@@ -28,17 +28,12 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $isData2=sizeof($data2);
     if($isData2!== 0){
       foreach($data2 as $value){
-        if(sizeof($value->answer) !== 0){
+        if(sizeof($value->answer) == 0){
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = sizeof($value->answer);
-        }else{
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = sizeof($value->answer);
-                
+        }else{            
                 $newData = json_encode(  
                   array(
                     'question' => $_question,
@@ -49,7 +44,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                       'header' => "Content-type: application/json",
                       'content' => $newData));
                 $context = stream_context_create($opts);
-                $returnValue = file_get_contents($url,false,$context);
+                $returnValue = file_get_contents($่json2,false,$context);
 
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
