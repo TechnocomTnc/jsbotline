@@ -14,15 +14,7 @@ $data = json_decode($json);
 $isData=sizeof($data);
 
 
-$json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"จุนฮเว"}');
-$data2 = json_decode($json2);
-$isData2=sizeof($data2);
-if($isData2!== 0){
-foreach($data2 as $value){
-  echo $json2;
-  echo $value->question;
-   
-}}else echo 'ยยยฟหก';
+
 
 if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
@@ -33,81 +25,35 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     //Post New Data
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
     $data2 = json_decode($json2);
-    
-    // foreach($data2 as $rec2){
-    $arrPostData = array();
-    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $json2;
-          //  if( sizeof($rec2->answer) >= 0){
+    $isData2=sizeof($data2);
+    if($isData2!== 0){
+      foreach($data2 as $value){
+        if(sizeof($value->answer) !== 0){
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'มันมีแล้วอ่ะครับ (´▽｀)';
+        }else{
+                $newData = json_encode(  
+                  array(
+                    'question' => $_question,
+                    'answer'=> $_answer));  
+                $opts = array(
+                  'http' => array(
+                      'method' => "POST",
+                      'header' => "Content-type: application/json",
+                      'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url,false,$context);
 
-                // $result = file_get_contents( 
-                //   $json2, false, 
-                //   stream_context_create(
-                //     array( 
-                //       'http' => array( 
-                //         'method' => 'DELETE' ) )) );
-                
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+        }
+      }
+    }    
 
-
-              //   $result = file_get_contents(
-              //     'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'', 
-              //     false, 
-              //     stream_context_create(array(
-              //         'http' => array(
-              //             'method' => 'DELETE'
-              //         )
-              //     ))
-              // );
-              //   if(!$result){
-              //   $arrPostData = array();
-              //   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-              //   $arrPostData['messages'][0]['type'] = "text";
-              //   $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-                  
-              //   }
-
-                // $postdata = http_build_query($่param); 
-                //  $opts = array(
-                //          'http' => array(
-                //              'method' => "DELETE",
-                // //             'header' => "Content-type: application/json",
-                // //             'content' => $postdata
-                //   ));
-                // $context = stream_context_create($opts);
-                // $returnValue = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}',false,$context);
-                
-                // $newData = json_encode(  
-                //   array(
-                //     'question' => $_question,
-                //     'answer'=> $_answer));  
-                // $opts = array(
-                //   'http' => array(
-                //       'method' => "POST",
-                //       'header' => "Content-type: application/json",
-                //       'content' => $newData));
-                // $context = stream_context_create($opts);
-                // $returnValue = file_get_contents($url,false,$context);
-
-
-                // $arrPostData = array();
-                // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-            //}
-            // else{ 
-              // $newData = json_encode(  
-              //   array(
-              //     'question' => $_question,
-              //     'answer'=> $_answer));  
-              //   $opts = array(
-              //     'http' => array(
-              //     'method' => "POST",
-              //     'header' => "Content-type: application/json",
-              //     'content' => $newData ));
-              //   // $context = stream_context_create($opts);
-              //   // $returnValue = file_get_contents($url,false,$context);
-            // }
 
     // }
     
