@@ -24,7 +24,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $data2 = json_decode($json2);
     foreach($data2 as $value){
            if( sizeof($value->answer) == 0){
-                $postdata = http_build_query($data2); 
+                $postdata = http_build_query($่json2); 
                 $opts = array(
                         'http' => array(
                             'method' => "DELETE",
@@ -32,7 +32,11 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                             'content' => $postdata));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($url,false,$context);
-
+                
+                $newData = json_encode(  
+                  array(
+                    'question' => $_question,
+                    'answer'=> $_answer));  
                 $opts = array(
                   'http' => array(
                       'method' => "POST",
@@ -46,7 +50,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-            }else{ $newData = json_encode(  
+            }else{ 
+              $newData = json_encode(  
                 array(
                   'question' => $_question,
                   'answer'=> $_answer));  
