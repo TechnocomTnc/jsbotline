@@ -40,6 +40,12 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                       'content' => $newData));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($url,false,$context);
+
+
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
             }else{ $newData = json_encode(  
                 array(
                   'question' => $_question,
@@ -59,7 +65,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+    $arrPostData['messages'][0]['text'] = '.....';
   }
 }
 else{
