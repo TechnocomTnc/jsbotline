@@ -105,8 +105,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 
     // $arrPostData = array();
     // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-     $arrPostData['messages'][3]['type'] = "text";
-     $arrPostData['messages'][3]['text'] = $data2;
+     $arrPostData['messages'][2]['type'] = "text";
+     $arrPostData['messages'][2]['text'] = $data2;
     // $arrPostData['messages'][4]['type'] = "text";
     // $arrPostData['messages'][4]['text'] = 'งง';
   }
