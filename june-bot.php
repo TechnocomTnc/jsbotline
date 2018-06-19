@@ -24,26 +24,36 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $data2 = json_decode($json2);
     foreach($data2 as &$rec){
            if( sizeof($rec->answer) >= 0){
-                $postdata = http_build_query($่json2); 
-                $opts = array(
-                        'http' => array(
-                            'method' => "DELETE",
-                            'header' => "Content-type: application/json",
-                            'content' => $postdata));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents($url,false,$context);
+
+                $result = file_get_contents( 
+                  $json2, false, 
+                  stream_context_create(
+                    array( 
+                      'http' => array( 
+                        'method' => 'DELETE' ) )) );
+
+
+
+                // $postdata = http_build_query($่param); 
+                // $opts = array(
+                //         'http' => array(
+                //             'method' => "DELETE",
+                //             'header' => "Content-type: application/json",
+                //             'content' => $postdata));
+                // $context = stream_context_create($opts);
+                // $returnValue = file_get_contents($url,false,$context);
                 
-                $newData = json_encode(  
-                  array(
-                    'question' => $_question,
-                    'answer'=> $_answer));  
-                $opts = array(
-                  'http' => array(
-                      'method' => "POST",
-                      'header' => "Content-type: application/json",
-                      'content' => $newData));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents($url,false,$context);
+                // $newData = json_encode(  
+                //   array(
+                //     'question' => $_question,
+                //     'answer'=> $_answer));  
+                // $opts = array(
+                //   'http' => array(
+                //       'method' => "POST",
+                //       'header' => "Content-type: application/json",
+                //       'content' => $newData));
+                // $context = stream_context_create($opts);
+                // $returnValue = file_get_contents($url,false,$context);
 
 
                 $arrPostData = array();
@@ -51,17 +61,17 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
             }else{ 
-              $newData = json_encode(  
-                array(
-                  'question' => $_question,
-                  'answer'=> $_answer));  
-                $opts = array(
-                  'http' => array(
-                  'method' => "POST",
-                  'header' => "Content-type: application/json",
-                  'content' => $newData ));
-                // $context = stream_context_create($opts);
-                // $returnValue = file_get_contents($url,false,$context);
+              // $newData = json_encode(  
+              //   array(
+              //     'question' => $_question,
+              //     'answer'=> $_answer));  
+              //   $opts = array(
+              //     'http' => array(
+              //     'method' => "POST",
+              //     'header' => "Content-type: application/json",
+              //     'content' => $newData ));
+              //   // $context = stream_context_create($opts);
+              //   // $returnValue = file_get_contents($url,false,$context);
             }
             $arrPostData = array();
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
