@@ -58,6 +58,10 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 // $context = stream_context_create($opts);
                 // $returnValue = file_get_contents($url,false,$context);
             }
+            $arrPostData = array();
+            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+            $arrPostData['messages'][0]['type'] = "text";
+            $arrPostData['messages'][0]['text'] = '= =qq';
     }
     
     // $context = stream_context_create($opts);
