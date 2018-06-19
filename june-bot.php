@@ -20,19 +20,38 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $_question=str_replace(" ","",$pieces[0]);
     $_answer=str_replace("","",$pieces[1]);
     //Post New Data
-    $newData = json_encode(  
+
+    if($isData>0){
+      foreach($data as $rec){
+           if( sizeof($rec->answer) == 0){
+            $newData = json_encode(  
+              array(
+                'question' => $_question,
+                'answer'=> $_answer
+              ));  
+            $opts = array(
+            'http' => array(
+                'method' => "POST",
+                'header' => "Content-type: application/json",
+                'content' => $newData
+            ));
+
+    }else{ $newData = json_encode(  
       array(
         'question' => $_question,
         'answer'=> $_answer
-      )
-    );  
-    $opts = array(
-      'http' => array(
-          'method' => "POST",
-          'header' => "Content-type: application/json",
-          'content' => $newData
-       )
-    );
+      ));  
+      $opts = array(
+        'http' => array(
+        'method' => "POST",
+        'header' => "Content-type: application/json",
+        'content' => $newData
+    ));
+    }
+
+
+
+   
     $context = stream_context_create($opts);
     $returnValue = file_get_contents($url,false,$context);
     $arrPostData = array();
