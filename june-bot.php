@@ -24,15 +24,12 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $data2 = json_decode($json2);
     foreach($data2 as $rec){
            if( sizeof($rec->answer) == 0){
-                $newData = json_encode(  
-                            array(
-                            'question' => $_question,
-                            'answer'=> $_answer));  
+                $postdata = http_build_query($data2); 
                 $opts = array(
                         'http' => array(
                             'method' => "DELETE",
                             'header' => "Content-type: application/json",
-                            'content' => $newData));
+                            'content' => $postdata));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($url,false,$context);
 
