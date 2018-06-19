@@ -30,9 +30,17 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                             'answer'=> $_answer));  
                 $opts = array(
                         'http' => array(
-                            'method' => "POST",
+                            'method' => "DELETE",
                             'header' => "Content-type: application/json",
                             'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url,false,$context);
+
+                $opts = array(
+                  'http' => array(
+                      'method' => "POST",
+                      'header' => "Content-type: application/json",
+                      'content' => $newData));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($url,false,$context);
             }else{ $newData = json_encode(  
