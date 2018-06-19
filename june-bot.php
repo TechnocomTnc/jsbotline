@@ -100,6 +100,7 @@ else{
     $nonData = json_encode(  
         array(
           'question' => $_msg,
+          'answer'=> ''  
         )
       );
       $opts = array(
