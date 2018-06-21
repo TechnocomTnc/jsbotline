@@ -43,7 +43,9 @@ $isData=sizeof($data);
       // $arrPostData['messages'][1]['text'] = $_question;
 
 
-      $Delink = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}';
+      $Delink = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}');
+      $datt = json_decode($Delink);
+
       $_question="เน่";
       $_answer="ครับ";
       $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
@@ -66,17 +68,18 @@ $isData=sizeof($data);
               //       )
               //   ))
               //   );
-
+              
               echo 'z = '.$z.'<br>';
-              $context = stream_context_create(
-                array(
-                    'http' => array(
-                        'method'=> 'DELETE'
-                    )
-                )
-              );
+              unset($datt);
+            //   $context = stream_context_create(
+            //     array(
+            //         'http' => array(
+            //             'method'=> 'DELETE'
+            //         )
+            //     )
+            //   );
             
-            file_get_contents($Delink, false, $context);
+            // file_get_contents($Delink, false, $context);
             echo 'z = '.$z.'<br>';
             }
             echo $Drec->answer.'<br>';
