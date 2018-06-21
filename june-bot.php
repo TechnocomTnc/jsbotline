@@ -29,12 +29,14 @@ if (strpos($_msg, 'ลบ') !== false) {
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
-      //Post New Data
-        $opts = array(
-          'http' => array(
-              'method' => "DELETE",));
-        $context = stream_context_create($opts);
-        $returnValue = file_get_contents($Nonurl,false,$context);
+
+      $result = file_get_contents( $Nonurl, false, 
+      stream_context_create(array(
+            'http' => array(
+                'method' => 'DELETE'
+            )
+        ))
+    );
 
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -52,7 +54,7 @@ if (strpos($_msg, 'ลบ') !== false) {
 
 
 
-if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
+else if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
       $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
       $pieces = explode(",", $x_tra);
