@@ -12,17 +12,16 @@ $url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"เน่"}');
 $data = json_decode($json);
 $isData=sizeof($data);
-$i=0;
   if($isData>0){
     foreach($data as $rec){
-        $abc[$i] = $rec->answer;
+        #$abc[$i] = $rec->answer;
         echo $rec->answer;
         echo '<br>';
         echo ',,,,';
-        echo $abc[$i]
+        #echo $abc[$i]
         echo '<br>';
-        $i++;
-        #echo array_rand(($rec->answer),2);        
+        #$i++;
+        print_r(array_rand(($rec->answer),2));        
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
