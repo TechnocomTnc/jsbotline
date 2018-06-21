@@ -13,12 +13,13 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collecti
 $data = json_decode($json);
 $isData=sizeof($data);
   if($isData>0){
-    foreach($data as $rec){
+    foreach($data as $rec => $answerr){
         // $abc[$i] = $rec->answer;
         // echo $rec->answer;
         // echo '<br>';
         // echo ',,,,';
         // echo $abc[$i]
+        echo '-'.$rec.$answerr.'-';
         echo gettype($data);
         echo gettype($rec);
       echo gettype($rec->answer);
