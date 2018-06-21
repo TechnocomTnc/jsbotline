@@ -21,8 +21,8 @@ $isData=sizeof($data);
         // echo $abc[$i]
         // echo '<br>';
         // $i++;
-        $abc = array_rand($rec,1); 
-        echo $abc[1];
+        $abc = array_rand($rec->answer,1); 
+        echo $abc[0];
         echo ',,,,';
         // $abb = array_rand($data,2)
         // echo $abb;
