@@ -42,6 +42,8 @@ $isData=sizeof($data);
       // $arrPostData['messages'][1]['type'] = "text";
       // $arrPostData['messages'][1]['text'] = $_question;
 
+
+      $Delink = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}';
       $_question="เน่";
       $_answer="ครับ";
       $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
@@ -49,6 +51,7 @@ $isData=sizeof($data);
       $Ddata = json_decode($Djson);
       $DisData=sizeof($Ddata);
       echo 'START <br>';
+      
 
       
 
@@ -56,15 +59,25 @@ $isData=sizeof($data);
         foreach($Ddata as $Drec){
             if($_answer == $Drec->answer) {
               $z = $Drec->answer;
-              $result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}', false, 
-              stream_context_create(array(
-                    'http' => array(
-                        'method' => 'DELETE'
-                    )
-                ))
-                );
+              //$result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}', false, 
+              // stream_context_create(array(
+              //       'http' => array(
+              //           'method' => 'DELETE'
+              //       )
+              //   ))
+              //   );
 
               echo 'z = '.$z.'<br>';
+              $context = stream_context_create(
+                array(
+                    'http' => array(
+                        'method'=> 'DELETE'
+                    )
+                )
+              );
+            
+            file_get_contents($Delink, false, $context);
+            echo 'z = '.$z.'<br>';
             }
             echo $Drec->answer.'<br>';
           }
