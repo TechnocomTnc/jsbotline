@@ -12,6 +12,7 @@ $url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"เน่"}');
 $data = json_decode($json);
 $isData=sizeof($data);
+$i = 0;
   if($isData>0){
     foreach($data as $rec){
         // $abc[$i] = $rec->answer;
@@ -26,6 +27,7 @@ $isData=sizeof($data);
       echo gettype($rec->answer);
       echo $i.' - ';
       echo $a[$i].'<br>';
+      $i++;
       
         // $i++;
         echo $data[0];
