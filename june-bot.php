@@ -14,6 +14,8 @@ $data = json_decode($json);
 $isData=sizeof($data);
   if($isData>0){
     foreach($data as $rec){
+        $tt = file_get_contents($rec->answer);
+        echo $tt;
         // $abc[$i] = $rec->answer;
         // echo $rec->answer;
         // echo '<br>';
