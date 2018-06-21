@@ -160,14 +160,14 @@ $isData=sizeof($data);
    
 //   }
 // }
-// $channel = curl_init();
-// curl_setopt($channel, CURLOPT_URL,$strUrl);
-// curl_setopt($channel, CURLOPT_HEADER, false);
-// curl_setopt($channel, CURLOPT_POST, true);
-// curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
-// curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-// curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
-// curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
-// $result = curl_exec($channel);
-// curl_close ($channel);
+$channel = curl_init();
+curl_setopt($channel, CURLOPT_URL,$strUrl);
+curl_setopt($channel, CURLOPT_HEADER, false);
+curl_setopt($channel, CURLOPT_POST, true);
+curl_setopt($channel, CURLOPT_HTTPHEADER, $arrHeader);
+curl_setopt($channel, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+curl_setopt($channel, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($channel, CURLOPT_SSL_VERIFYPEER, false);
+$result = curl_exec($channel);
+curl_close ($channel);
 ?>
