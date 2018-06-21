@@ -56,6 +56,15 @@ $isData=sizeof($data);
         foreach($Ddata as $Drec){
             if($_answer == $Drec->answer) {
               $z = $Drec->answer;
+
+              $result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'}', false, 
+              stream_context_create(array(
+                    'http' => array(
+                        'method' => 'DELETE'
+                    )
+                ))
+                );
+
               echo 'z = '.$z.'<br>';
             }
             echo $Drec->answer.'<br>';
@@ -71,13 +80,7 @@ $isData=sizeof($data);
       // }
 
 
-      // $result = file_get_contents( $url, false, 
-      // stream_context_create(array(
-      //       'http' => array(
-      //           'method' => 'DELETE'
-      //       )
-      //   ))
-      //   );
+     
 
         // $arrPostData = array();
         // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
