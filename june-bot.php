@@ -40,7 +40,7 @@ if (strpos($_msg, 'ลบ') !== false) {
       $arrPostData['messages'][0]['type'] = "text";
       $arrPostData['messages'][0]['text'] = $_msg;
       $arrPostData['messages'][1]['type'] = "text";
-      $arrPostData['messages'][1]['text'] = $_question;
+      $arrPostData['messages'][1]['text'] = $_answer;
 
       // if($DisData>0){
       //   foreach($Ddata as $Drec){
