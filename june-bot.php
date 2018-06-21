@@ -30,7 +30,7 @@ if (strpos($_msg, 'ลบ') !== false) {
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
       $Nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
-      $result = file_get_contents( $Nonurl, false, 
+      $result = file_get_contents( $url, false, 
       stream_context_create(array(
             'http' => array(
                 'method' => 'DELETE'
