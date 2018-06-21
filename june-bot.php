@@ -49,22 +49,23 @@ $isData=sizeof($data);
       $Ddata = json_decode($Djson);
       $DisData=sizeof($Ddata);
       echo 'START <br>';
-      if($DisData>0){
-        foreach($Ddata as $Drec){
-            if($_answer == $Drec->answer) {
-              $z = $Drec->answer;
-              echo 'z = '.$z.'<br>';
-            }
-            echo $Drec->answer.'<br>';
-          }
 
-            //  $arrPostData = array();
-            //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-            //  $arrPostData['messages'][0]['type'] = "text";
-            //  $arrPostData['messages'][0]['text'] = $_answer;
+      // if($DisData>0){
+      //   foreach($Ddata as $Drec){
+      //       if($_answer == $Drec->answer) {
+      //         $z = $Drec->answer;
+      //         echo 'z = '.$z.'<br>';
+      //       }
+      //       echo $Drec->answer.'<br>';
+      //     }
+
+      //       //  $arrPostData = array();
+      //       //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+      //       //  $arrPostData['messages'][0]['type'] = "text";
+      //       //  $arrPostData['messages'][0]['text'] = $_answer;
           
-            //$arrPostData['messages'][0]['text'] = $z;
-      }
+      //       //$arrPostData['messages'][0]['text'] = $z;
+      // }
 
 
       // $result = file_get_contents( $url, false, 
