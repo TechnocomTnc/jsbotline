@@ -19,7 +19,7 @@ $isData=sizeof($data);
         // echo '<br>';
         // echo ',,,,';
         // echo $abc[$i]
-        // echo '<br>';
+        echo gettype($rec);
         // $i++;
         $abc = array_rand($rec,1); 
         echo $abc[0];
