@@ -52,10 +52,10 @@ $isData=sizeof($data);
 
       if($DisData>0){
         foreach($Ddata as $Drec){
-            if($_answer == $Drec->answer) {
-              $z = $Drec->answer;
-              echo 'z = '.$z.'<br>';
-            }
+            // if($_answer == $Drec->answer) {
+            //   $z = $Drec->answer;
+            //   echo 'z = '.$z.'<br>';
+            // }
             echo $Drec->answer.'<br>';
           }
 
