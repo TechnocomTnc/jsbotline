@@ -14,10 +14,43 @@ $data = json_decode($json);
 $isData=sizeof($data);
 
 
-$Nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
-$Nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
-$Nondata = json_decode($Nonjson);
-$NonisData=sizeof($Nondata);
+
+$Nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
+
+
+
+
+
+
+
+if (strpos($_msg, 'ลบ') !== false) {
+  if (strpos($_msg, 'ลบ') !== false) {
+      $x_tra = str_replace("ลบ","", $_msg);
+      $pieces = explode(",", $x_tra);
+      $_question=str_replace(" ","",$pieces[0]);
+      $_answer=str_replace("","",$pieces[1]);
+      //Post New Data
+        $opts = array(
+          'http' => array(
+              'method' => "DELETE",));
+        $context = stream_context_create($opts);
+        $returnValue = file_get_contents($Nonurl,false,$context);
+
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        $arrPostData['messages'][0]['type'] = "text";
+        $arrPostData['messages'][0]['text'] = 'ลบแย้ว (´▽｀)';
+  }
+}
+
+
+
+
+
+
+
+
+
 
 if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
