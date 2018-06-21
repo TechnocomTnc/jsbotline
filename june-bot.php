@@ -14,29 +14,29 @@ $data = json_decode($json);
 $isData=sizeof($data);
 
 if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
-//   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
-//     $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
-//     $pieces = explode(",", $x_tra);
-//     $_question=str_replace(" ","",$pieces[0]);
-//     $_answer=str_replace("","",$pieces[1]);
-//     //Post New Data
-//       $newData = json_encode(  
-//         array(
-//           'question' => $_question,
-//           'answer'=> $_answer));  
-//       $opts = array(
-//         'http' => array(
-//             'method' => "POST",
-//             'header' => "Content-type: application/json",
-//             'content' => $newData));
-//       $context = stream_context_create($opts);
-//       $returnValue = file_get_contents($url,false,$context);
+  if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
+    $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
+    $pieces = explode(",", $x_tra);
+    $_question=str_replace(" ","",$pieces[0]);
+    $_answer=str_replace("","",$pieces[1]);
+    //Post New Data
+      $newData = json_encode(  
+        array(
+          'question' => $_question,
+          'answer'=> $_answer));  
+      $opts = array(
+        'http' => array(
+            'method' => "POST",
+            'header' => "Content-type: application/json",
+            'content' => $newData));
+      $context = stream_context_create($opts);
+      $returnValue = file_get_contents($url,false,$context);
 
-//       $arrPostData = array();
-//       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-//       $arrPostData['messages'][0]['type'] = "text";
-//       $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-//         }
+      $arrPostData = array();
+      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+      $arrPostData['messages'][0]['type'] = "text";
+      $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+        }
 //       }    
     // $context = stream_context_create($opts);
     // $returnValue = file_get_contents($url,false,$context);
