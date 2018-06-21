@@ -14,14 +14,14 @@ $data = json_decode($json);
 $isData=sizeof($data);
   if($isData>0){
     foreach($data as $rec){
-        #$abc[$i] = $rec->answer;
-        echo $rec->answer;
-        echo '<br>';
-        echo ',,,,';
-        #echo $abc[$i]
-        echo '<br>';
-        #$i++;
-        print_r(array_rand(($rec->answer),2));        
+        // $abc[$i] = $rec->answer;
+        // echo $rec->answer;
+        // echo '<br>';
+        // echo ',,,,';
+        // echo $abc[$i]
+         echo '<br>';
+        // $i++;
+        print_r(array_rand(($rec->answer),1));        
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
