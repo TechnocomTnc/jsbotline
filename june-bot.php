@@ -16,7 +16,7 @@ $isData=sizeof($data);
   if($isData>0){
     foreach($data as $rec){
         // echo $rec;
-        $abb = array_rand($rec,1)
+        $abb = array_rand($data,2)
         echo $abb;
         // $arrPostData = array();
         // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
