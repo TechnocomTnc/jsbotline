@@ -42,6 +42,14 @@ if (strpos($_msg, 'ลบ') !== false) {
       // $arrPostData['messages'][1]['type'] = "text";
       // $arrPostData['messages'][1]['text'] = $_question;
 
+      $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
+      $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+      $Ddata = json_decode($Djson);
+      $DisData=sizeof($Ddata);
+
+
+
+
       if($DisData>0){
         foreach($Ddata as $Drec){
           if($_answer == $Drec->answer)
