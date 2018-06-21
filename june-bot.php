@@ -34,6 +34,7 @@ $i = 0;
             }
     $b = array_rand($a,1);
     echo '*'.$b.'<br>';
+    echo '**>'.$a[$b].'<br>';
         
     }else{
         $arrPostData = array();
