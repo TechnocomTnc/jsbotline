@@ -50,14 +50,13 @@ $isData=sizeof($data);
       $DisData=sizeof($Ddata);
       echo 'START <br>';
 
-
+      
 
       if($DisData>0){
         foreach($Ddata as $Drec){
             if($_answer == $Drec->answer) {
               $z = $Drec->answer;
-
-              $result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'}', false, 
+              $result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}', false, 
               stream_context_create(array(
                     'http' => array(
                         'method' => 'DELETE'
