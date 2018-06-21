@@ -16,18 +16,11 @@ $i = 0;
   if($isData>0){
     foreach($data as $rec){
         // $abc[$i] = $rec->answer;
-        echo $rec->answer;
-        // echo '<br>';
-        // echo ',,,,';
-        // echo $abc[$i]
-        
+        //echo $rec->answer;
         $a[$i] = $rec->answer;
-        echo gettype($data);
-        echo gettype($rec);
-      echo gettype($rec->answer);
-      echo $i.' - ';
-      echo $a[$i].'<br>';
-      $i++;
+        echo $i.' - ';
+        echo $a[$i].'<br>';
+        $i++;
       
         // $i++;
         echo ',,,,';
