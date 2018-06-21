@@ -15,13 +15,14 @@ $isData=sizeof($data);
 
   if($isData>0){
     foreach($data as $rec){
-        echo $rec;
-        $arrPostData = array();
-        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $rec;
-                $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = $rec->answer;
+        // echo $rec;
+        echo $rec->answer;
+        // $arrPostData = array();
+        // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        //         $arrPostData['messages'][0]['type'] = "text";
+        //         $arrPostData['messages'][0]['text'] = $rec;
+        //         $arrPostData['messages'][1]['type'] = "text";
+        //         $arrPostData['messages'][1]['text'] = $rec->answer;
             }
         
     }else{
