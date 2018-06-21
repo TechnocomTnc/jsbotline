@@ -15,7 +15,7 @@ $isData=sizeof($data);
 
 
 
-$Nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
+
 
 
 
@@ -29,7 +29,7 @@ if (strpos($_msg, 'ลบ') !== false) {
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
-
+      $Nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
       $result = file_get_contents( $Nonurl, false, 
       stream_context_create(array(
             'http' => array(
