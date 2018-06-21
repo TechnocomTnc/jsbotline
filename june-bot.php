@@ -71,6 +71,7 @@ $isData=sizeof($data);
               
               echo 'z = '.$z.'<br>';
               unset($datt);
+              unset($Delink);
             //   $context = stream_context_create(
             //     array(
             //         'http' => array(
