@@ -57,7 +57,7 @@ else{
 
       if(sizeof($rec->answer) > 0) {
           // $arrPostData['messages'][0]['text'] = $a[$b];
-          $arrPostData['messages'][0]['text'] = sizeof($rec->answer);
+          $arrPostData['messages'][0]['text'] = sizeof($a[$b]);
       }
       else{
           $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
