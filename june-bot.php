@@ -9,32 +9,26 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
-$json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"เน่"}');
+$json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
 $i = 0;
   if($isData>0){
     foreach($data as $rec){
-        // $abc[$i] = $rec->answer;
-        //echo $rec->answer;
         $a[$i] = $rec->answer;
         echo $i.' - ';
         echo $a[$i].'<br>';
         $i++;
-      
-        // $i++;
-        // $abb = array_rand($data,2)
-        // echo $abb;
-        // $arrPostData = array();
-        // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-        //         $arrPostData['messages'][0]['type'] = "text";
-        //         $arrPostData['messages'][0]['text'] = $rec;
-        //         $arrPostData['messages'][1]['type'] = "text";
-        //         $arrPostData['messages'][1]['text'] = $rec->answer;
             }
     $b = array_rand($a,1);
-    echo '*'.$b.'<br>';
-    echo '**>'.$a[$b].'<br>';
+    // echo '*'.$b.'<br>';
+    // echo '**>'.$a[$b].'<br>';
+
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = $a[$b];
+
         
     }else{
         $arrPostData = array();
