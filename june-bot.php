@@ -49,6 +49,7 @@ else{
     foreach($data as $rec){
         $a[$i] = $rec->answer;
         $i++;
+
       }
       $b = array_rand($a,1);
       $arrPostData = array();
@@ -57,7 +58,7 @@ else{
 
       if(sizeof($rec->answer) > 0) {
           // $arrPostData['messages'][0]['text'] = $a[$b];
-          $arrPostData['messages'][0]['text'] = sizeof($a[$b]);
+          $arrPostData['messages'][0]['text'] = sizeof($data);
       }
       else{
           $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
