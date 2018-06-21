@@ -13,7 +13,7 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collecti
 $data = json_decode($json);
 $isData=sizeof($data);
 
-// if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
+if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 //   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
 //     $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
 //     $pieces = explode(",", $x_tra);
@@ -47,8 +47,8 @@ $isData=sizeof($data);
     //  $arrPostData['messages'][2]['text'] = $data2;
     // $arrPostData['messages'][4]['type'] = "text";
     // $arrPostData['messages'][4]['text'] = 'งง';
-  }
-}
+//   }
+ }
 
 
 else{
