@@ -15,8 +15,6 @@ $isData=sizeof($data);
 
   if($isData>0){
     foreach($data as $rec){
-            echo "Array Index [$i] : ".$rec."<br/>";
-            $i++;
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
