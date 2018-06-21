@@ -15,10 +15,10 @@ $isData=sizeof($data);
 
 
 
-$Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
-$Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
-$Ddata = json_decode($Djson);
-$DisData=sizeof($Ddata);
+// $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
+// $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+// $Ddata = json_decode($Djson);
+// $DisData=sizeof($Ddata);
 
 
 
@@ -28,12 +28,12 @@ $DisData=sizeof($Ddata);
 
 
 
-if (strpos($_msg, 'ลบ') !== false) {
-  if (strpos($_msg, 'ลบ') !== false) {
-      $x_tra = str_replace("ลบ","", $_msg);
-      $pieces = explode(",", $x_tra);
-      $_question=str_replace(" ","",$pieces[0]);
-      $_answer=str_replace("","",$pieces[1]);
+// if (strpos($_msg, 'ลบ') !== false) {
+//   if (strpos($_msg, 'ลบ') !== false) {
+//       $x_tra = str_replace("ลบ","", $_msg);
+//       $pieces = explode(",", $x_tra);
+      // $_question=str_replace(" ","",$pieces[0]);
+      // $_answer=str_replace("","",$pieces[1]);
 
       // $arrPostData = array();
       // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -42,19 +42,20 @@ if (strpos($_msg, 'ลบ') !== false) {
       // $arrPostData['messages'][1]['type'] = "text";
       // $arrPostData['messages'][1]['text'] = $_question;
 
+      $_question=str_replace("เน่");
+      $_answer=str_replace("ครับ");
       $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
-      $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+      $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'เน่'"}');
       $Ddata = json_decode($Djson);
       $DisData=sizeof($Ddata);
-
-
-
 
       if($DisData>0){
         foreach($Ddata as $Drec){
             if($_answer == $Drec->answer) {
               $z = $Drec->answer;
+              echo 'z = '.$z.'<br>';
             }
+            echo $Drec->answer.'<br>';
           }
 
             //  $arrPostData = array();
@@ -62,7 +63,7 @@ if (strpos($_msg, 'ลบ') !== false) {
             //  $arrPostData['messages'][0]['type'] = "text";
             //  $arrPostData['messages'][0]['text'] = $_answer;
           
-            $arrPostData['messages'][0]['text'] = $z;
+            //$arrPostData['messages'][0]['text'] = $z;
       }
 
 
@@ -78,8 +79,8 @@ if (strpos($_msg, 'ลบ') !== false) {
         // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         // $arrPostData['messages'][0]['type'] = "text";
         // $arrPostData['messages'][0]['text'] = 'ลบแย้ว (´▽｀)';
-  }
-}
+//   }
+// }
 
 
 
@@ -90,7 +91,7 @@ if (strpos($_msg, 'ลบ') !== false) {
 
 
 
-else if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
+if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
   if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
       $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
       $pieces = explode(",", $x_tra);
