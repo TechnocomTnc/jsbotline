@@ -55,7 +55,7 @@ else{
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
 
-      if( sizeof($rec->answer) > 0) {
+      if(sizeof($rec->answer) > 1) {
           $arrPostData['messages'][0]['text'] = $a[$b];
       }
       else{
@@ -81,7 +81,7 @@ else{
          )
       );
       $context = stream_context_create($opts);
-      $returnValue = file_get_contents($Nonurl,false,$context);
+      $returnValue = file_get_contents($url,false,$context);
       //$arrPostData = array();
    
   }
