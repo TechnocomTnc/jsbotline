@@ -49,16 +49,15 @@ else{
     foreach($data as $rec){
         $a[$i] = $rec->answer;
         $i++;
-
       }
       $b = array_rand($a,1);
       $arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
 
-      if(sizeof($rec->answer) > 0) {
+      if($a[$b] != "") {
           // $arrPostData['messages'][0]['text'] = $a[$b];
-          $arrPostData['messages'][0]['text'] = sizeof($data);
+          $arrPostData['messages'][0]['text'] = $a[$b];
       }
       else{
           $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
