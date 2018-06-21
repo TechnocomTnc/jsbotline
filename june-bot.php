@@ -55,8 +55,8 @@ if (strpos($_msg, 'ลบ') !== false) {
           if($_answer == $Drec->answer)
              $arrPostData = array();
              $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-             $arrPostData['messages'][2]['type'] = "text";
-             $arrPostData['messages'][2]['text'] = $_answer;
+             $arrPostData['messages'][0]['type'] = "text";
+             $arrPostData['messages'][0]['text'] = $_answer;
         }
       }
 
