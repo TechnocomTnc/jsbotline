@@ -23,7 +23,6 @@ $i = 0;
         $i++;
       
         // $i++;
-        echo ',,,,';
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
@@ -33,6 +32,8 @@ $i = 0;
         //         $arrPostData['messages'][1]['type'] = "text";
         //         $arrPostData['messages'][1]['text'] = $rec->answer;
             }
+    $b = array_rand($a,1);
+    echo '*'.$b.'<br>';
         
     }else{
         $arrPostData = array();
