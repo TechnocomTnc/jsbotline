@@ -19,12 +19,13 @@ $isData=sizeof($data);
         // echo '<br>';
         // echo ',,,,';
         // echo $abc[$i]
-        $a = $rec->answer;
+        
+        $a[$i] = $rec->answer;
         echo gettype($data);
         echo gettype($rec);
       echo gettype($rec->answer);
-      echo gettype($a);
-      echo $a;
+      echo $i.' - ';
+      echo $a[$i].'<br>';
       
         // $i++;
         echo $data[0];
