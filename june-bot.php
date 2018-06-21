@@ -55,8 +55,9 @@ else{
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
 
-      if(sizeof($rec->answer) > 1) {
-          $arrPostData['messages'][0]['text'] = $a[$b];
+      if(sizeof($rec->answer) > 0) {
+          // $arrPostData['messages'][0]['text'] = $a[$b];
+          $arrPostData['messages'][0]['text'] = sizeof($rec->answer);
       }
       else{
           $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
