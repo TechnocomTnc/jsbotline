@@ -23,7 +23,7 @@ $isData=sizeof($data);
         echo gettype($rec);
       echo gettype($rec->answer);
         // $i++;
-        $abc = array_rand($rec,1); 
+        $abc = array_rand($data,1); 
         echo $abc[0];
         echo ',,,,';
         // $abb = array_rand($data,2)
