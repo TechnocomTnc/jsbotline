@@ -40,15 +40,17 @@ if (strpos($_msg, 'ลบ') !== false) {
       $arrPostData['messages'][0]['type'] = "text";
       $arrPostData['messages'][0]['text'] = $_msg;
       $arrPostData['messages'][1]['type'] = "text";
-      $arrPostData['messages'][1]['text'] = $_answer;
+      $arrPostData['messages'][1]['text'] = $_question;
 
-      // if($DisData>0){
-      //   foreach($Ddata as $Drec){
-      //       $arrPostData = array();
-      //       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      //       $arrPostData['messages'][0]['type'] = "text";
-      //       $arrPostData['messages'][0]['text'] = $Ddata;
-      //   }
+      if($DisData>0){
+        foreach($Ddata as $Drec){
+          if($_answer == $Drec->answer)
+            //  $arrPostData = array();
+            //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+             $arrPostData['messages'][2]['type'] = "text";
+             $arrPostData['messages'][2]['text'] = $_answer;
+        }
+      }
 
 
       // $result = file_get_contents( $url, false, 
