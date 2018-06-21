@@ -23,6 +23,7 @@ $isData=sizeof($data);
         // $i++;
         $abc = array_rand($rec,1); 
         echo $abc[1];
+        echo ',,,,';
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
