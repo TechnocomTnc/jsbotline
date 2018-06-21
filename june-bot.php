@@ -15,9 +15,9 @@ $isData=sizeof($data);
 
   if($isData>0){
     foreach($data as $rec){
-        echo $data[0];
         echo $rec->answer;
         echo '<br>';
+        echo array_rand(($rec->answer),2);        
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
