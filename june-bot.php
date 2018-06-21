@@ -50,14 +50,14 @@ $isData=sizeof($data);
       $DisData=sizeof($Ddata);
       echo 'START <br>';
 
-      // if($DisData>0){
-      //   foreach($Ddata as $Drec){
-      //       if($_answer == $Drec->answer) {
-      //         $z = $Drec->answer;
-      //         echo 'z = '.$z.'<br>';
-      //       }
-      //       echo $Drec->answer.'<br>';
-      //     }
+      if($DisData>0){
+        foreach($Ddata as $Drec){
+            if($_answer == $Drec->answer) {
+              $z = $Drec->answer;
+              echo 'z = '.$z.'<br>';
+            }
+            echo $Drec->answer.'<br>';
+          }
 
       //       //  $arrPostData = array();
       //       //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
