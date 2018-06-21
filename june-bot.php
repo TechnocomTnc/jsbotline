@@ -52,14 +52,17 @@ if (strpos($_msg, 'ลบ') !== false) {
 
       if($DisData>0){
         foreach($Ddata as $Drec){
-          if($_answer == $Drec->answer) {
-             $arrPostData = array();
-             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-             $arrPostData['messages'][0]['type'] = "text";
-             $arrPostData['messages'][0]['text'] = $_answer;
-          }else{
-            $arrPostData['messages'][0]['text'] = $Drec->answer;}
-        }
+            if($_answer == $Drec->answer) {
+              $z = $Drec->answer;
+            }
+          }
+
+            //  $arrPostData = array();
+            //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+            //  $arrPostData['messages'][0]['type'] = "text";
+            //  $arrPostData['messages'][0]['text'] = $_answer;
+          
+            $arrPostData['messages'][0]['text'] = $z;
       }
 
 
