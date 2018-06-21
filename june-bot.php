@@ -58,7 +58,7 @@ if (strpos($_msg, 'ลบ') !== false) {
              $arrPostData['messages'][0]['type'] = "text";
              $arrPostData['messages'][0]['text'] = $_answer;
           }else{
-            $arrPostData['messages'][0]['text'] = 'ไม่เห็นมีเยยย';}
+            $arrPostData['messages'][0]['text'] = $Drec->answer;}
         }
       }
 
