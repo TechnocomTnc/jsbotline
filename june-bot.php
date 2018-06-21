@@ -15,9 +15,10 @@ $isData=sizeof($data);
 
   if($isData>0){
     foreach($data as $rec){
-        // echo $rec;
-        $abb = array_rand($data,2)
-        echo $abb;
+        echo $rec->answer;
+        echo '<br>';
+        // $abb = array_rand($data,2)
+        // echo $abb;
         // $arrPostData = array();
         // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         //         $arrPostData['messages'][0]['type'] = "text";
