@@ -44,11 +44,11 @@ $isData=sizeof($data);
 
       // $_question="เน่";
       // $_answer="ครับ";
-      // $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
-      // $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'เน่'"}');
-      // $Ddata = json_decode($Djson);
-      // $DisData=sizeof($Ddata);
-      // echo 'START <br>';
+      $Durl = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
+      $Djson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'เน่'"}');
+      $Ddata = json_decode($Djson);
+      $DisData=sizeof($Ddata);
+      echo 'START <br>';
 
       // if($DisData>0){
       //   foreach($Ddata as $Drec){
