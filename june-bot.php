@@ -19,59 +19,60 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     $pieces = explode(",", $x_tra);
     $_question=str_replace(" ","",$pieces[0]);
     $_answer=str_replace("","",$pieces[1]);
+
     //Post New Data
-    // $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
-    // $data2 = json_decode($json2);
-    // $url2 = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
-    // $isData2=sizeof($data2);
-    // if($isData2!==0){
-    //   foreach($data2 as $value){
-    //     if(sizeof($value->answer) == 0){
-    //             $arrPostData = array();
-    //             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    //             $arrPostData['messages'][0]['type'] = "text";
-    //             $arrPostData['messages'][0]['text'] = sizeof($value->answer);
+    $json2 = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+    $data2 = json_decode($json2);
+    $url2 = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'"}';
+    $isData2=sizeof($data2);
+    if($isData2!==0){
+      foreach($data2 as $value){
+        if(sizeof($value->answer) == 0){
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = sizeof($value->answer);
 
-    //             $newData = json_encode(  
-    //               array(
-    //                 'question' => $_question,
-    //                 'answer'=> $_answer));  
-    //             $opts = array(
-    //               'http' => array(
-    //                   'method' => "POST",
-    //                   'header' => "Content-type: application/json",
-    //                   'content' => $newData));
-    //             $context = stream_context_create($opts);
-    //             $returnValue = file_get_contents($url2,false,$context);
+                $newData = json_encode(  
+                  array(
+                    'question' => $_question,
+                    'answer'=> $_answer));  
+                $opts = array(
+                  'http' => array(
+                      'method' => "POST",
+                      'header' => "Content-type: application/json",
+                      'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url2,false,$context);
 
-    //             $arrPostData = array();
-    //             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    //             $arrPostData['messages'][1]['type'] = "text";
-    //             $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-    //             $arrPostData['messages'][2]['type'] = "text";
-    //             $arrPostData['messages'][2]['text'] = sizeof($value->answer);
-    //     }else{            
-    //             $newData = json_encode(  
-    //               array(
-    //                 'question' => $_question,
-    //                 'answer'=> $_answer));  
-    //             $opts = array(
-    //               'http' => array(
-    //                   'method' => "POST",
-    //                   'header' => "Content-type: application/json",
-    //                   'content' => $newData));
-    //             $context = stream_context_create($opts);
-    //             $returnValue = file_get_contents($url2,false,$context);
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][2]['type'] = "text";
+                $arrPostData['messages'][2]['text'] = sizeof($value->answer);
+        }else{            
+                $newData = json_encode(  
+                  array(
+                    'question' => $_question,
+                    'answer'=> $_answer));  
+                $opts = array(
+                  'http' => array(
+                      'method' => "POST",
+                      'header' => "Content-type: application/json",
+                      'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url2,false,$context);
 
-    //             $arrPostData = array();
-    //             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    //             $arrPostData['messages'][1]['type'] = "text";
-    //             $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-    //             $arrPostData['messages'][2]['type'] = "text";
-    //             $arrPostData['messages'][2]['text'] = sizeof($value->answer);
-    //     }
-    //   }
-    // }    
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][2]['type'] = "text";
+                $arrPostData['messages'][2]['text'] = sizeof($value->answer);
+        }
+      }
+    }    
 
 
     // }
@@ -87,13 +88,12 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
     // $arrPostData['messages'][4]['text'] = 'งง';
   }
 }
+
+
 else{
   if($isData>0){
     foreach($data as $rec){
-
         $a[$i] = $rec->answer;
-        echo $i.' - ';
-        echo $a[$i].'<br>';
         $i++;
       }
       $b = array_rand($a,1);
