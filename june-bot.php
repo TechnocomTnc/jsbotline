@@ -16,7 +16,7 @@ $i = 0;
   if($isData>0){
     foreach($data as $rec){
         // $abc[$i] = $rec->answer;
-        // echo $rec->answer;
+        echo $rec->answer;
         // echo '<br>';
         // echo ',,,,';
         // echo $abc[$i]
@@ -30,10 +30,6 @@ $i = 0;
       $i++;
       
         // $i++;
-        echo $data[0];
-        echo $data[1];
-        $abc = array_rand($data,1); 
-        echo $abc[0];
         echo ',,,,';
         // $abb = array_rand($data,2)
         // echo $abb;
