@@ -19,9 +19,9 @@ $isData=sizeof($data);
         // echo '<br>';
         // echo ',,,,';
         // echo $abc[$i]
-         echo '<br>';
+        // echo '<br>';
         // $i++;
-        print_r(array_rand(($rec->answer),1));        
+        print_r(array_rand($rec,1));        
         // $abb = array_rand($data,2)
         // echo $abb;
         // $arrPostData = array();
