@@ -18,7 +18,7 @@ $isData=sizeof($data);
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $rec->answer;
+                $arrPostData['messages'][0]['text'] = $rec;
                 $arrPostData['messages'][1]['type'] = "text";
                 $arrPostData['messages'][1]['text'] = $rec->answer;
             }
