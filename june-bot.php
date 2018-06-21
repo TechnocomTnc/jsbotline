@@ -38,9 +38,9 @@ if (strpos($_msg, 'ลบ') !== false) {
       $arrPostData = array();
       $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
       $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = $_question;
+      $arrPostData['messages'][0]['text'] = $_msg;
       $arrPostData['messages'][1]['type'] = "text";
-      $arrPostData['messages'][1]['text'] = $_answer;
+      $arrPostData['messages'][1]['text'] = $_question;
 
       // if($DisData>0){
       //   foreach($Ddata as $Drec){
