@@ -15,7 +15,7 @@ $isData=sizeof($data);
 $i=0;
   if($isData>0){
     foreach($data as $rec){
-        $abc[$i] = array($rec->answer);
+        $abc[$i] = $rec->answer;
         echo $rec->answer;
         echo '<br>';
         echo ',,,,';
