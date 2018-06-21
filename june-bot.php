@@ -14,8 +14,6 @@ $data = json_decode($json);
 $isData=sizeof($data);
   if($isData>0){
     foreach($data as $rec){
-        $tt = file_get_contents($rec->answer);
-        echo $tt;
         // $abc[$i] = $rec->answer;
         // echo $rec->answer;
         // echo '<br>';
@@ -23,7 +21,7 @@ $isData=sizeof($data);
         // echo $abc[$i]
         // echo '<br>';
         // $i++;
-        $abc = array_rand($rec->answer,1); 
+        $abc = array_rand($rec,1); 
         echo $abc[0];
         echo ',,,,';
         // $abb = array_rand($data,2)
