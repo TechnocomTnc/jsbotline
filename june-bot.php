@@ -65,7 +65,7 @@ else{
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง';
+    $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ยังไม่ค่อยรู้เรื่อง';
     
     $nonData = json_encode(  
         array(
