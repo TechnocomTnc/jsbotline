@@ -68,20 +68,30 @@ $isData=sizeof($data);
               //       )
               //   ))
               //   );
-              
+              // "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'"
               echo 'z = '.$z.'<br>';
-              $ajax( { $url=> "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
-                'type' => "DELETE",
-                'async' => true,
-                'timeout' => 300000,
-                'success' => function (data) { }
-              }
-              );
+             
+             
+              // $ajax( { $url=> "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
+              //   'type' => "DELETE",
+              //   'async' => true,
+              //   'timeout' => 300000,
+              //   'success' => function (data) { }
+              // }
+              // );
 
+?>
+<script>
 
+              $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
+                type: "DELETE",
+                async: true,
+                timeout: 300000,
+                success: function (data) { },
+                error: function (xhr, status, err) { } } );
 
-
-
+</script>
+<?php
               // $context = stream_context_create(
               //   array(
               //       'http' => array(
