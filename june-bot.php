@@ -12,7 +12,7 @@ $url = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$ap
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
-
+$q_id = 0;
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"q_id":"'.$q_id.'"}');
 $Adata = json_decode($Ajson);
@@ -45,7 +45,7 @@ $nonisData=sizeof($nondata);
                 // $newData = json_encode(  
                 // array(
                 //     'question' => $_question,
-                //     'q_id' => $_q_id
+                //     'q_id' => $q_id
 
 
                 // //    'answer'=> $_answer
@@ -59,10 +59,11 @@ $nonisData=sizeof($nondata);
                 // $context = stream_context_create($opts);
                 // $returnValue = file_get_contents($url,false,$context);
         }else{
+            $q_id++;
             $newData = json_encode(  
                 array(
                     'question' => $_question,
-                    'q_id' => $_q_id
+                    'q_id' => $q_id
 
 
                 //    'answer'=> $_answer
@@ -80,7 +81,7 @@ $nonisData=sizeof($nondata);
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = $QisData;
+        $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
   }
 }
 else{
