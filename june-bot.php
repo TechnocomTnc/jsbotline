@@ -57,56 +57,55 @@ $nonisData=sizeof($nondata);
             $context = stream_context_create($opts);
             $returnValue = file_get_contents($Aurl,false,$context);
 
-
-            //Post New Data
-                // $newData = json_encode(  
-                // array(
-                //     'question' => $_question,
-                //     'q_id' => $q_id
-
-
-                // //    'answer'=> $_answer
-                
-                // ));  
-                // $opts = array(
-                // 'http' => array(
-                //     'method' => "POST",
-                //     'header' => "Content-type: application/json",
-                //     'content' => $newData));
-                // $context = stream_context_create($opts);
-                // $returnValue = file_get_contents($url,false,$context);
         }else{
+            $nQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
+            $nQdata = json_decode($nQjson);
+            $nQisData=sizeof($nQdata);
 
-            $newquestion = json_encode(  
-                array(
-                    'question' => $_question,
-                    'm_id' => $m_id            
-                ));  
-                $opts = array(
-                'http' => array(
-                    'method' => "POST",
-                    'header' => "Content-type: application/json",
-                    'content' => $newquestion));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents($url,false,$context);
+            if($nQisData>0){ 
+                foreach($nQdata as $rec){
+                    $x[$z] = $rec->m_id;
+                    $z++;
+                }
+
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] =  max($x[$z]);
+
+
+
+
+            // $newquestion = json_encode(  
+            //     array(
+            //         'question' => $_question,
+            //         'm_id' => $m_id            
+            //     ));  
+            //     $opts = array(
+            //     'http' => array(
+            //         'method' => "POST",
+            //         'header' => "Content-type: application/json",
+            //         'content' => $newquestion));
+            //     $context = stream_context_create($opts);
+            //     $returnValue = file_get_contents($url,false,$context);
             
-            $newanswer = json_encode(  
-                array(
-                    'answer' => $_answer,
-                    'm_id' => $m_id,   
-                ));  
-                $opts = array(
-                'http' => array(
-                    'method' => "POST",
-                    'header' => "Content-type: application/json",
-                    'content' => $newanswer));
-                $context = stream_context_create($opts);
-                $returnValue = file_get_contents($Aurl,false,$context);
+            // $newanswer = json_encode(  
+            //     array(
+            //         'answer' => $_answer,
+            //         'm_id' => $m_id,   
+            //     ));  
+            //     $opts = array(
+            //     'http' => array(
+            //         'method' => "POST",
+            //         'header' => "Content-type: application/json",
+            //         'content' => $newanswer));
+            //     $context = stream_context_create($opts);
+            //     $returnValue = file_get_contents($Aurl,false,$context);
         }
-        $arrPostData = array();
-        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-        $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+        // $arrPostData = array();
+        // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        // $arrPostData['messages'][1]['type'] = "text";
+        // $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
   }
 }
 else{
