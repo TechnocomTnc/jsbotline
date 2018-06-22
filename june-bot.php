@@ -11,9 +11,9 @@ $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $z = 0;
 
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-
-
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
+$Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
+
 $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
@@ -25,7 +25,7 @@ $nonisData=sizeof($nondata);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
 
-      $Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
+      
       $Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
       $Qdata = json_decode($Qjson);
       $QisData=sizeof($Qdata);
@@ -51,7 +51,7 @@ $nonisData=sizeof($nondata);
             $nQdata = json_decode($nQjson);
             $nQisData=sizeof($nQdata);
 
-            if($nQisData>0){ 
+            if($nQisData>=0){ 
                 foreach($nQdata as $rec){
                      $z++;
                 }
