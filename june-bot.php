@@ -13,6 +13,8 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collecti
 $data = json_decode($json);
 $isData=sizeof($data);
 $m_id = 0;
+
+$Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 // $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 // $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$q_id.'"}');
 // $Adata = json_decode($Ajson);
@@ -38,9 +40,24 @@ $nonisData=sizeof($nondata);
       $Qdata = json_decode($Qjson);
       $QisData=sizeof($Qdata);
 
-
-
       if($QisData>0){ 
+        foreach($Qdata as $rec){
+            $x = $rec->m_id;
+        }
+        $newanswer = json_encode(  
+            array(
+                'answer' => $_answer,
+                'm_id' => $x,   
+            ));  
+            $opts = array(
+            'http' => array(
+                'method' => "POST",
+                'header' => "Content-type: application/json",
+                'content' => $newanswer));
+            $context = stream_context_create($opts);
+            $returnValue = file_get_contents($Aurl,false,$context);
+
+
             //Post New Data
                 // $newData = json_encode(  
                 // array(
@@ -59,6 +76,7 @@ $nonisData=sizeof($nondata);
                 // $context = stream_context_create($opts);
                 // $returnValue = file_get_contents($url,false,$context);
         }else{
+
             $newquestion = json_encode(  
                 array(
                     'question' => $_question,
@@ -84,9 +102,7 @@ $nonisData=sizeof($nondata);
                     'content' => $newanswer));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($Aurl,false,$context);
-            
         }
-
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         $arrPostData['messages'][0]['type'] = "text";
@@ -98,11 +114,10 @@ else{
     foreach($data as $rec){
         $x = $rec->m_id;
     }
-        $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
+        
         $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
         $Adata = json_decode($Ajson);
         $AisData= sizeof($Adata);
-
         if($AisData>0){
             foreach($Adata as $Arec){
                 $a[$i] = $Arec->answer;
