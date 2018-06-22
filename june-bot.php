@@ -85,8 +85,6 @@ $nonisData=sizeof($nondata);
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($Aurl,false,$context);
             
-
-
         }
 
         $arrPostData = array();
@@ -96,15 +94,12 @@ $nonisData=sizeof($nondata);
   }
 }
 else{
-
   if($isData>0){
-
-
     foreach($data as $rec){
         $x = $rec->m_id;
     }
         $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-        $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$x.'"}');
+        $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
         $Adata = json_decode($Ajson);
         $AisData= sizeof($Adata);
 
@@ -117,7 +112,7 @@ else{
             $arrPostData = array();
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = $Arec->answer;
+            $arrPostData['messages'][0]['text'] = $a[$b];
         }
 
     
