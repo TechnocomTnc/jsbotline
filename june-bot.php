@@ -13,10 +13,10 @@ $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collecti
 $data = json_decode($json);
 $isData=sizeof($data);
 $m_id = 0;
-$Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-$Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$q_id.'"}');
-$Adata = json_decode($Ajson);
-$AisData=sizeof($Adata);
+// $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
+// $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$q_id.'"}');
+// $Adata = json_decode($Ajson);
+// $AisData=sizeof($Adata);
 
 
 
