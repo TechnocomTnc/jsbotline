@@ -98,24 +98,27 @@ $nonisData=sizeof($nondata);
 else{
 
   if($isData>0){
+
+
     foreach($data as $rec){
         $x = $rec->m_id;
-
-
+    }
         $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
         $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$x.'"}');
         $Adata = json_decode($Ajson);
         $AisData=sizeof($Adata);
+
         if($AisData>0){
-            foreach($Adata as $Arec){
-                $a[$i] = $Arec->answer;
-                $i++;
-            }
-            $b = array_rand($a,1);
+            // $b = array_rand($a,1);
             $arrPostData = array();
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = $a[$b];
+            $arrPostData['messages'][0]['text'] = $AisData;
+
+            // foreach($Adata as $Arec){
+            //     $a[$i] = $Arec->answer;
+            //     $i++;
+            // }
       }
     }
     //   $b = array_rand($a,1);
