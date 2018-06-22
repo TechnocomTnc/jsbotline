@@ -8,10 +8,21 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
-$url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
-$json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
+$url = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
+$json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
+
+$Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
+$Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"q_id":"'.$q_id.'"}');
+$Adata = json_decode($Ajson);
+$AisData=sizeof($Adata);
+
+$Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
+$Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+$Qdata = json_decode($Qjson);
+$QisData=sizeof($Qdata);
+
 
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
 $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
@@ -24,18 +35,25 @@ $nonisData=sizeof($nondata);
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
-      //Post New Data
-        $newData = json_encode(  
-          array(
-            'question' => $_question,
-            'answer'=> $_answer));  
-        $opts = array(
-          'http' => array(
-              'method' => "POST",
-              'header' => "Content-type: application/json",
-              'content' => $newData));
-        $context = stream_context_create($opts);
-        $returnValue = file_get_contents($url,false,$context);
+      if($QisData==0 !! $QisData==null){ 
+            //Post New Data
+                $newData = json_encode(  
+                array(
+                    'question' => $_question,
+                    'q_id' => $_q_id
+
+
+                //    'answer'=> $_answer
+                
+                ));  
+                $opts = array(
+                'http' => array(
+                    'method' => "POST",
+                    'header' => "Content-type: application/json",
+                    'content' => $newData));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($url,false,$context);
+        }
 
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
