@@ -110,10 +110,11 @@ else{
 
         if($AisData>0){
             foreach($Adata as $Arec){
+
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $Arec->answer;
+                $arrPostData['messages'][0]['text'] = $AisData;
             }
 
 
