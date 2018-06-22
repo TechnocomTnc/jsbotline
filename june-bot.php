@@ -96,16 +96,22 @@ $nonisData=sizeof($nondata);
   }
 }
 else{
+
   if($isData>0){
     foreach($data as $rec){
-        $a[$i] = $rec->answer;
-        $i++;
+        $x = $rec->m_id;
+
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        $arrPostData['messages'][0]['type'] = "text";
+        $arrPostData['messages'][0]['text'] = $x;
+
+
+
+
       }
-      $b = array_rand($a,1);
-      $arrPostData = array();
-      $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-      $arrPostData['messages'][0]['type'] = "text";
-      $arrPostData['messages'][0]['text'] = $a[$b];
+    //   $b = array_rand($a,1);
+
   }else if($nonisData>0){
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
