@@ -35,9 +35,26 @@ $nonisData=sizeof($nondata);
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
-      if($QisData==0 || $QisData==null){ 
+      if($QisData>0){ 
             //Post New Data
-                $newData = json_encode(  
+                // $newData = json_encode(  
+                // array(
+                //     'question' => $_question,
+                //     'q_id' => $_q_id
+
+
+                // //    'answer'=> $_answer
+                
+                // ));  
+                // $opts = array(
+                // 'http' => array(
+                //     'method' => "POST",
+                //     'header' => "Content-type: application/json",
+                //     'content' => $newData));
+                // $context = stream_context_create($opts);
+                // $returnValue = file_get_contents($url,false,$context);
+        }else{
+            $newData = json_encode(  
                 array(
                     'question' => $_question,
                     'q_id' => $_q_id
