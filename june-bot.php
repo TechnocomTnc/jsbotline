@@ -64,16 +64,38 @@ $nonisData=sizeof($nondata);
 
             if($nQisData>0){ 
                 foreach($nQdata as $rec){
-                     $x[$z] = $rec->m_id;
                      $z++;
-                
-                    
-                
                 }
-                    $arrPostData = array();
-                    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                    $arrPostData['messages'][0]['type'] = "text";
-                    $arrPostData['messages'][0]['text'] =  $z;
+                
+                $z++;
+                $newquestion = json_encode(  
+                    array(
+                        'question' => $_question,
+                        'm_id' => $z            
+                    ));  
+                    $opts = array(
+                    'http' => array(
+                        'method' => "POST",
+                        'header' => "Content-type: application/json",
+                        'content' => $newquestion));
+                    $context = stream_context_create($opts);
+                    $returnValue = file_get_contents($url,false,$context);
+                
+                $newanswer = json_encode(  
+                    array(
+                        'answer' => $_answer,
+                        'm_id' => $z,   
+                    ));  
+                    $opts = array(
+                    'http' => array(
+                        'method' => "POST",
+                        'header' => "Content-type: application/json",
+                        'content' => $newanswer));
+                    $context = stream_context_create($opts);
+                    $returnValue = file_get_contents($Aurl,false,$context);
+
+
+
             }
 
 
@@ -81,36 +103,12 @@ $nonisData=sizeof($nondata);
 
 
 
-            // $newquestion = json_encode(  
-            //     array(
-            //         'question' => $_question,
-            //         'm_id' => $m_id            
-            //     ));  
-            //     $opts = array(
-            //     'http' => array(
-            //         'method' => "POST",
-            //         'header' => "Content-type: application/json",
-            //         'content' => $newquestion));
-            //     $context = stream_context_create($opts);
-            //     $returnValue = file_get_contents($url,false,$context);
-            
-            // $newanswer = json_encode(  
-            //     array(
-            //         'answer' => $_answer,
-            //         'm_id' => $m_id,   
-            //     ));  
-            //     $opts = array(
-            //     'http' => array(
-            //         'method' => "POST",
-            //         'header' => "Content-type: application/json",
-            //         'content' => $newanswer));
-            //     $context = stream_context_create($opts);
-            //     $returnValue = file_get_contents($Aurl,false,$context);
+
         }
-        // $arrPostData = array();
-        // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-        // $arrPostData['messages'][1]['type'] = "text";
-        // $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        $arrPostData['messages'][1]['type'] = "text";
+        $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
   }
 }
 else{
