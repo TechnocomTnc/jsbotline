@@ -115,15 +115,19 @@ else{
 
         if($AisData>0){
             foreach($Adata as $Arec){
-                $a[$i] = $Arec->answer;
-                $i++;
+
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = $Arec->answer;
+
+
+                // $a[$i] = $Arec->answer;
+                // $i++;
             }
 
-            $b = array_rand($a,1);
-            $arrPostData = array();
-            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-            $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = $a[$b];
+            // $b = array_rand($a,1);
+
 
 
 
