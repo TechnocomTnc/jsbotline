@@ -59,23 +59,35 @@ $nonisData=sizeof($nondata);
                 // $context = stream_context_create($opts);
                 // $returnValue = file_get_contents($url,false,$context);
         }else{
-            $q_id++;
-            $newData = json_encode(  
+            $newquestion = json_encode(  
                 array(
                     'question' => $_question,
-                    'q_id' => $q_id
-
-
-                //    'answer'=> $_answer
-                
+                    'q_id' => $q_id            
                 ));  
                 $opts = array(
                 'http' => array(
                     'method' => "POST",
                     'header' => "Content-type: application/json",
-                    'content' => $newData));
+                    'content' => $newquestion));
                 $context = stream_context_create($opts);
                 $returnValue = file_get_contents($url,false,$context);
+            
+            $newanswer = json_encode(  
+                array(
+                    'anwser' => $_answer,
+                    'q_id' => $q_id,
+                    'a_id' => $a_id            
+                ));  
+                $opts = array(
+                'http' => array(
+                    'method' => "POST",
+                    'header' => "Content-type: application/json",
+                    'content' => $newanswer));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($Aurl,false,$context);
+            
+
+
         }
 
         $arrPostData = array();
