@@ -18,10 +18,7 @@ $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collect
 $Adata = json_decode($Ajson);
 $AisData=sizeof($Adata);
 
-$Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
-$Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
-$Qdata = json_decode($Qjson);
-$QisData=sizeof($Qdata);
+
 
 
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -35,6 +32,14 @@ $nonisData=sizeof($nondata);
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
+
+      $Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
+      $Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+      $Qdata = json_decode($Qjson);
+      $QisData=sizeof($Qdata);
+
+
+
       if($QisData>0){ 
             //Post New Data
                 // $newData = json_encode(  
