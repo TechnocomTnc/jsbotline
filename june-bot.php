@@ -75,7 +75,7 @@ $nonisData=sizeof($nondata);
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+        $arrPostData['messages'][0]['text'] = $QisData;
   }
 }
 else{
