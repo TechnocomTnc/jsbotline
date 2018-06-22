@@ -70,8 +70,17 @@ $isData=sizeof($data);
               //   );
               
               echo 'z = '.$z.'<br>';
-              unset($datt);
-              unset($Delink);
+              $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
+                type: "DELETE",
+                async: true,
+                timeout: 300000,
+                success: function (data) { },
+                error: function (xhr, status, err) { } }
+
+
+
+
+
             //   $context = stream_context_create(
             //     array(
             //         'http' => array(
@@ -142,6 +151,7 @@ $isData=sizeof($data);
 // else{
 //   if($isData>0){
 //     foreach($data as $rec){
+//         if($rec->answer == "" || $rec->answer ==null) continue;
 //         $a[$i] = $rec->answer;
 //         $i++;
 //       }
