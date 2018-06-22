@@ -64,14 +64,17 @@ $nonisData=sizeof($nondata);
 
             if($nQisData>0){ 
                 foreach($nQdata as $rec){
-                    $x[$z] = $rec->m_id;
-                    $z++;
+                    // $x[$z] = $rec->m_id;
+                    // $z++;
+                
+                    $arrPostData = array();
+                    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                    $arrPostData['messages'][0]['type'] = "text";
+                    $arrPostData['messages'][0]['text'] =  $rec->m_id;
+                
                 }
 
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] =  max($x[$z]);
+
 
 
 
