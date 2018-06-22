@@ -60,7 +60,7 @@ $isData=sizeof($data);
           type: "DELETE",
           async: true,
           timeout: 300000,
-          success: function (data) { alert('test') },
+          success: function (data) { alert('test'); },
           error: function (xhr, status, err) { } } );
           
       </script>
