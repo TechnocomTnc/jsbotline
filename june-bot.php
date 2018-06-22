@@ -62,7 +62,7 @@ $isData=sizeof($data);
           async: true,
           timeout: 300,
           success: function (data) { alert('test'); },
-          error: function (xhr, status, err) { } } 
+          error: function (xhr, status, err) {alert('errrrrrrrrrrrr'); } } 
           );
           
       </script>
