@@ -109,12 +109,11 @@ else{
         $AisData= sizeof($Adata);
 
         if($AisData>0){
-            foreach($Adata as $Arec){
-
+            foreach($Adata as $rec){
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $AisData;
+                $arrPostData['messages'][0]['text'] = $rec->answer;
             }
 
 
