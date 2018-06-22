@@ -32,7 +32,6 @@ $nonisData=sizeof($nondata);
       $QQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
       $QQdata = json_decode($QQjson);
       $QQisData=sizeof($QQdata);
-
       if($QQisData>0){ 
         foreach($QQdata as $rec){
             $x = $rec->m_id;
@@ -58,7 +57,7 @@ $nonisData=sizeof($nondata);
                 foreach($nQdata as $rec){
                      $z++;
                 }
-                if($z==0)$z++;
+                $z++;
                 $newquestion = json_encode(  
                     array(
                         'question' => $_question,
