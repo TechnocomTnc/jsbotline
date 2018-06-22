@@ -113,25 +113,25 @@ else{
         $arrPostData['messages'][0]['type'] = "text";
         $arrPostData['messages'][0]['text'] = $AisData;
 
-        if($AisData>0){
-            foreach($Adata as $Arec){
+    //     if($AisData>0){
+    //         foreach($Adata as $Arec){
 
-                // $arrPostData = array();
-                // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = $Arec->answer;
-
-
-                // $a[$i] = $Arec->answer;
-                // $i++;
-            }
-
-            // $b = array_rand($a,1);
+    //             // $arrPostData = array();
+    //             // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    //             $arrPostData['messages'][1]['type'] = "text";
+    //             $arrPostData['messages'][1]['text'] = $Arec->answer;
 
 
+    //             // $a[$i] = $Arec->answer;
+    //             // $i++;
+    //         }
+
+    //         // $b = array_rand($a,1);
 
 
-      }
+
+
+    //   }
     
     //   $b = array_rand($a,1);
     
