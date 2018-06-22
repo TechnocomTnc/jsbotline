@@ -54,13 +54,21 @@ $isData=sizeof($data);
       $DisData=sizeof($Ddata);
       echo 'START <br>';
       
-
+      ?>
+      <script>
+      
+        $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
+          type: "DELETE",
+          async: true, } );
+      
+      </script>
+      <?php
       
 
-      if($DisData>0){
-        foreach($Ddata as $Drec){
-            if($_answer == $Drec->answer) {
-              $z = $Drec->answer;
+      // if($DisData>0){
+      //   foreach($Ddata as $Drec){
+      //       if($_answer == $Drec->answer) {
+      //         $z = $Drec->answer;
               //$result = file_get_contents( 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_question.'","answer":"'.$_answer.'"}', false, 
               // stream_context_create(array(
               //       'http' => array(
@@ -69,7 +77,7 @@ $isData=sizeof($data);
               //   ))
               //   );
               // "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'"
-              echo 'z = '.$z.'<br>';
+              // echo 'z = '.$z.'<br>';
              
              
               // $ajax( { $url=> "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
@@ -80,15 +88,7 @@ $isData=sizeof($data);
               // }
               // );
 
-?>
-<script>
 
-              $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
-                type: "DELETE",
-                async: true, } );
-
-</script>
-<?php
               // $context = stream_context_create(
               //   array(
               //       'http' => array(
@@ -98,11 +98,11 @@ $isData=sizeof($data);
               // );
             
             // file_get_contents($Delink, false, $context);
-            echo 'z = '.$z.'<br>';
-            }
-            echo $Drec->answer.'<br>';
-          }
-        }
+        //     echo 'z = '.$z.'<br>';
+        //     }
+        //     echo $Drec->answer.'<br>';
+        //   }
+        // }
 
       //       //  $arrPostData = array();
       //       //  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
