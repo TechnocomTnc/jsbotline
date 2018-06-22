@@ -57,42 +57,17 @@ $isData=sizeof($data);
       ?>
       <script>
      // alert('testฟฟฟฟ');
-     function edbt(){
-
-     $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
-		  data: JSON.stringify( { "question" :  "y" } ),
-		  type: "PUT",
-		  contentType: "application/json" } );
-      alert('test');
-}
 
 
-        // $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
-        //   type: "DELETE",
-        //   async: true,
-        //   timeout: 300,
-        //   success: function (data) { alert('test'); },
-        //   error: function (xhr, status, err) {alert('errrrrrrrrrrrr'); } } 
-        //   );
+        $ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
+          type: "DELETE",
+          async: true,
+          timeout: 300,
+          success: function (data) { alert('test'); },
+          error: function (xhr, status, err) {alert('errrrrrrrrrrrr'); } } 
+          );
      
       </script>
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Page Title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-        <script src="main.js"></script>
-
-        <button onclick="edbt()" >enter</button>
-      </head>
-      <body>
-        
-      </body>
-      </html>
-
       <?php
       
 
