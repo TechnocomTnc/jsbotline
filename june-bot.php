@@ -8,19 +8,9 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
-$url = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
-$json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
-$data = json_decode($json);
-$isData=sizeof($data);
-$m_id = 0;
+$z = 0;
 
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-// $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-// $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$q_id.'"}');
-// $Adata = json_decode($Ajson);
-// $AisData=sizeof($Adata);
-
-
 
 
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -56,7 +46,6 @@ $nonisData=sizeof($nondata);
                 'content' => $newanswer));
             $context = stream_context_create($opts);
             $returnValue = file_get_contents($Aurl,false,$context);
-
         }else{
             $nQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
             $nQdata = json_decode($nQjson);
@@ -78,7 +67,7 @@ $nonisData=sizeof($nondata);
                         'header' => "Content-type: application/json",
                         'content' => $newquestion));
                     $context = stream_context_create($opts);
-                    $returnValue = file_get_contents($url,false,$context);
+                    $returnValue = file_get_contents($Qurl,false,$context);
                 
                 $newanswer = json_encode(  
                     array(
@@ -101,8 +90,8 @@ $nonisData=sizeof($nondata);
   }
 }
 else{
-  if($isData>0){
-    foreach($data as $rec){
+  if($QisData>0){
+    foreach($Qdata as $rec){
         $x = $rec->m_id;
     }
         $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
