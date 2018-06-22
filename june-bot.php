@@ -56,11 +56,13 @@ $isData=sizeof($data);
       
       ?>
       <script>
-      
         $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
           type: "DELETE",
-          async: true, } );
-      
+          async: true,
+          timeout: 300000,
+          success: function (data) { alert('test') },
+          error: function (xhr, status, err) { } } );
+          
       </script>
       <?php
       
