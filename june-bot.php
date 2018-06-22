@@ -29,7 +29,7 @@ $nonisData=sizeof($nondata);
       $_answer=str_replace("","",$pieces[1]);
 
       
-      $Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+      $QQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
       $QQdata = json_decode($QQjson);
       $QQisData=sizeof($QQdata);
 
