@@ -74,7 +74,7 @@ $nonisData=sizeof($nondata);
             
             $newanswer = json_encode(  
                 array(
-                    'anwser' => $_answer,
+                    'answer' => $_answer,
                     'm_id' => $m_id,   
                 ));  
                 $opts = array(
@@ -109,33 +109,17 @@ else{
         $AisData= sizeof($Adata);
 
         if($AisData>0){
-            foreach($Adata as $rec){
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $rec->answer;
+            foreach($Adata as $Arec){
+                $a[$i] = $Arec->answer;
+                $i++;
             }
-
-
+            $b = array_rand($a,1);
+            $arrPostData = array();
+            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+            $arrPostData['messages'][0]['type'] = "text";
+            $arrPostData['messages'][0]['text'] = $Arec->answer;
         }
-    //         foreach($Adata as $Arec){
 
-    //             // $arrPostData = array();
-    //             // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    //             $arrPostData['messages'][1]['type'] = "text";
-    //             $arrPostData['messages'][1]['text'] = $Arec->answer;
-
-
-    //             // $a[$i] = $Arec->answer;
-    //             // $i++;
-    //         }
-
-    //         // $b = array_rand($a,1);
-
-
-
-    
-    //   $b = array_rand($a,1);
     
   }else if($nonisData>0){
     $arrPostData = array();
