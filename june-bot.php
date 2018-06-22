@@ -83,7 +83,7 @@ $isData=sizeof($data);
 ?>
 <script>
 
-              $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey='.$api_key.'",
+              $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d4a1f6e4f75fae863d2?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
                 type: "DELETE",
                 async: true,
                 timeout: 300000,
