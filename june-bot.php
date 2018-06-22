@@ -108,18 +108,18 @@ else{
         $Adata = json_decode($Ajson);
         $AisData= sizeof($Adata);
 
-        // $arrPostData = array();
-        // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-        // $arrPostData['messages'][0]['type'] = "text";
-        // $arrPostData['messages'][0]['text'] = $AisData;
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        $arrPostData['messages'][0]['type'] = "text";
+        $arrPostData['messages'][0]['text'] = $AisData;
 
         if($AisData>0){
             foreach($Adata as $Arec){
 
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $Arec->answer;
+                // $arrPostData = array();
+                // $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = $Arec->answer;
 
 
                 // $a[$i] = $Arec->answer;
