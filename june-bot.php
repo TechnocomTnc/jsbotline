@@ -57,11 +57,12 @@ $isData=sizeof($data);
       ?>
       <script>
      // alert('testฟฟฟฟ');
+     function edbt(){
      $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
 		  data: JSON.stringify( { "question" :  "y" } ),
 		  type: "PUT",
 		  contentType: "application/json" } );
-
+}
 
 
         // $.ajax( { url: "https://api.mlab.com/api/1/databases/junebot/collections/question/5b2b5d535d0e6502069f4cbd?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77",
@@ -83,7 +84,7 @@ $isData=sizeof($data);
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
         <script src="main.js"></script>
 
-        <button>enter</button>
+        <button onclick="edbt()" >enter</button>
       </head>
       <body>
         
