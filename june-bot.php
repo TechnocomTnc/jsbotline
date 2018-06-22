@@ -106,7 +106,7 @@ else{
         $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
         $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$x.'"}');
         $Adata = json_decode($Ajson);
-        $AisData=sizeof($Adata);
+        $AisData= sizeof($Adata);
 
         $arrPostData = array();
         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -125,7 +125,7 @@ else{
             //     $i++;
             // }
       }
-    }
+    
     //   $b = array_rand($a,1);
     
   }else if($nonisData>0){
