@@ -58,7 +58,7 @@ $nonisData=sizeof($nondata);
                 foreach($nQdata as $rec){
                      $z++;
                 }
-                $z++;
+                if($z==0)$z++;
                 $newquestion = json_encode(  
                     array(
                         'question' => $_question,
