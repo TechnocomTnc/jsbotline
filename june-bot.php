@@ -74,8 +74,7 @@ $isData=sizeof($data);
                 'type' => "DELETE",
                 'async' => true,
                 'timeout' => 300000,
-                'success' => function (data) { },
-                'error' => function (xhr, status, err) { } });
+                'success' => function (data) { });
 
 
 
