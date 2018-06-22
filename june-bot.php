@@ -66,7 +66,7 @@ $isData=sizeof($data);
           );
           
       </script>
-      <<!DOCTYPE html>
+      <!DOCTYPE html>
       <html>
       <head>
         <meta charset="utf-8" />
@@ -81,7 +81,7 @@ $isData=sizeof($data);
       <body>
         
       </body>
-      </html>>
+      </html>
 
       <?php
       
