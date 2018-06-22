@@ -12,9 +12,9 @@ $url = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$ap
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $data = json_decode($json);
 $isData=sizeof($data);
-$q_id = 0;
+$m_id = 0;
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-$Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"q_id":"'.$q_id.'"}');
+$Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":"'.$q_id.'"}');
 $Adata = json_decode($Ajson);
 $AisData=sizeof($Adata);
 
@@ -62,7 +62,7 @@ $nonisData=sizeof($nondata);
             $newquestion = json_encode(  
                 array(
                     'question' => $_question,
-                    'q_id' => $q_id            
+                    'm_id' => $m_id            
                 ));  
                 $opts = array(
                 'http' => array(
@@ -75,8 +75,7 @@ $nonisData=sizeof($nondata);
             $newanswer = json_encode(  
                 array(
                     'anwser' => $_answer,
-                    'q_id' => $q_id,
-                    'a_id' => $a_id            
+                    'm_id' => $m_id,   
                 ));  
                 $opts = array(
                 'http' => array(
