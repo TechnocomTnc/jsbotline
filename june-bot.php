@@ -35,7 +35,7 @@ $nonisData=sizeof($nondata);
       $pieces = explode(",", $x_tra);
       $_question=str_replace(" ","",$pieces[0]);
       $_answer=str_replace("","",$pieces[1]);
-      if($QisData==0 !! $QisData==null){ 
+      if($QisData==0 || $QisData==null){ 
             //Post New Data
                 $newData = json_encode(  
                 array(
