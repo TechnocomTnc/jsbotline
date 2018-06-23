@@ -36,16 +36,17 @@ $QQQisData=sizeof($QQQdata);
         }
         foreach ($x as $rec){
             echo $rec;  
-            $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
+            $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
             $Adata = json_decode($Ajson);
             $AisData= sizeof($Adata);
-        
+            $z++;
             if($AisData>0){
                 foreach($Adata as $Arec){
                     $a[$i] = $Arec->answer;
                     echo $a[$i];  
                     $i++;
                 }
+
             }
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
