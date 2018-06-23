@@ -31,7 +31,7 @@ $QQQisData=sizeof($QQQdata);
                 echo $i;
                 $i++;        
             }
-        
+        echo $rec->question;
 
         echo '123';
 
