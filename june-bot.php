@@ -42,10 +42,13 @@ $QQQisData=sizeof($QQQdata);
             $Adata = json_decode($Ajson);
             $AisData= sizeof($Adata);
             $z++;
+            echo 'Answer : ';
             if($AisData>0){
                 foreach($Adata as $Arec){
                     $a[$i] = $Arec->answer;
-                    echo $a[$i];  
+                    echo $a[$i];
+                    echo ' '.$Arec->answer.'<br>';
+                      
                     $i++;
                 }
 
