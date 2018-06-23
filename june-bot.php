@@ -47,12 +47,18 @@ $QQQisData=sizeof($QQQdata);
                 foreach($Adata as $Arec){
                     $a[$i] = $Arec->answer;
                     // echo $a[$i];
-                    echo $Arec->answer.'<br>';
-                      
+                    // echo $Arec->answer.'<br>';
                     $i++;
                 }
 
+
+
             }
+            foreach($a as $rec){
+                echo $rec.'<br>';
+            }
+
+
         }
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
