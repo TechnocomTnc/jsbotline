@@ -46,8 +46,8 @@ $QQQisData=sizeof($QQQdata);
             if($AisData>0){
                 foreach($Adata as $Arec){
                     $a[$i] = $Arec->answer;
-                    echo $a[$i];
-                    echo ' '.$Arec->answer.'<br>';
+                    // echo $a[$i];
+                    echo $Arec->answer.'<br>';
                       
                     $i++;
                 }
@@ -67,7 +67,7 @@ $QQQisData=sizeof($QQQdata);
 
     // echo strstr($QQQjson, $_msg);
 
-    echo '123';
+    // echo '123';
 
     }else{
 
