@@ -123,7 +123,7 @@ $z = 0;
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
             // $arrPostData['messages'][0]['text'] = '...';
-            $arrPostData['messages'][0]['text'] = $a[$b];
+            $arrPostData['messages'][0]['text'] = $a[0];
         }
     
         // if($QisData>0){
