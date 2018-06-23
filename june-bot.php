@@ -45,10 +45,10 @@ $QQQisData=sizeof($QQQdata);
             // echo 'Answer : ';
             if($AisData>0){
                 foreach($Adata as $Arec){
-                    $a[$i] = $Arec->answer;
+                    $a[$r] = $Arec->answer;
                     // echo $a[$i];
                     // echo $Arec->answer.'<br>';
-                    $i++;
+                    $r++;
                 }
 
 
