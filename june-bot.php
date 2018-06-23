@@ -55,7 +55,8 @@ $QQQisData=sizeof($QQQdata);
 
             }
             foreach($a as $rec){
-                echo $rec.'<br>';
+                echo $rec.'<br>'.$d.'<br>';
+                $d++;
             }
 
 
