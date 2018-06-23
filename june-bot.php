@@ -22,26 +22,24 @@ $nonisData=sizeof($nondata);
 $_msg = 'กิน';
 // https://api.mlab.com/api/1/databases/junebot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
 $QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
-// $QQQdata = json_decode(strstr($QQQjson, $_msg));
-// $QQQisData=sizeof($QQQdata);
-
+$QQQdata = json_decode($QQQjson);
+$QQQisData=sizeof($QQQdata);
    
-    // if($QQQisData > 0){
-    //         foreach($QQQdata as $rec){
-    //             echo $i;
-    //             $i++;        
-    //         }
-    //     echo $rec->question;
+    if($QQQisData > 0){
+        foreach($QQQdata as $rec){
+            echo $rec->question;      
+        }
+        // echo $rec->question;
 
-    echo strstr($QQQjson, $_msg);
+    // echo strstr($QQQjson, $_msg);
 
     echo '123';
 
-    // }else{
+    }else{
 
-    //     echo $QQQjson;
-    //     echo '<br>err';
-    // }
+        echo $QQQjson;
+        echo '<br>err';
+    }
 
 
 
