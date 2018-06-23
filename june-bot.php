@@ -25,13 +25,14 @@ $QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/colle
 $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
 
-    if (strpos($_msg, $QQQjson) !== false) {
+    if (strpos($QQQjson, $_msg) !== false) {
 
         echo '123';
 
     }else{
 
-        echo 'err';
+        echo $QQQjson;
+        echo '<br>err';
     }
 
 
