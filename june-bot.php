@@ -35,17 +35,18 @@ $QQQisData=sizeof($QQQdata);
             }
         }
         foreach ($x as $rec){
-            echo $rec;
-            }   
-
+            echo $rec;  
             $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
             $Adata = json_decode($Ajson);
             $AisData= sizeof($Adata);
-//             if($AisData>0){
-//                 foreach($Adata as $Arec){
-//                     $a[$i] = $Arec->answer;
-//                     $i++;
-//                 }
+        
+            if($AisData>0){
+                foreach($Adata as $Arec){
+                    $a[$i] = $Arec->answer;
+                    echo $a[$i];  
+                    $i++;
+                }
+            }
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
 //                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
