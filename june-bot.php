@@ -27,7 +27,9 @@ $QQQisData=sizeof($QQQdata);
    
     if($QQQisData > 0){
         foreach($QQQdata as $rec){
-            echo $rec->question;      
+            if (strpos($rec->question, $_msg) !== false)
+            echo $rec->question;   
+
         }
         // echo $rec->question;
 
