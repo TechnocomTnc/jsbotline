@@ -54,12 +54,13 @@ $QQQisData=sizeof($QQQdata);
 
 
             }
-            foreach($a as $rec){
-                echo $rec.'<br>'.$d.'<br>';
-                $d++;
-            }
 
 
+
+        }
+        foreach($a as $rec){
+            echo $rec.'<br>'.$d.'<br>';
+            $d++;
         }
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
