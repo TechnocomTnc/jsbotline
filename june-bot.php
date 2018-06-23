@@ -27,7 +27,7 @@ $QQQisData=sizeof($QQQdata);
 
    
     if($QQQisData > 0){
-            foreach($QQdata as $rec){
+            foreach($QQQdata as $rec){
                 echo $i;
                 $i++;        
             }
