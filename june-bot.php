@@ -19,7 +19,7 @@ $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/colle
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
 
-$_msg = 'กิน';
+// $_msg = 'กิน';
 // https://api.mlab.com/api/1/databases/junebot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
 $QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
 $QQQdata = json_decode($QQQjson);
