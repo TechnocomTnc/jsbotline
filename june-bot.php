@@ -97,7 +97,7 @@ $z = 0;
     else{
         if($QQQisData > 0){
             foreach($QQQdata as $rec){
-                if (strpos($rec->question, $_msg) !== false)
+                if (strpos($_msg, $rec->question) !== false)
                 {
                     echo 'Question : ';
                     echo $rec->question.'<br>';   
