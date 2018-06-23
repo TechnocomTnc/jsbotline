@@ -26,8 +26,8 @@ $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
 
     if (strpos($QQQjson, $_msg) !== false) {
-        
-        echo $QQQjson;
+        $a = strpos($QQQjson, $_msg);
+        echo $a;
         echo '123';
 
     }else{
