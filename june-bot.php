@@ -31,6 +31,7 @@ $QQQisData=sizeof($QQQdata);
             {
                 echo $rec->question;   
                 $x[$i] = $rec->m_id;
+                echo $x[$i] ;
                 $i++;
             }
         }
@@ -48,6 +49,7 @@ $QQQisData=sizeof($QQQdata);
                 }
 
             }
+        }
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
 //                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
