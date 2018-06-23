@@ -60,7 +60,8 @@ $QQQisData=sizeof($QQQdata);
         }
 
         $b = array_rand($a,1);
-        echo $a[$b];
+        echo $a[$b].$b;
+        
         //$d++;
         
 //                 $b = array_rand($a,1);
