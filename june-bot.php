@@ -29,14 +29,15 @@ $QQQisData=sizeof($QQQdata);
         foreach($QQQdata as $rec){
             if (strpos($rec->question, $_msg) !== false)
             {
-                echo $rec->question;   
+                echo 'Question : ';
+                echo $rec->question.'<br>';   
                 $x[$i] = $rec->m_id;
-                echo $x[$i] ;
+                //  echo $x[$i] ;
                 $i++;
             }
         }
         foreach ($x as $rec){
-            echo $rec;  
+            // echo $rec;  
             $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
             $Adata = json_decode($Ajson);
             $AisData= sizeof($Adata);
