@@ -58,10 +58,11 @@ $QQQisData=sizeof($QQQdata);
 
 
         }
-        foreach($a as $rec){
-            echo $rec.'<br>'.$d.'<br>';
-            $d++;
-        }
+
+        $b = array_rand($a,1);
+        echo $a[$b];
+        //$d++;
+        
 //                 $b = array_rand($a,1);
 //                 $arrPostData = array();
 //                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
