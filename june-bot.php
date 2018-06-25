@@ -120,28 +120,12 @@ $z = 0;
                 $Adata = json_decode($Ajson);
                 $AisData= sizeof($Adata);
                 $z++;
-                echo "X = ";
-                print_r($x);
-                echo "<br>";
-                echo "X0 = ";
-                print_r($x[0]);
-                echo "<br>";
-                echo "X1 = ";
-                print_r($x[1]);
-                echo "<br>";
-                //echo '*'.$AisData.'*';
+                $r=1;
                 if($AisData!=null){
                     foreach($Adata as $Arec){
                        
                         $a[$r] = $Arec->answer;
                         $r++;
-                        echo '^R='.$r.'^';
-                        // echo $a[$r];
-                        
-                    }
-                    foreach($a as $rec){
-                        echo  $a[0];
-                        echo $rec;
                     }
                 }
             }
