@@ -118,7 +118,7 @@ $z = 0;
                 $Adata = json_decode($Ajson);
                 $AisData= sizeof($Adata);
                 $z++;
-                
+                print_r($x);
                 if($AisData>0){
                     foreach($Adata as $Arec){
                         echo '>'.$r.'<';
