@@ -113,7 +113,7 @@ $z = 0;
                     $i++;
                 }else { echo '---------------------';}
             }
-            $z=1;
+            $z=0;
             foreach ($x as $rec){ 
                 $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
                 $Adata = json_decode($Ajson);
@@ -123,7 +123,7 @@ $z = 0;
                 echo '>'.$AisData.'<';
                 if($AisData>0){
                     foreach($Adata as $Arec){
-                        echo '>'.$r.'<';
+                        echo '>R='.$r.'<';
                         $a[$r] = $Arec->answer;
                         $r++;
                         // echo $a[$r];
