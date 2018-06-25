@@ -121,9 +121,12 @@ $z = 0;
                     foreach($Adata as $Arec){
                         $a[$r] = $Arec->answer;
                         $r++;
+                        echo $a[$r];
+                        echo '>'.$AisData.'<';
                     }
                 }
             }
+            
             echo "ตอบ";
             $b = array_rand($a,1);
             echo $b;
