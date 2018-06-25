@@ -101,9 +101,9 @@ $z = 0;
     }
     else{
         if($QQQisData > 0){
-            echo '>'.$QQQisData.'<';
+            // echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
-                echo '>'.$rec->question.'<';
+                // echo '>'.$rec->question.'<';
                 if (ereg("($rec->question)+",$_msg) !== false)
                 //if (strpos($_msg, $rec->question) !== false)
                 {
