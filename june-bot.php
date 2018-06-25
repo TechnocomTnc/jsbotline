@@ -101,6 +101,7 @@ $z = 0;
     }
     else{
         if($QQQisData > 0){
+            $i=1;
             // echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
                 // echo '>'.$rec->question.'<';
@@ -113,7 +114,7 @@ $z = 0;
                     $i++;
                 }else { echo '---------------------';}
             }
-            $z=0;
+            $z=1;
             foreach ($x as $rec){ 
                 $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
                 $Adata = json_decode($Ajson);
