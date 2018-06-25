@@ -101,6 +101,7 @@ $z = 0;
     }
     else{
         if($QQQisData > 0){
+            echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
           
                 if (ereg($_msg, "(.$rec->question)+") !== false)
@@ -117,6 +118,7 @@ $z = 0;
                 $Adata = json_decode($Ajson);
                 $AisData= sizeof($Adata);
                 $z++;
+                
                 if($AisData>0){
                     foreach($Adata as $Arec){
                         $a[$r] = $Arec->answer;
