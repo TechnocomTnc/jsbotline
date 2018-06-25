@@ -112,36 +112,70 @@ $z = 0;
                     echo $rec->question.'<br>';   
                     $x[$i] = $rec->m_id;
                     $i++;
-                }else { echo '---------------------';}
-            }
-            $z=1; 
-            $r=1;
-            foreach ($x as $rec){ 
-                $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
-                $Adata = json_decode($Ajson);
-                $AisData= sizeof($Adata);
-                $z++;
-               
-                if($AisData!=null){
-                    foreach($Adata as $Arec){
-                       
-                        $a[$r] = $Arec->answer;
-                        $r++;
-                    }
+                }
+                else {
+
+                    echo '--';
+                    print_r($x);
                 }
             }
-            
-            echo "ตอบ";
-            print_r($a);
-            $b = array_rand($a,1);
-            echo $b;
-            $arrPostData = array();
-            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-            $arrPostData['messages'][0]['type'] = "text";
-            // $arrPostData['messages'][0]['text'] = '...';
-            $arrPostData['messages'][0]['text'] = $a[$b];
-        }
-    
+            if($x[$i]!=null){
+                $z=1; 
+                $r=1;
+                foreach ($x as $rec){ 
+                    $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
+                    $Adata = json_decode($Ajson);
+                    $AisData= sizeof($Adata);
+                    $z++;
+                
+                    if($AisData!=null){
+                        foreach($Adata as $Arec){
+                        
+                            $a[$r] = $Arec->answer;
+                            $r++;
+                        }
+                    }
+                }
+                
+                echo "ตอบ";
+                print_r($a);
+                $b = array_rand($a,1);
+                echo $b;
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                // $arrPostData['messages'][0]['text'] = '...';
+                $arrPostData['messages'][0]['text'] = $a[$b];
+            }
+            if($nonisData>0){
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
+                echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
+            }  
+            else{
+                if($_msg == null) continue;
+                $arrPostData = array();
+                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง';
+                echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
+                
+                $nonData = json_encode(  
+                    array(
+                    'question' => $_msg, 
+                ));
+                $opts = array(
+                    'http' => array(
+                        'method' => "POST",
+                        'header' => "Content-type: application/json",
+                        'content' => $nonData
+                ));
+                $context = stream_context_create($opts);
+                $returnValue = file_get_contents($nonurl,false,$context);    
+            }
+    }
         // if($QisData>0){
         //     foreach($Qdata as $rec){$x = $rec->m_id;}
         //     $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
@@ -159,34 +193,7 @@ $z = 0;
         //         $arrPostData['messages'][0]['text'] = $a[$b];
         //     }            
         // }
-        else if($nonisData>0){
-            $arrPostData = array();
-            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-            $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
-            echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
-        }  
-        else{
-            if($_msg == null) continue;
-            $arrPostData = array();
-            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-            $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง';
-            echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
-            
-            $nonData = json_encode(  
-                array(
-                'question' => $_msg, 
-            ));
-            $opts = array(
-                'http' => array(
-                    'method' => "POST",
-                    'header' => "Content-type: application/json",
-                    'content' => $nonData
-            ));
-            $context = stream_context_create($opts);
-            $returnValue = file_get_contents($nonurl,false,$context);    
-        }
+       
     }
 
 $channel = curl_init();
