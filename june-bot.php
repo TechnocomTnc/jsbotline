@@ -27,7 +27,13 @@ $QQQisData=sizeof($QQQdata);
    
 $z = 0;
 
-    if (ereg("(จุนเน่)+", $_msg) !== false) {
+    if (ereg("(จุน)+", $_msg) !== false) {
+        $arrPostData = array();
+        $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        $arrPostData['messages'][0]['type'] = "text";
+        $arrPostData['messages'][0]['text'] = '(´▽｀)';
+    }
+    if (ereg("(เน่)+", $_msg) !== false) {
         // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
             $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
             $pieces = explode(",", $x_tra);
