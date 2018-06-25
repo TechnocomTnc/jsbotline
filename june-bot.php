@@ -146,6 +146,7 @@ $z = 0;
                 $arrPostData['messages'][0]['type'] = "text";
                 // $arrPostData['messages'][0]['text'] = '...';
                 $arrPostData['messages'][0]['text'] = $a[$b];
+                echo  $a[$b];
             }
             else if($nonisData>0){
                 $arrPostData = array();
