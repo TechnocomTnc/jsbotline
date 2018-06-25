@@ -26,7 +26,7 @@ $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
    
 $z = 0;
-$f = 0
+$f = 0;
     if (ereg("(จุน)+", $_msg) !== false) {
         
         $arrPostData = array();
