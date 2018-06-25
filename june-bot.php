@@ -131,6 +131,7 @@ $z = 0;
             }
             
             echo "ตอบ";
+            print_r($a);
             $b = array_rand($a,1);
             echo $b;
             $arrPostData = array();
