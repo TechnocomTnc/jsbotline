@@ -27,7 +27,7 @@ $QQQisData=sizeof($QQQdata);
    
 $z = 0;
 
-    if (ereg("(เน่)+", $_msg) !== false) {
+    if (ereg("(จุนเน่)+", $_msg) !== false) {
         // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
             $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
             $pieces = explode(",", $x_tra);
