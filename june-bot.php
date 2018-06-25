@@ -18,6 +18,14 @@ $QisData=sizeof($Qdata);
 $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
+
+// $_msg = 'กินข้าวกัน';
+// https://api.mlab.com/api/1/databases/junebot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
+$QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
+$QQQdata = json_decode($QQQjson);
+$QQQisData=sizeof($QQQdata);
+   
+
 $z = 0;
 
     if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
@@ -50,13 +58,17 @@ $z = 0;
                     $nQisData=sizeof($nQdata);
 
                     if($nQisData>=0){ 
-                        foreach($nQdata as $rec){$z++;}
-                        $z++;
+                        foreach($nQdata as $rec){
+                            $x[$z] = $rec->m_id;
+                            $z++;
+                        }
+                        $id = max($x);
+                        $id++;
 
                         $newquestion = json_encode(  
                             array(
                                 'question' => $_question,
-                                'm_id' => $z            
+                                'm_id' => $id            
                             ));  
                         $opts = array(
                         'http' => array(
@@ -69,7 +81,7 @@ $z = 0;
                         $newanswer = json_encode(  
                             array(
                                 'answer' => $_answer,
-                                'm_id' => $z,   
+                                'm_id' => $id,   
                             ));  
                         $opts = array(
                         'http' => array(
@@ -87,23 +99,54 @@ $z = 0;
         }
     }
     else{
-        if($QisData>0){
-            foreach($Qdata as $rec){$x = $rec->m_id;}
-            $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
-            $Adata = json_decode($Ajson);
-            $AisData= sizeof($Adata);
-            if($AisData>0){
-                foreach($Adata as $Arec){
-                    $a[$i] = $Arec->answer;
+        if($QQQisData > 0){
+            foreach($QQQdata as $rec){
+                if (strpos($_msg, $rec->question) !== false)
+                {
+                    echo 'Question : ';
+                    echo $rec->question.'<br>';   
+                    $x[$i] = $rec->m_id;
                     $i++;
                 }
-                $b = array_rand($a,1);
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $a[$b];
-            }            
+            }
+            foreach ($x as $rec){ 
+                $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
+                $Adata = json_decode($Ajson);
+                $AisData= sizeof($Adata);
+                $z++;
+                if($AisData>0){
+                    foreach($Adata as $Arec){
+                        $a[$r] = $Arec->answer;
+                        $r++;
+                    }
+                }
+            }
+            $b = array_rand($a,1);
+            echo $a[$b].$b;
+            $arrPostData = array();
+            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+            $arrPostData['messages'][0]['type'] = "text";
+            // $arrPostData['messages'][0]['text'] = '...';
+            $arrPostData['messages'][0]['text'] = $a[1];
         }
+    
+        // if($QisData>0){
+        //     foreach($Qdata as $rec){$x = $rec->m_id;}
+        //     $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
+        //     $Adata = json_decode($Ajson);
+        //     $AisData= sizeof($Adata);
+        //     if($AisData>0){
+        //         foreach($Adata as $Arec){
+        //             $a[$i] = $Arec->answer;
+        //             $i++;
+        //         }
+        //         $b = array_rand($a,1);
+        //         $arrPostData = array();
+        //         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+        //         $arrPostData['messages'][0]['type'] = "text";
+        //         $arrPostData['messages'][0]['text'] = $a[$b];
+        //     }            
+        // }
         else if($nonisData>0){
             $arrPostData = array();
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
