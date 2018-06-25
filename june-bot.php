@@ -119,9 +119,9 @@ $z = 0;
                 $Adata = json_decode($Ajson);
                 $AisData= sizeof($Adata);
                 $z++;
-                print_r($x);
+                print_r($x[$AisData]);
                 echo '*'.$AisData.'*';
-                if($AisData>=0){
+                if($AisData!=null){
                     foreach($Adata as $Arec){
                        
                         $a[$r] = $Arec->answer;
