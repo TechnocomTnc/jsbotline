@@ -119,7 +119,7 @@ $z = 0;
                 $Adata = json_decode($Ajson);
                 $AisData= sizeof($Adata);
                 $z++;
-                print_r($x[$AisData]);
+                print_r($x[1]);
                 echo '*'.$AisData.'*';
                 if($AisData!=null){
                     foreach($Adata as $Arec){
