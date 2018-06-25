@@ -6,8 +6,9 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+// $_msg = 'หวัด';
 $_msg = $arrJson['events'][0]['message']['text'];
-$_msg = 'หวัด';
+
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
