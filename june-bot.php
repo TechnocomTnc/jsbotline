@@ -7,7 +7,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-// $_msg = 'กินข้าวกัน';
+$_msg = 'กินข้าวยังครับน้อง';
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -50,6 +50,7 @@ $z = 0;
                         'content' => $newanswer));
                     $context = stream_context_create($opts);
                     $returnValue = file_get_contents($Aurl,false,$context);
+                    echo "เพิ่มคำตอบ";
             }
             else{
                     $nQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
@@ -91,6 +92,7 @@ $z = 0;
                         $returnValue = file_get_contents($Aurl,false,$context);
                     }
                 }
+                echo "เพิ่มคำถาม,ตอบ";
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
@@ -122,6 +124,7 @@ $z = 0;
                     }
                 }
             }
+            echo "ตอบ";
             $b = array_rand($a,1);
             echo $a[$b].$b;
             $arrPostData = array();
@@ -153,6 +156,7 @@ $z = 0;
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
             $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
+            echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
         }  
         else{
             if($_msg == null) continue;
@@ -160,6 +164,7 @@ $z = 0;
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
             $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง';
+            echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
             
             $nonData = json_encode(  
                 array(
