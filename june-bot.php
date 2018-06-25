@@ -121,10 +121,11 @@ $z = 0;
                 
                 if($AisData>0){
                     foreach($Adata as $Arec){
+                        echo '>'.$r.'<';
                         $a[$r] = $Arec->answer;
                         $r++;
-                        echo $a[$r];
-                        echo '>'.$AisData.'<';
+                        // echo $a[$r];
+                        
                     }
                 }
             }
