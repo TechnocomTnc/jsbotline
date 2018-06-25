@@ -33,7 +33,7 @@ $z = 0;
         $arrPostData['messages'][0]['type'] = "text";
         $arrPostData['messages'][0]['text'] = '(´▽｀)';
     }
-    if (ereg("(เน่)+", $_msg) !== false) {
+    else if (ereg("(เน่)+", $_msg) !== false) {
         // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
             $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
             $pieces = explode(",", $x_tra);
@@ -99,8 +99,8 @@ $z = 0;
                 }
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][0]['type'] = "text";
+                $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
         // }
     }
     else{
