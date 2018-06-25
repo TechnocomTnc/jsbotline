@@ -27,8 +27,8 @@ $QQQisData=sizeof($QQQdata);
    
 $z = 0;
 
-    if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
-        if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
+    if (ereg("^น้องเน่จำนะ", $_msg) !== false) {
+        // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
             $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
             $pieces = explode(",", $x_tra);
             $_question=str_replace(" ","",$pieces[0]);
@@ -95,7 +95,7 @@ $z = 0;
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-        }
+        // }
     }
     else{
         if($QQQisData > 0){
