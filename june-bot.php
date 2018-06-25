@@ -123,9 +123,10 @@ $z = 0;
                 echo '*'.$AisData.'*';
                 if($AisData>=0){
                     foreach($Adata as $Arec){
-                        echo '^R='.$r.'^';
+                       
                         $a[$r] = $Arec->answer;
                         $r++;
+                        echo '^R='.$r.'^';
                         // echo $a[$r];
                         
                     }
