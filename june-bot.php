@@ -26,15 +26,6 @@ $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
    
 $z = 0;
-$f = 0;
-    if (ereg("(จุน)+", $_msg) !== false) {
-        
-        $arrPostData = array();
-        $arrPostData['replyToken'] = $arrJson['events'][[0]['replyToken'];
-        $arrPostData['messages'][$f]['type'] = "text";
-        $arrPostData['messages'][[$f]['text'] = '(´▽｀)';
-        $f++;
-    }
     if (ereg("(เน่)+", $_msg) !== false) {
         // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
             $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
@@ -101,8 +92,8 @@ $f = 0;
                 }
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][[$f]['type'] = "text";
-                $arrPostData['messages'][[$f]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
+                $arrPostData['messages'][[0]['type'] = "text";
+                $arrPostData['messages'][[0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
         // }
     }
     else{
