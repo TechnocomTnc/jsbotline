@@ -7,7 +7,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-$_msg = 'ดี';
+$_msg = 'หวัด';
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
