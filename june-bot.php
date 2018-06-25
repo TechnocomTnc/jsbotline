@@ -111,7 +111,7 @@ $z = 0;
                     echo $rec->question.'<br>';   
                     $x[$i] = $rec->m_id;
                     $i++;
-                }
+                }else { echo '---------------------';}
             }
             foreach ($x as $rec){ 
                 $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
