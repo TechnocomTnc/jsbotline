@@ -119,7 +119,7 @@ $z = 0;
                     print_r($x);
                 }
             }
-            if($x[$i]!=null){
+            if($x!=null){
                 $z=1; 
                 $r=1;
                 foreach ($x as $rec){ 
