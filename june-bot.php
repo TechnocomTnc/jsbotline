@@ -104,7 +104,7 @@ $z = 0;
             echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
                 echo '>'.$rec->question.'<';
-                if (ereg($_msg, "(.$rec->question)+") !== false)
+                if (ereg("($rec->question)+",$_msg) !== false)
                 //if (strpos($_msg, $rec->question) !== false)
                 {
                     echo 'Question : ';
