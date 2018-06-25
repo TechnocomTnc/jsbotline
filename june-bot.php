@@ -103,7 +103,7 @@ $z = 0;
         if($QQQisData > 0){
             echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
-          
+                echo '>'.$rec->question.'<';
                 if (ereg($_msg, "(.$rec->question)+") !== false)
                 //if (strpos($_msg, $rec->question) !== false)
                 {
