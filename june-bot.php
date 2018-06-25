@@ -120,14 +120,17 @@ $z = 0;
                 $AisData= sizeof($Adata);
                 $z++;
                 print_r($x);
-                echo '>'.$AisData.'<';
-                if($AisData>0){
+                echo '*'.$AisData.'*';
+                if($AisData>=0){
                     foreach($Adata as $Arec){
-                        echo '>R='.$r.'<';
+                        echo '^R='.$r.'^';
                         $a[$r] = $Arec->answer;
                         $r++;
                         // echo $a[$r];
                         
+                    }
+                    foreach($a as $rec){
+                        echo $rec;
                     }
                 }
             }
