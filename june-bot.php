@@ -126,7 +126,7 @@ $z = 0;
             }
             echo "ตอบ";
             $b = array_rand($a,1);
-            echo $a[$b].$b;
+            echo $b;
             $arrPostData = array();
             $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
             $arrPostData['messages'][0]['type'] = "text";
