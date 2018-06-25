@@ -130,6 +130,7 @@ $z = 0;
                         
                     }
                     foreach($a as $rec){
+                        echo  $a[0];
                         echo $rec;
                     }
                 }
