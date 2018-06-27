@@ -166,7 +166,7 @@ $z = 0;
                         echo $event['message'];
                         echo "C";
                         echo $event['type'];
-                        $am = $event['type'];
+                        $am = $event['message']['type'];
 
                         // if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
                         //     $this->isText = true;
@@ -191,7 +191,7 @@ $z = 0;
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = $am;
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
-                echo  $arrJson->events->Type;
+                
                 print_r($arrJson);
                 $nonData = json_encode(  
                     array(
