@@ -7,8 +7,8 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-// $_msg = $arrJson['events'][0]['message']['text'];
-$_msg = 'น้องเน่จำนะ ดี,ครับ';
+$_msg = $arrJson['events'][0]['message']['text'];
+// $_msg = 'น้องเน่จำนะ ดี,ครับ';
 $api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
 $Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
