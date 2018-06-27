@@ -10,10 +10,10 @@ $_msg = $arrJson['events'][0]['message']['text'];
 
 foreach($arrJson as $red){
     echo "A";
-    echo $red;
+    echo $red->events;
     echo "B <br>";
     echo "AA";
-    print_r($red);
+    print_r($arrJson);
     echo "BB <br>";
 }
 
