@@ -26,7 +26,10 @@ $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
    
 $z = 0;
-
+foreach ($arrJson['events'] as $event){
+    $am = $event['message']['type'];	
+}
+if($am == 'text'){
     if (ereg("^จำนะจะสอน", $_msg) !== false) {
             $x_tra = str_replace("จำนะจะสอน","", $_msg);
             $pieces = explode(",", $x_tra);
@@ -152,16 +155,12 @@ $z = 0;
             }  
             else{
                 if($_msg == null) continue; 
-                foreach ($arrJson['events'] as $event){
-                    $am = $event['message']['type'];	
-                }
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $am;
+                $arrPostData['messages'][0]['text'] = 'พิมพ์ผิดหรือเปล่าครับ ไม่เห็นรู้เรื่องเลยอ่าครับ';
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
                 
-                print_r($arrJson);
                 $nonData = json_encode(  
                     array(
                     'question' => $_msg, 
@@ -178,6 +177,14 @@ $z = 0;
     }
        
     }
+}
+if($am == 'sticker'){
+    $arrPostData = array();
+    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][0]['type'] = "text";
+    $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
+
+}
 
 $channel = curl_init();
 curl_setopt($channel, CURLOPT_URL,$strUrl);
