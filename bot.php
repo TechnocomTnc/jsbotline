@@ -159,14 +159,14 @@ $z = 0;
                         // $this->message    = (object) $event['message'];
                         // $this->timestamp  = $event['timestamp'];
 
-                        
+                      
                         echo "A";
                         echo $event['events'];
                         echo "B";
                         echo $event['message'];
                         echo "C";
                         echo $event['type'];
-
+                        $am = $event['type'];
 
                         // if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
                         //     $this->isText = true;
@@ -189,7 +189,7 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $event['type'];
+                $arrPostData['messages'][0]['text'] = $am;
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
                 echo  $arrJson->events->Type;
                 print_r($arrJson);
