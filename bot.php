@@ -6,9 +6,9 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-$_msg = 'น้องเน่จำนะ ดี,ครับ';
-$_msg = $arrJson['events'][0]['message']['text'];
 
+$_msg = $arrJson['events'][0]['message']['text'];
+// $_msg = 'น้องเน่จำนะ ดี,ครับ';
 $api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
 $Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -16,7 +16,7 @@ $Qurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$
 $Qjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $Qdata = json_decode($Qjson);
 $QisData=sizeof($Qdata);
-print_r($Qdata);
+// print_r($Qdata);
 $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
