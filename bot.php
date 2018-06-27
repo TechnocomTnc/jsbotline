@@ -161,6 +161,7 @@ $z = 0;
                 $arrPostData['messages'][0]['text'] = $arrJson->events;
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
                 echo $arrJson->events;
+                print_r($arrJson);
                 $nonData = json_encode(  
                     array(
                     'question' => $_msg, 
