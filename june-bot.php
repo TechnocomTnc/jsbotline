@@ -7,18 +7,6 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $_msg = 'หวัด';
 $_msg = $arrJson['events'][0]['message']['text'];
-echo sizeof($arrJson);
-if (sizeof($arrJson) >0){
-    echo sizeof($arrJson);
-foreach($arrJson as $red){
-    echo "A";
-    echo $red->events;
-    echo "B <br>";
-    echo "AA";
-    print_r($arrJson);
-    echo "BB <br>";
-}
-}
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
