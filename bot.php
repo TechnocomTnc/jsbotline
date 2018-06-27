@@ -6,7 +6,7 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-// $_msg = 'หวัด';
+$_msg = 'น้องเน่จำนะ ดี,ครับ';
 $_msg = $arrJson['events'][0]['message']['text'];
 
 $api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
