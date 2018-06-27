@@ -159,8 +159,13 @@ $z = 0;
                         // $this->message    = (object) $event['message'];
                         // $this->timestamp  = $event['timestamp'];
 
-                        echo $arrJson['events'];
-                        echo 'aaaaaaa';
+                        
+                        echo "A";
+                        echo $event['events'];
+                        echo "B";
+                        echo $event['message'];
+                        echo "C";
+                        echo $event['type'];
 
 
                         // if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
