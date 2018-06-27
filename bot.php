@@ -189,7 +189,7 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $arrJson->events;
+                $arrPostData['messages'][0]['text'] = $event['type'];
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
                 echo  $arrJson->events->Type;
                 print_r($arrJson);
