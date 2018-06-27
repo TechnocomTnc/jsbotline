@@ -1,5 +1,5 @@
 <?php
-$strAccessToken = "7YR60AJ855Zu1Etxsc7aCdFqhip1o8yAKj7PzLe90ClE9Po0fz5o81BeghtpCki4+zFZ7FrYjjbrFvQw84+Axi+P1zWPnxSCTl/lF5gVTDaDqdC5IHk30qnjo7GQ1hHKizexgGNpBPn/Fwz3slJqkQdB04t89/1O/w1cDnyilFU=";
+$strAccessToken = "4qwma3IF0OWn1cyuu1CNeRIjviy681SPIt9fnTm+TYMem3U2SRjZIU4sUHSdNsBI+H7eQ9HdpxUYAgeXK9bE51yMST5kkMLiuN5SS7/TGdgzxnkmRaVZ0qR0snq1tMBTHcMRRFTp0svffj4PC28MgAdB04t89/1O/w1cDnyilFU=";
 $content = file_get_contents('php://input');
 $arrJson = json_decode($content, true);
 $strUrl = "https://api.line.me/v2/bot/message/reply";
@@ -9,20 +9,20 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 // $_msg = 'หวัด';
 $_msg = $arrJson['events'][0]['message']['text'];
 
-$api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
-$Aurl = 'https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'';
-$nonurl = 'https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'';
-$Qurl = 'https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'';
-$Qjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
+$api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
+$Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
+$nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
+$Qurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'';
+$Qjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $Qdata = json_decode($Qjson);
 $QisData=sizeof($Qdata);
 print_r($Qdata);
-$nonjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
+$nonjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
 
-// https://api.mlab.com/api/1/databases/junebot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
-$QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
+// https://api.mlab.com/api/1/databases/tct27bot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
+$QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'');
 $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
    
@@ -35,7 +35,7 @@ $z = 0;
             $_question=str_replace(" ","",$pieces[0]);
             $_answer=str_replace("","",$pieces[1]);
 
-            $QQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
+            $QQjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_question.'"}');
             $QQdata = json_decode($QQjson);
             $QQisData = sizeof($QQdata);
             if($QQisData>0){ 
@@ -54,7 +54,7 @@ $z = 0;
                     echo "เพิ่มคำตอบ";
             }
             else{
-                    $nQjson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/QQ?apiKey='.$api_key.'');
+                    $nQjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'');
                     $nQdata = json_decode($nQjson);
                     $nQisData=sizeof($nQdata);
 
@@ -124,7 +124,7 @@ $z = 0;
                 $z=1; 
                 $r=1;
                 foreach ($x as $rec){ 
-                    $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
+                    $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x[$z].'}');
                     $Adata = json_decode($Ajson);
                     $AisData= sizeof($Adata);
                     $z++;
@@ -180,7 +180,7 @@ $z = 0;
     }
         // if($QisData>0){
         //     foreach($Qdata as $rec){$x = $rec->m_id;}
-        //     $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
+        //     $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
         //     $Adata = json_decode($Ajson);
         //     $AisData= sizeof($Adata);
         //     if($AisData>0){
