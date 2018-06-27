@@ -151,7 +151,7 @@ $z = 0;
                 echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
             }  
             else{
-                if($_msg == null) continue;
+                // if($_msg == null) continue;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
