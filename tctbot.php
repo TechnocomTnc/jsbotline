@@ -9,7 +9,7 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 // $_msg = 'หวัด';
 $_msg = $arrJson['events'][0]['message']['text'];
 
-$api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
+$api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
 $Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
 $Qurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'';
