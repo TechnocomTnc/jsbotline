@@ -151,40 +151,9 @@ $z = 0;
                 echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
             }  
             else{
-                if($_msg == null) {
-                //continue; 
+                if($_msg == null) continue; 
                 foreach ($arrJson['events'] as $event){
-                        // $this->replyToken = $event['replyToken'];
-                        // $this->source     = (object) $event['source'];
-                        // $this->message    = (object) $event['message'];
-                        // $this->timestamp  = $event['timestamp'];
-
-                      
-                        echo "A";
-                        echo $event['events'];
-                        echo "B";
-                        echo $event['message'];
-                        echo "C";
-                        echo $event['type'];
-                        $am = $event['message']['type'];
-
-                        // if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-                        //     $this->isText = true;
-                        //     $this->text   = $event['message']['text'];
-                        // }
-                        
-                        // if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-                        //     $this->isImage = true;
-                        // }
-                        
-                        // if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
-                        //     $this->isSticker = true;
-                        // }
-				
-            }
-
-
-
+                    $am = $event['message']['type'];	
                 }
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
