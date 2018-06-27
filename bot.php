@@ -16,21 +16,19 @@ $Qurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$
 $Qjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $Qdata = json_decode($Qjson);
 $QisData=sizeof($Qdata);
-// print_r($Qdata);
+
 $nonjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
 $nondata = json_decode($nonjson);
 $nonisData=sizeof($nondata);
 
-// https://api.mlab.com/api/1/databases/tct27bot/collections/QQuestion?apiKey=c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77&q={"question":"สอนยังไง"}
 $QQQjson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/QQ?apiKey='.$api_key.'');
 $QQQdata = json_decode($QQQjson);
 $QQQisData=sizeof($QQQdata);
    
 $z = 0;
 
-    if (ereg("^น้องเน่จำนะ", $_msg) !== false) {
-        // if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
-            $x_tra = str_replace("น้องเน่จำนะ","", $_msg);
+    if (ereg("^จำนะจะสอน", $_msg) !== false) {
+            $x_tra = str_replace("จำนะจะสอน","", $_msg);
             $pieces = explode(",", $x_tra);
             $_question=str_replace(" ","",$pieces[0]);
             $_answer=str_replace("","",$pieces[1]);
@@ -97,17 +95,13 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = 'จะจำอย่างดีเลยครับ (´▽｀)';
-        // }
+                $arrPostData['messages'][0]['text'] = 'ขอบคุณมากนะครับ (´▽｀)';
     }
     else{
         if($QQQisData > 0){
             $i=1;
-            // echo '>'.$QQQisData.'<';
             foreach($QQQdata as $rec){
-                // echo '>'.$rec->question.'<';
                 if (ereg("($rec->question)+",$_msg) !== false)
-                //if (strpos($_msg, $rec->question) !== false)
                 {
                     echo 'Question : ';
                     echo $rec->question.'<br>';   
@@ -146,7 +140,6 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                // $arrPostData['messages'][0]['text'] = '...';
                 $arrPostData['messages'][0]['text'] = $a[$b];
                 echo  $a[$b];
             }
@@ -154,7 +147,7 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = 'บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ';
+                $arrPostData['messages'][0]['text'] = 'อันนี้ไม่รู้เรื่องจริงๆครับ ขอโทษนะ';
                 echo "บอกว่าไม่รู้เรื่องไงครับ สอนผมสิๆ";
             }  
             else{
@@ -162,7 +155,7 @@ $z = 0;
                 $arrPostData = array();
                 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                 $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = 'สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง';
+                $arrPostData['messages'][0]['text'] = 'พิมพ์ผิดหรือเปล่าครับ ไม่เห็นรู้เรื่องเลยอ่าครับ';
                 echo "สอนหน่อยครับ เน่ไม่ค่อยรู้เรื่อง";
                 
                 $nonData = json_encode(  
@@ -179,23 +172,6 @@ $z = 0;
                 $returnValue = file_get_contents($nonurl,false,$context);    
             }
     }
-        // if($QisData>0){
-        //     foreach($Qdata as $rec){$x = $rec->m_id;}
-        //     $Ajson = file_get_contents('https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'&q={"m_id":'.$x.'}');
-        //     $Adata = json_decode($Ajson);
-        //     $AisData= sizeof($Adata);
-        //     if($AisData>0){
-        //         foreach($Adata as $Arec){
-        //             $a[$i] = $Arec->answer;
-        //             $i++;
-        //         }
-        //         $b = array_rand($a,1);
-        //         $arrPostData = array();
-        //         $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-        //         $arrPostData['messages'][0]['type'] = "text";
-        //         $arrPostData['messages'][0]['text'] = $a[$b];
-        //     }            
-        // }
        
     }
 
