@@ -29,6 +29,14 @@ $z = 0;
 foreach ($arrJson['events'] as $event){
     $am = $event['message']['type'];	
 }
+if($am == 'sticker'){
+    $arrPostData = array();
+    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][0]['type'] = "text";
+    $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
+
+}
+
 if($am == 'text'){
     if (ereg("^จำนะจะสอน", $_msg) !== false) {
             $x_tra = str_replace("จำนะจะสอน","", $_msg);
@@ -140,11 +148,20 @@ if($am == 'text'){
                 print_r($a);
                 $b = array_rand($a,1);
                 echo $b;
-                $arrPostData = array();
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $a[$b];
-                echo  $a[$b];
+
+                if(ereg(".jpg$",$a[$b]) !== false) {
+                    $image_url = $a[$b];
+                    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+                    $arrayPostData['messages'][0]['type'] = "image";
+                    $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+                    $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+                }else{
+                    $arrPostData = array();
+                    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                    $arrPostData['messages'][0]['type'] = "text";
+                    $arrPostData['messages'][0]['text'] = $a[$b];
+                    echo  $a[$b];
+                }
             }
             else if($nonisData>0){
                 $arrPostData = array();
@@ -178,13 +195,7 @@ if($am == 'text'){
        
     }
 }
-if($am == 'sticker'){
-    $arrPostData = array();
-    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
 
-}
 
 $channel = curl_init();
 curl_setopt($channel, CURLOPT_URL,$strUrl);
