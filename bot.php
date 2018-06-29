@@ -27,13 +27,19 @@ $QQQisData=sizeof($QQQdata);
    
 $z = 0;
 foreach ($arrJson['events'] as $event){
-    $am = $event['message']['type'];	
+    $am = $event['message']['type'];
+    if($am == 'sticker'){
+    $amqq = $event['message']['type']['packageId'];
+    }	
 }
 if($am == 'sticker'){
+
+
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
+    $arrPostData['messages'][0]['text'] = $amqq;
+    // $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
 
 }
 
@@ -151,8 +157,6 @@ if($am == 'text'){
                 if(ereg("(.jpg)+", $uimg) !== false) {
                     $image_url = $uimg;
                     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                    // $arrPostData['messages'][0]['type'] = "text";
-                    // $arrPostData['messages'][0]['text'] = $a[$b]." ssssss";
                     $arrPostData['messages'][0]['type'] = "image";
                     $arrPostData['messages'][0]['originalContentUrl'] = $a[$b];
                     $arrPostData['messages'][0]['previewImageUrl'] = $a[$b];
