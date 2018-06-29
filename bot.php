@@ -7,8 +7,8 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-// $_msg = $arrJson['events'][0]['message']['text'];
-$_msg = 'อาจารย์กฤช';
+$_msg = $arrJson['events'][0]['message']['text'];
+// $_msg = 'น้องเน่จำนะ ดี,ครับ';
 $api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
 $Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -149,21 +149,30 @@ if($am == 'text'){
                 $b = array_rand($a,1);
                 echo $b;
                 $uimg = $a[$b];
-                
-                if(ereg(".jpg$", $uimg) !== false) {
-                    echo $uimg;
-                    $image_url = $uimg;
-                    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-                    $arrayPostData['messages'][0]['type'] = "image";
-                    $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
-                    $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
-                }else{
-                    $arrPostData = array();
-                    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                    $arrPostData['messages'][0]['type'] = "text";
-                    $arrPostData['messages'][0]['text'] = $a[$b];
-                    echo  $a[$b];
-                }
+
+                $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
+                $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+                $arrayPostData['messages'][0]['type'] = "image";
+                $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+                $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+                // replyMsg($arrayHeader,$arrayPostData);
+
+
+
+                // if(ereg(".jpg$", $uimg) !== false) {
+                //     echo $uimg;
+                //     $image_url = $uimg;
+                //     $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+                //     $arrayPostData['messages'][0]['type'] = "image";
+                //     $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+                //     $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+                // }else{
+                //     $arrPostData = array();
+                //     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                //     $arrPostData['messages'][0]['type'] = "text";
+                //     $arrPostData['messages'][0]['text'] = $a[$b];
+                //     echo  $a[$b];
+                // }
             }
             else if($nonisData>0){
                 $arrPostData = array();
