@@ -39,10 +39,10 @@ if($am == 'sticker'){
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $stickerId;
+    $arrPostData['messages'][0]['text'] = $packageId;
     $arrPostData['messages'][1]['type'] = "sticker";
     $arrPostData['messages'][1]['packageId'] = "1";
-    $arrPostData['messages'][1]['stickerId'] =  "1";
+    $arrPostData['messages'][1]['stickerId'] =  "12290864";
     // $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
 
 }
