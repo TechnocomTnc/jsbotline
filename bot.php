@@ -151,11 +151,11 @@ if($am == 'text'){
                 if(ereg(".jpg$", $uimg) !== false) {
                     $image_url = $uimg;
                     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                    $arrPostData['messages'][0]['type'] = "text";
-                    $arrPostData['messages'][0]['text'] = $a[$b]." ssssss";
-                    // $arrPostData['messages'][0]['type'] = "image";
-                    // $arrPostData['messages'][0]['originalContentUrl'] = $image_url;
-                    // $arrPostData['messages'][0]['previewImageUrl'] = $image_url;
+                    // $arrPostData['messages'][0]['type'] = "text";
+                    // $arrPostData['messages'][0]['text'] = $a[$b]." ssssss";
+                    $arrPostData['messages'][0]['type'] = "image";
+                    $arrPostData['messages'][0]['originalContentUrl'] = $a[$b];
+                    $arrPostData['messages'][0]['previewImageUrl'] = $a[$b];
                 }else{
                     $arrPostData = array();
                     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
