@@ -41,8 +41,8 @@ if($am == 'sticker'){
     $arrPostData['messages'][0]['type'] = "text";
     $arrPostData['messages'][0]['text'] = $packageId;
     $arrPostData['messages'][1]['type'] = "sticker";
-    $arrPostData['messages'][1]['packageId'] = "1";
-    $arrPostData['messages'][1]['stickerId'] =  "12290864";
+    $arrPostData['messages'][1]['packageId'] =  $packageId;
+    $arrPostData['messages'][1]['stickerId'] =  $stickerId;
     // $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
 
 }
