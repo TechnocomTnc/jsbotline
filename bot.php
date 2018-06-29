@@ -7,8 +7,8 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-$_msg = $arrJson['events'][0]['message']['text'];
-// $_msg = 'น้องเน่จำนะ ดี,ครับ';
+// $_msg = $arrJson['events'][0]['message']['text'];
+$_msg = 'อาจารย์กฤช';
 $api_key="eX1UApsqnJjZdfxg3nXb5WKJYPJDPGvU";
 $Aurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/AA?apiKey='.$api_key.'';
 $nonurl = 'https://api.mlab.com/api/1/databases/tct27bot/collections/nonQuestion?apiKey='.$api_key.'';
@@ -149,8 +149,9 @@ if($am == 'text'){
                 $b = array_rand($a,1);
                 echo $b;
                 $uimg = $a[$b];
-                echo $uimg;
+                
                 if(ereg(".jpg$", $uimg) !== false) {
+                    echo $uimg;
                     $image_url = $uimg;
                     $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
                     $arrayPostData['messages'][0]['type'] = "image";
