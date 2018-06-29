@@ -148,7 +148,7 @@ if($am == 'text'){
                 $b = array_rand($a,1);
                 echo $b;
                 $uimg = $a[$b];
-                if(ereg(".jpg$", $uimg) !== false) {
+                if(ereg("(.jpg)+", $uimg) !== false) {
                     $image_url = $uimg;
                     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
                     // $arrPostData['messages'][0]['type'] = "text";
