@@ -28,9 +28,6 @@ $QQQisData=sizeof($QQQdata);
 $z = 0;
 foreach ($arrJson['events'] as $event){
     $am = $event['message']['type'];
-    if($am == 'sticker'){
-    $amqq = $event['message']['type']['packageId'];
-    }	
 }
 if($am == 'sticker'){
 
@@ -38,7 +35,7 @@ if($am == 'sticker'){
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $amqq;
+    $arrPostData['messages'][0]['text'] = $am;
     // $arrPostData['messages'][0]['text'] = 'เลายังอ่านติ้กเก้อมั่ยด้ายน้า';
 
 }
