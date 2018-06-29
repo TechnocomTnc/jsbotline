@@ -323,15 +323,13 @@ if($am == 'text'){
                 $uimg = $a[$b];
 
                 $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
-                $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = $a[$b];
-                // $arrPostData['messages'][0]['type'] = "image";
-                // $arrPostData['messages'][0]['originalContentUrl'] = $image_url;
-                // $arrPostData['messages'][0]['previewImageUrl'] = $image_url;
+                $arrayPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+                $arrayPostData['messages'][0]['type'] = "image";
+                $arrayPostData['messages'][0]['image'] = $image_url;
+                // $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
                 // replyMsg($arrayHeader,$arrayPostData);
-                // $arrPostData['messages'][0]['type'] = "text";
-                // $arrPostData['messages'][0]['text'] = $a[$b];
+               //     $arrPostData['messages'][0]['type'] = "text";
+                //     $arrPostData['messages'][0]['text'] = $a[$b];
 
 
 
