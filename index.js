@@ -325,8 +325,8 @@ function handleImage(message, replyToken, source) {
                         // text: name
         
                         type: 'image',
-                        originalContentUrl: baseURL + '/downloaded/' + path.basename(AdownloadPath),
-                        previewImageUrl: baseURL + '/downloaded/' + path.basename(ApreviewPath),
+                        originalContentUrl: AdownloadPath
+                        previewImageUrl: ApreviewPath
                         
                          
                         
