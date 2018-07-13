@@ -303,6 +303,7 @@ function handleImage(message, replyToken) {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+      
       var name
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function () {
@@ -311,20 +312,20 @@ function handleImage(message, replyToken) {
                     req.query('SELECT * FROM Question').then(function (rows) 
                     {
                      name = rows.recordset[1].q_topic;
-                    //  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
-                    //  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+                    // var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
+                    // var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
 
                      return client.replyMessage(
                       replyToken,
                       {
-                        // type: 'text',
-                        // text: typeof previewPath + '\n' + previewPath
+                        type: 'text',
+                        text: typeof previewPath + '\n' + previewPath
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                         // type: 'image',
-                        type: 'text',
-                        text: 'AA' 
+                        // type: 'text',
+                        // text: 'AA' 
                         
                       }
                     );
