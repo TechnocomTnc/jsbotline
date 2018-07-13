@@ -45,8 +45,8 @@ const app = express();
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
