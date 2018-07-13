@@ -328,12 +328,12 @@ function handleImage(message, replyToken, source) {
                      return client.replyMessage(
                       replyToken,
                       {
-                        type: 'text',
-                        text: AdownloadPath + '\n' + ApreviewPath
+                        // type: 'text',
+                        // text: AdownloadPath + '\n' + ApreviewPath
         
-                        // type: 'image',
-                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(AdownloadPath),
-                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(ApreviewPath),
+                        type: 'image',
+                        originalContentUrl: AdownloadPath,
+                        previewImageUrl: ApreviewPath
                         
                          
                         
