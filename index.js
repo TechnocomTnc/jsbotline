@@ -1,33 +1,10 @@
 'use strict';
 
-
-// const bodyParser = require('body-parser')
-// const request = require('request')
-// // const app = express()
-// // // const port = process.env.PORT || 4000
-// var sql = require('mssql');
-// var sqlInstance = require("mssql");
-// var nodemailer = require('nodemailer');
-
-
 const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
-
-// var dbConfig = {
-//     user: 'sa',
-//     password: 'P@ssw0rd1234',
-//     server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-//     database: 'LinebotDB',
-//     port:1433,
-//     options: {
-//         encrypt: true // Use this if you're on Windows Azure
-//     }
-// };
-
-
 
 // create LINE SDK config from env variables
 const config = {
@@ -49,9 +26,6 @@ const app = express();
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
