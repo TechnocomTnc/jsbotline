@@ -1,4 +1,5 @@
 'use strict';
+
 const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
@@ -7,12 +8,12 @@ const cp = require('child_process');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: '7YR60AJ855Zu1Etxsc7aCdFqhip1o8yAKj7PzLe90ClE9Po0fz5o81BeghtpCki4+zFZ7FrYjjbrFvQw84+Axi+P1zWPnxSCTl/lF5gVTDaDqdC5IHk30qnjo7GQ1hHKizexgGNpBPn/Fwz3slJqkQdB04t89/1O/w1cDnyilFU=',
-  channelSecret: 'c3aa02ca5442a7640d2c577f936da0d4',
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.CHANNEL_SECRET,
 };
 
 // base URL for webhook server
-const baseURL = 'https://nodejs-bot12.herokuapp.com';
+const baseURL = process.env.BASE_URL;
 
 // create LINE SDK client
 const client = new line.Client(config);
@@ -39,8 +40,6 @@ app.post('/callback', line.middleware(config), (req, res) => {
       console.error(err);
       res.status(500).end();
     });
-  
-  res.sendStatus(200)
 });
 
 // simple reply function
@@ -270,8 +269,8 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join('satatic', 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join('satatic', 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
