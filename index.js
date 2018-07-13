@@ -325,7 +325,7 @@ function handleImage(message, replyToken) {
 
                         // type: 'image',
                         type: 'text',
-                        text: originalContentUrlT + '\n' + previewImageUrlT 
+                        text: typeof originalContentUrlT + '\n' + typeof previewImageUrlT 
                         
                       }
                     );
