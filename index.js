@@ -291,11 +291,11 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  //const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
+  //const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  const a = path.join('/app/downloaded/8257390405541.jpg')
-  const b = path.join('/app/downloaded/8257407197363-preview.jpg')
+  const downloadPath = path.join('/app/downloaded/8257390405541.jpg')
+  const previewPath = path.join('/app/downloaded/8257407197363-preview.jpg')
 
 
 
@@ -323,8 +323,8 @@ function handleImage(message, replyToken) {
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
                         type: 'image',
-                        originalContentUrl: baseURL + '/downloaded/' + path.basename(a),
-                        previewImageUrl: baseURL + '/downloaded/' + path.basename(b),
+                        originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                        previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                       }
                     );
 
