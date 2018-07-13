@@ -315,8 +315,8 @@ function handleImage(message, replyToken, source) {
                     //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
                     req.query('SELECT * FROM Image').then(function (rows) 
                     {
-                     var AdownloadPath = rows.recordset[1].originalContentUrlT;
-                     var ApreviewPath = rows.recordset[1].previewImageUrlT;
+                     var AdownloadPath = rows.recordset[1].oridinal;
+                     var ApreviewPath = rows.recordset[1].preview;
                       //name = rows.recordset[1].Image_id;
                      return client.replyMessage(
                       replyToken,
