@@ -270,15 +270,8 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'static', `${message.id}.jpg`);
-  const previewPath = path.join(__dirname, 'static', `${message.id}-preview.jpg`);
-
-//   var conn = new sql.ConnectionPool(dbConfig);
-//   conn.connect().then(function () {
-//       var req = new sql.Request(conn);            
-//       req.query("INSERT INTO [dbo].[] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
-//   });
-
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
@@ -290,8 +283,8 @@ function handleImage(message, replyToken) {
         replyToken,
         {
           type: 'image',
-          originalContentUrl: baseURL + '/static/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/static/' + path.basename(previewPath),
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );
     });
