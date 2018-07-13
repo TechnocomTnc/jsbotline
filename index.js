@@ -304,6 +304,7 @@ function handleImage(message, replyToken) {
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function () {
                     var req = new sql.Request(conn);
+                    req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
                     req.query('SELECT * FROM Question').then(function (rows) 
                     {
                      name = rows.recordset[1].q_topic;
@@ -312,7 +313,7 @@ function handleImage(message, replyToken) {
                       replyToken,
                       {
                         type: 'text',
-                        text: 'aaaa' + name
+                        text: typeof downloadPath
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
