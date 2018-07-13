@@ -2,12 +2,12 @@
 
 
 const bodyParser = require('body-parser')
-const request = require('request')
-// const app = express()
-// // const port = process.env.PORT || 4000
-var sql = require('mssql');
-var sqlInstance = require("mssql");
-var nodemailer = require('nodemailer');
+// const request = require('request')
+// // const app = express()
+// // // const port = process.env.PORT || 4000
+// var sql = require('mssql');
+// var sqlInstance = require("mssql");
+// var nodemailer = require('nodemailer');
 
 
 const line = require('@line/bot-sdk');
@@ -16,16 +16,16 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-var dbConfig = {
-    user: 'sa',
-    password: 'P@ssw0rd1234',
-    server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-    database: 'LinebotDB',
-    port:1433,
-    options: {
-        encrypt: true // Use this if you're on Windows Azure
-    }
-};
+// var dbConfig = {
+//     user: 'sa',
+//     password: 'P@ssw0rd1234',
+//     server: 'demomagic2.southeastasia.cloudapp.azure.com', 
+//     database: 'LinebotDB',
+//     port:1433,
+//     options: {
+//         encrypt: true // Use this if you're on Windows Azure
+//     }
+// };
 
 
 
