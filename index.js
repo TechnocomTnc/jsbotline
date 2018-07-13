@@ -291,14 +291,14 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  //const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
-  //const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  const downloadPath = path.join('/app/downloaded/8257390405541.jpg')
-  const previewPath = path.join('/app/downloaded/8257390405541-preview.jpg')
+  // const downloadPath = path.join('/app/downloaded/8257390405541.jpg')
+  // const previewPath = path.join('/app/downloaded/8257390405541-preview.jpg')
 
 
-  return downloadContent('8257390405541', downloadPath)
+  return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
@@ -319,13 +319,14 @@ function handleImage(message, replyToken) {
                       replyToken,
                       {
                         type: 'text',
-                        text: typeof originalContentUrlT + '\n' + originalContentUrlT
+                        text: typeof originalContentUrlT + '\n' + originalContentUrlT +
+                              typeof previewImageUrlT + '\n' + previewImageUrlT 
+        
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                         // type: 'image',
-                        // type: 'text',
-                        // text: 'AA' 
+                         
                         
                       }
                     );
