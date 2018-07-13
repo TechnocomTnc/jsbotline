@@ -313,7 +313,7 @@ function handleImage(message, replyToken) {
                       replyToken,
                       {
                         type: 'text',
-                        text: typeof downloadPath + '\n' + downloadPath
+                        text: typeof previewPath + '\n' + previewPath
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
