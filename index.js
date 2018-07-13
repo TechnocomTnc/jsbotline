@@ -8,12 +8,12 @@ const cp = require('child_process');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: '7YR60AJ855Zu1Etxsc7aCdFqhip1o8yAKj7PzLe90ClE9Po0fz5o81BeghtpCki4+zFZ7FrYjjbrFvQw84+Axi+P1zWPnxSCTl/lF5gVTDaDqdC5IHk30qnjo7GQ1hHKizexgGNpBPn/Fwz3slJqkQdB04t89/1O/w1cDnyilFU=',
+  channelSecret: 'c3aa02ca5442a7640d2c577f936da0d4',
 };
 
 // base URL for webhook server
-const baseURL = process.env.BASE_URL;
+const baseURL = 'https://nodejs-bot12.herokuapp.com';
 
 // create LINE SDK client
 const client = new line.Client(config);
