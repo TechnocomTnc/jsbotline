@@ -311,8 +311,8 @@ function handleImage(message, replyToken) {
                     req.query('SELECT * FROM Question').then(function (rows) 
                     {
                      name = rows.recordset[1].q_topic;
-                     originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
-                     previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+                    //  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
+                    //  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
 
                      return client.replyMessage(
                       replyToken,
