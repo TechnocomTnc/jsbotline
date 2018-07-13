@@ -45,8 +45,8 @@ const app = express();
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json())
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -294,20 +294,35 @@ function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
+
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+      var name
+      var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect().then(function () {
+                    var req = new sql.Request(conn);
+                    req.query('SELECT * FROM Question').then(function (rows) 
+                    {
+                     name = rows.recordset[1].q_topic;
+                     
+                     return client.replyMessage(
+                      replyToken,
+                      {
+                        type: 'text',
+                        text: 'aaaa'
+                        // type: 'image',
+                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                      }
+                    );
 
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'image',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-        }
-      );
+                    }) 
+                  });
+
+      
     });
 }
 
