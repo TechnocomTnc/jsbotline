@@ -298,7 +298,6 @@ function handleImage(message, replyToken) {
   const previewPath = path.join('/app/downloaded/8257390405541-preview.jpg')
 
 
-
   return downloadContent('8257390405541', downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
@@ -312,7 +311,9 @@ function handleImage(message, replyToken) {
                     req.query('SELECT * FROM Question').then(function (rows) 
                     {
                      name = rows.recordset[1].q_topic;
-                     
+                     originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
+                     previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+
                      return client.replyMessage(
                       replyToken,
                       {
@@ -322,9 +323,10 @@ function handleImage(message, replyToken) {
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
-                        type: 'image',
-                        originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                        previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                        // type: 'image',
+                        type: 'text',
+                        text: originalContentUrlT + '\n' + previewImageUrlT 
+                        
                       }
                     );
 
