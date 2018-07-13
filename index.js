@@ -282,8 +282,8 @@ function handleImage(message, replyToken) {
         replyToken,
         {
           type: 'image',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          originalContentUrl: baseURL + '/static/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/static/' + path.basename(previewPath),
         }
       );
     });
