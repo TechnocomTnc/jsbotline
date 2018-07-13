@@ -294,8 +294,8 @@ function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  const a = '/app/downloaded/8257390405541.jpg'
-  const b = '/app/downloaded/8257407197363-preview.jpg'
+  const a = path.join('/app/downloaded/8257390405541.jpg')
+  const b = path.join('/app/downloaded/8257407197363-preview.jpg')
 
 
 
