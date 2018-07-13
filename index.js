@@ -11,16 +11,16 @@ var sql = require('mssql');
 var sqlInstance = require("mssql");
 
 
-// var dbConfig = {
-//   user: 'sa',
-//   password: 'P@ssw0rd1234',
-//   server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-//   database: 'LinebotDB',
-//   port:1433,
-//   options: {
-//       encrypt: true // Use this if you're on Windows Azure
-//   }
-// };
+var dbConfig = {
+  user: 'sa',
+  password: 'P@ssw0rd1234',
+  server: 'demomagic2.southeastasia.cloudapp.azure.com', 
+  database: 'LinebotDB',
+  port:1433,
+  options: {
+      encrypt: true // Use this if you're on Windows Azure
+  }
+};
 
 
 
