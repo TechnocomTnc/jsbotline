@@ -82,7 +82,7 @@ function handleEvent(event) {
         case 'text':
           return handleText(message, event.replyToken, event.source);
         case 'image':
-          return handleImage(message, event.replyToken);
+          return handleImage(message, event.replyToken, event.source);
         case 'video':
           return handleVideo(message, event.replyToken);
         case 'audio':
@@ -290,7 +290,7 @@ function handleText(message, replyToken, source) {
   }
 }
 
-function handleImage(message, replyToken) {
+function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
@@ -303,24 +303,26 @@ function handleImage(message, replyToken) {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
-      
+      var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+      var  UsID = source.userId
+
       var name
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function () {
                     var req = new sql.Request(conn);
+                    req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
                     //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
-                    req.query('SELECT * FROM Question').then(function (rows) 
+                    req.query('SELECT * FROM Image').then(function (rows) 
                     {
-                     name = rows.recordset[1].q_topic;
-                    var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
-                    var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+                     name = rows.recordset[1].Image_id;
+
 
                      return client.replyMessage(
                       replyToken,
                       {
                         type: 'text',
-                        text: typeof originalContentUrlT + '\n' + originalContentUrlT + '\n' +
-                              typeof previewImageUrlT + '\n' + previewImageUrlT 
+                        text: name
         
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
