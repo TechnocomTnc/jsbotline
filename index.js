@@ -312,11 +312,15 @@ function handleImage(message, replyToken) {
                      return client.replyMessage(
                       replyToken,
                       {
-                        type: 'text',
-                        text: typeof previewPath + '\n' + previewPath
+                        // type: 'text',
+                        // text: typeof previewPath + '\n' + previewPath
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+
+                        type: 'image',
+                        originalContentUrl: baseURL + '/downloaded/' + path.basename('/app/downloaded/8257390405541.jpg'),
+                        previewImageUrl: baseURL + '/downloaded/' + path.basename('/app/downloaded/8257407197363-preview.jpg'),
                       }
                     );
 
