@@ -324,7 +324,7 @@ function handleImage(message, replyToken) {
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                         // type: 'image',
                         type: 'text',
-                        text: 'AA' + typeof originalContentUrlT
+                        text: 'AA' 
                         
                       }
                     );
