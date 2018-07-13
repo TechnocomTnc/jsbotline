@@ -315,19 +315,19 @@ function handleImage(message, replyToken, source) {
                     //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
                     req.query('SELECT * FROM Image').then(function (rows) 
                     {
-                     name = rows.recordset[1].Image_id;
-
-
+                     var AdownloadPath = rows.recordset[1].originalContentUrlT;
+                     var ApreviewPath = rows.recordset[1].previewImageUrlT;
+                      //name = rows.recordset[1].Image_id;
                      return client.replyMessage(
                       replyToken,
                       {
-                        type: 'text',
-                        text: name
+                        // type: 'text',
+                        // text: name
         
-                        // type: 'image',
-                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-                        // type: 'image',
+                        type: 'image',
+                        originalContentUrl: baseURL + '/downloaded/' + path.basename(AdownloadPath),
+                        previewImageUrl: baseURL + '/downloaded/' + path.basename(ApreviewPath),
+                        
                          
                         
                       }
