@@ -1,7 +1,7 @@
 'use strict';
 
 
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 // const request = require('request')
 // // const app = express()
 // // // const port = process.env.PORT || 4000
@@ -50,8 +50,8 @@ app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json())
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
