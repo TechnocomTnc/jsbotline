@@ -1,4 +1,3 @@
-'use strict';
 
 const line = require('@line/bot-sdk');
 const express = require('express');
@@ -271,8 +270,8 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join('satatic', 'downloaded', `${message.id}.jpg`);
+  const previewPath = path.join('satatic', 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
