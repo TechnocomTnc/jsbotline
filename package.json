@@ -8,11 +8,10 @@
   },
   "dependencies": {
     "@line/bot-sdk": "^5.0.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.2",
     "get-audio-duration": "0.0.1",
-    "body-parser": "^1.18.3",
     "mssql": "^4.1.0",
-    "nodemailer": "^4.6.7",
     "request": "^2.87.0"
   }
 }
