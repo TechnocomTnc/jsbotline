@@ -269,8 +269,8 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join('jsbotline/', 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join('jsbotline/', 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join('jsbotline', 'downloaded', `${message.id}.jpg`);
+  const previewPath = path.join('jsbotline', 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
