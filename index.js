@@ -322,10 +322,9 @@ function handleImage(message, replyToken) {
                         // type: 'image',
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-
                         // type: 'image',
                         type: 'text',
-                        text: typeof originalContentUrlT + '\n' + typeof previewImageUrlT 
+                        text: 'AA' + typeof originalContentUrlT
                         
                       }
                     );
