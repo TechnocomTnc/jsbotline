@@ -294,6 +294,10 @@ function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
+  const a = '/app/downloaded/8257390405541.jpg'
+  const b = '/app/downloaded/8257407197363-preview.jpg'
+
+
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
@@ -319,8 +323,8 @@ function handleImage(message, replyToken) {
                         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
                         type: 'image',
-                        originalContentUrl: baseURL + '/downloaded/' + path.basename('/app/downloaded/8257390405541.jpg'),
-                        previewImageUrl: baseURL + '/downloaded/' + path.basename('/app/downloaded/8257407197363-preview.jpg'),
+                        originalContentUrl: baseURL + '/downloaded/' + path.basename(a),
+                        previewImageUrl: baseURL + '/downloaded/' + path.basename(b),
                       }
                     );
 
