@@ -40,6 +40,8 @@ app.post('/callback', line.middleware(config), (req, res) => {
       console.error(err);
       res.status(500).end();
     });
+  
+  res.sendStatus(200)
 });
 
 // simple reply function
