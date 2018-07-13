@@ -299,7 +299,7 @@ function handleImage(message, replyToken) {
 
 
 
-  return downloadContent(message.id, downloadPath)
+  return downloadContent('8257390405541', downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
