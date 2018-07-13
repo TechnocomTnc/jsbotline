@@ -1,10 +1,34 @@
 'use strict';
 
+
+const bodyParser = require('body-parser')
+const request = require('request')
+const app = express()
+const port = process.env.PORT || 4000
+var sql = require('mssql');
+var sqlInstance = require("mssql");
+var nodemailer = require('nodemailer');
+
+
 const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+
+var dbConfig = {
+    user: 'sa',
+    password: 'P@ssw0rd1234',
+    server: 'demomagic2.southeastasia.cloudapp.azure.com', 
+    database: 'LinebotDB',
+    port:1433,
+    options: {
+        encrypt: true // Use this if you're on Windows Azure
+    }
+};
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 // create LINE SDK config from env variables
 const config = {
@@ -25,6 +49,7 @@ const app = express();
 // serve static and downloaded files
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
+
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -271,6 +296,13 @@ function handleText(message, replyToken, source) {
 function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'static', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'static', `${message.id}-preview.jpg`);
+
+//   var conn = new sql.ConnectionPool(dbConfig);
+//   conn.connect().then(function () {
+//       var req = new sql.Request(conn);            
+//       req.query("INSERT INTO [dbo].[] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
+//   });
+
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
