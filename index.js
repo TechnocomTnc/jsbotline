@@ -350,24 +350,37 @@ function handleImage(message, replyToken, source) {
 function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  
+  return client.replyMessage(
+    replyToken,
+    {
+      type : 'text',
+      text : downloadPath
+      // type: 'video',
+      // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+      // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+    }
+  );
 
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
-      // FFmpeg and ImageMagick is needed here to run 'convert'
-      // Please consider about security and performance by yourself
-      cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
 
-      return client.replyMessage(
-        replyToken,
-        {
-          type : 'text',
-          text : baseURL + '/downloaded/' + path.basename(downloadPath)
-          // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-        }
-      );
-    });
+
+  // return downloadContent(message.id, downloadPath)
+  //   .then((downloadPath) => {
+  //     // FFmpeg and ImageMagick is needed here to run 'convert'
+  //     // Please consider about security and performance by yourself
+  //     cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+
+  //     return client.replyMessage(
+  //       replyToken,
+  //       {
+  //         type : 'text',
+  //         text : baseURL + '/downloaded/' + path.basename(downloadPath)
+  //         // type: 'video',
+  //         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+  //         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+  //       }
+  //     );
+  //   });
 }
 
 function handleAudio(message, replyToken) {
