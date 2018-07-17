@@ -371,7 +371,8 @@ function handleVideo(message, replyToken) {
           // originalContentUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file.mp4',
           // previewImageUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file-preview.jpg'
           type : 'text',
-          text : baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
+          text : baseURL + '/downloaded/' + path.basename(previewPath)          
+          // text : baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
           // type: 'video',
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
