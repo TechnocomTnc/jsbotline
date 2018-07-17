@@ -355,8 +355,8 @@ function handleVideo(message, replyToken) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      
-      cp.exec(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+      // cp.exec(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+      cp.exec(`convert mp4:${downloadPath}[0]`);
 
       return client.replyMessage(
         replyToken,
@@ -368,7 +368,7 @@ function handleVideo(message, replyToken) {
           // text : downloadPath
           type: 'video',
           originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
+          previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
         }
       );
     });
