@@ -356,16 +356,19 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       
-      cp.execSync(`convert mp4:${downloadPath}[1] jpeg:${previewPath}`);
+      //cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
 
       return client.replyMessage(
         replyToken,
         {
+          type: 'video',
+          originalContentUrl: 'https://strawberry-pear.fruithosted.net/dl/n/4eURGsOR345NsnEP/meofktdcdosdbteo/6gzyBqcWPkjhgoeKJao_zZr8W1z2DaIK-auZVRChntXlYNXl-UlBXUY140ild3zG_fNIO7xPvBsqXBw7IxaEOQLVkKW8yI2FynxwpKhOhfxNRjymLlzwm2Xf7bVIZskuQLsINTdVQrRMZPAu09Vf9nQVJozo52zc4tEHo89hhmvGJF5geupXRsr73IpcNHNZXzIGCS1ZpOEXLSRXE3GIDSOx1DeypxEclR4pP5e7RcXGjcniXFjUNJcb_XfywRDdWJG1Wm1n7BT10i2Gjr1jw9lyOHVf_IvzCHtuVSLPDh2cRr0jauQssn5uTK5xSmApMvhVU0WprW8WJwZgRJshTr3U3huaWxxDV_TDAFFBCtlssW2OOUm825zim4LAw1OUJSjHZ2u_-ymGjLhKEmONtCvs0ZbRqF5rFqaia_21YQ_iUBq1_vhBJpNbuulTPOwDdUNXQrlmfrKQM_f0aMg4CJofA3UI5-lC1zB35OuNk7g/%5BOtaku-Fs%26Oyuji-Fs%5D+Karakai+Jouzu+no+Takagi-san+-+01+%5B720p%5D.mp4',
+          previewImageUrl: 'https://strawberry-pear.fruithosted.net/dl/n/4eURGsOR345NsnEP/meofktdcdosdbteo/6gzyBqcWPkjhgoeKJao_zZr8W1z2DaIK-auZVRChntXlYNXl-UlBXUY140ild3zG_fNIO7xPvBsqXBw7IxaEOQLVkKW8yI2FynxwpKhOhfxNRjymLlzwm2Xf7bVIZskuQLsINTdVQrRMZPAu09Vf9nQVJozo52zc4tEHo89hhmvGJF5geupXRsr73IpcNHNZXzIGCS1ZpOEXLSRXE3GIDSOx1DeypxEclR4pP5e7RcXGjcniXFjUNJcb_XfywRDdWJG1Wm1n7BT10i2Gjr1jw9lyOHVf_IvzCHtuVSLPDh2cRr0jauQssn5uTK5xSmApMvhVU0WprW8WJwZgRJshTr3U3huaWxxDV_TDAFFBCtlssW2OOUm825zim4LAw1OUJSjHZ2u_-ymGjLhKEmONtCvs0ZbRqF5rFqaia_21YQ_iUBq1_vhBJpNbuulTPOwDdUNXQrlmfrKQM_f0aMg4CJofA3UI5-lC1zB35OuNk7g/%5BOtaku-Fs%26Oyuji-Fs%5D+Karakai+Jouzu+no+Takagi-san+-+01+%5B720p%5D.mp4'
           // type : 'text',
           // text : downloadPath
-          type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
+          // type: 'video',
+          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
         }
       );
     });
