@@ -125,10 +125,7 @@ function handleEvent(event) {
 
 function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
-  return replyText(replyToken, {
-                    type: 'text',
-                    text: 'ssd'
-                    });
+  return replyText(replyToken,message.text);
 
 
   // switch (message.text) {
