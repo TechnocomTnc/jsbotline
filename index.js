@@ -297,7 +297,7 @@ function handleImage(message, replyToken, source) {
     replyToken,
     {
       type: 'text',
-      text: AdownloadPath + '\n' + ApreviewPath
+      text: downloadPath + '\n' + previewPath
 
       // type: 'image',
       // originalContentUrl: AdownloadPath,
