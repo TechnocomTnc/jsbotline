@@ -309,39 +309,45 @@ function handleImage(message, replyToken, source) {
       var AdownloadPath 
       var ApreviewPath
       var name
-      var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect().then(function () {
-                    var req = new sql.Request(conn);
-                    req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
-                    //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
-                    req.query('SELECT * FROM Image').then(function (rows) 
-                    {
-                    for(var i=0;i<rows.rowsAffected;i++){
-                      if(rows.recordset[i].Image_id == message.id)
-                      {
-                        AdownloadPath = rows.recordset[i].oridinal;
-                        ApreviewPath = rows.recordset[i].preview;
-                      }
-                    }
+      return client.replyMessage(
+                        replyToken,
+                        {
+                          type: 'text',
+                          text: originalContentUrlT + '\n\n' + previewImageUrlT
+      })
+      // var conn = new sql.ConnectionPool(dbConfig);
+      // conn.connect().then(function () {
+      //               var req = new sql.Request(conn);
+      //               req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
+      //               //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
+      //               req.query('SELECT * FROM Image').then(function (rows) 
+      //               {
+      //               for(var i=0;i<rows.rowsAffected;i++){
+      //                 if(rows.recordset[i].Image_id == message.id)
+      //                 {
+      //                   AdownloadPath = rows.recordset[i].oridinal;
+      //                   ApreviewPath = rows.recordset[i].preview;
+      //                 }
+      //               }
                      
-                      //name = rows.recordset[1].Image_id;
-                     return client.replyMessage(
-                      replyToken,
-                      {
-                        // type: 'text',
-                        // text: AdownloadPath + '\n' + ApreviewPath
+      //                 //name = rows.recordset[1].Image_id;
+      //                return client.replyMessage(
+      //                 replyToken,
+      //                 {
+      //                   // type: 'text',
+      //                   // text: AdownloadPath + '\n' + ApreviewPath
         
-                        type: 'image',
-                        originalContentUrl: AdownloadPath,
-                        previewImageUrl: ApreviewPath
+      //                   type: 'image',
+      //                   originalContentUrl: AdownloadPath,
+      //                   previewImageUrl: ApreviewPath
                         
                          
                         
-                      }
-                    );
+      //                 }
+      //               );
 
-                    }) 
-                  });
+      //               }) 
+      //             });
 
       
     });
