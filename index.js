@@ -356,7 +356,7 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       
-      cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+      cp.execSync(`convert mp4:${downloadPath} jpeg:${previewPath}`);
 
       return client.replyMessage(
         replyToken,
@@ -388,7 +388,7 @@ function handleAudio(message, replyToken) {
             {
               type: 'audio',
               originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: audioDuration * 1000,
+              duration: audioDuration * 1000
             }
           );
         });
