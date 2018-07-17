@@ -125,7 +125,13 @@ function handleEvent(event) {
 
 function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
-  return replyText(replyToken,message.text);
+  return replyText(replyToken,
+    {
+      type: 'text',
+      text: 'aas'
+    }
+  
+  );
 
 
   // switch (message.text) {
