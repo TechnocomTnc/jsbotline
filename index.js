@@ -293,94 +293,95 @@ function handleText(message, replyToken, source) {
 function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  return client.replyMessage(
+    replyToken,
+    {
+      type: 'text',
+      text: AdownloadPath + '\n' + ApreviewPath
+
+      // type: 'image',
+      // originalContentUrl: AdownloadPath,
+      // previewImageUrl: ApreviewPath
+      
+       
+      
+    }
+  );
 
   // const downloadPath = path.join('/app/downloaded/8257390405541.jpg')
   // const previewPath = path.join('/app/downloaded/8257390405541-preview.jpg')
 
 
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
-      // ImageMagick is needed here to run 'convert'
-      // Please consider about security and performance by yourself
-      cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
-      var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
-      var  UsID = source.userId
-      var AdownloadPath 
-      var ApreviewPath
-      var name
-      var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect().then(function () {
-                    var req = new sql.Request(conn);
-                    req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
-                    //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
-                    req.query('SELECT * FROM Image').then(function (rows) 
-                    {
-                    for(var i=0;i<rows.rowsAffected;i++){
-                      if(rows.recordset[i].Image_id == message.id)
-                      {
-                        AdownloadPath = rows.recordset[i].oridinal;
-                        ApreviewPath = rows.recordset[i].preview;
-                      }
-                    }
+  // return downloadContent(message.id, downloadPath)
+  //   .then((downloadPath) => {
+  //     // ImageMagick is needed here to run 'convert'
+  //     // Please consider about security and performance by yourself
+  //     cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+  //     var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
+  //     var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+  //     var  UsID = source.userId
+  //     var AdownloadPath 
+  //     var ApreviewPath
+  //     var name
+  //     var conn = new sql.ConnectionPool(dbConfig);
+  //     conn.connect().then(function () {
+  //                   var req = new sql.Request(conn);
+  //                   req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
+  //                   //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
+  //                   req.query('SELECT * FROM Image').then(function (rows) 
+  //                   {
+  //                   for(var i=0;i<rows.rowsAffected;i++){
+  //                     if(rows.recordset[i].Image_id == message.id)
+  //                     {
+  //                       AdownloadPath = rows.recordset[i].oridinal;
+  //                       ApreviewPath = rows.recordset[i].preview;
+  //                     }
+  //                   }
                      
-                      //name = rows.recordset[1].Image_id;
-                     return client.replyMessage(
-                      replyToken,
-                      {
-                        // type: 'text',
-                        // text: AdownloadPath + '\n' + ApreviewPath
+  //                     //name = rows.recordset[1].Image_id;
+  //                    return client.replyMessage(
+  //                     replyToken,
+  //                     {
+  //                       // type: 'text',
+  //                       // text: AdownloadPath + '\n' + ApreviewPath
         
-                        type: 'image',
-                        originalContentUrl: AdownloadPath,
-                        previewImageUrl: ApreviewPath
+  //                       type: 'image',
+  //                       originalContentUrl: AdownloadPath,
+  //                       previewImageUrl: ApreviewPath
                         
                          
                         
-                      }
-                    );
+  //                     }
+  //                   );
 
-                    }) 
-                  });
+  //                   }) 
+  //                 });
 
       
-    });
+  //   });
 }
 
 function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
-  
-  return client.replyMessage(
-    replyToken,
-    {
-      type : 'text',
-      text : downloadPath
-      // type: 'video',
-      // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-      // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-    }
-  );
 
+  return downloadContent(message.id, downloadPath)
+    .then((downloadPath) => {
+      // FFmpeg and ImageMagick is needed here to run 'convert'
+      // Please consider about security and performance by yourself
+      cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
 
-
-  // return downloadContent(message.id, downloadPath)
-  //   .then((downloadPath) => {
-  //     // FFmpeg and ImageMagick is needed here to run 'convert'
-  //     // Please consider about security and performance by yourself
-  //     cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
-
-  //     return client.replyMessage(
-  //       replyToken,
-  //       {
-  //         type : 'text',
-  //         text : baseURL + '/downloaded/' + path.basename(downloadPath)
-  //         // type: 'video',
-  //         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-  //         // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-  //       }
-  //     );
-  //   });
+      return client.replyMessage(
+        replyToken,
+        {
+          type : 'text',
+          text : baseURL + '/downloaded/' + path.basename(downloadPath)
+          // type: 'video',
+          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+        }
+      );
+    });
 }
 
 function handleAudio(message, replyToken) {
