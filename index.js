@@ -361,14 +361,15 @@ function handleVideo(message, replyToken) {
       return client.replyMessage(
         replyToken,
         {
-          type : 'text',
-          text : downloadPath
-          // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          // type : 'text',
+          // text : downloadPath
+          type: 'video',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath)
         }
       );
     });
+    
 }
 
 function handleAudio(message, replyToken) {
