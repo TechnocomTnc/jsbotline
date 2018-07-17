@@ -355,7 +355,7 @@ function handleImage(message, replyToken, source) {
 
 function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}.png`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
