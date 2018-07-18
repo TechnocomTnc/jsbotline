@@ -310,7 +310,14 @@ function handleImage(message, replyToken, source) {
           .then(
               (response) => {
                 datbase64 = 'data:image/jpeg;base64,' + response
-                console.log(datbase64); 
+                return client.replyMessage(
+                  replyToken,
+                  {
+                    type: 'text',
+                    text: 'ss'
+                  })
+                // console.log(datbase64);
+
               }
             )
 
@@ -321,12 +328,12 @@ function handleImage(message, replyToken, source) {
       var AdownloadPath 
       var ApreviewPath
       var name
-      return client.replyMessage(
-                        replyToken,
-                        {
-                          type: 'text',
-                          text: datbase64
-      })
+      // return client.replyMessage(
+      //                   replyToken,
+      //                   {
+      //                     type: 'text',
+      //                     text: datbase64
+      // })
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect().then(function () {
       //               var req = new sql.Request(conn);
