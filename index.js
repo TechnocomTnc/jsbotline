@@ -302,7 +302,7 @@ function handleImage(message, replyToken, source) {
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+      //cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
       var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
       var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
