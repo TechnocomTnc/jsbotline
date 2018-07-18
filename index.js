@@ -365,7 +365,7 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
-      cp.exec(`ffmpeg -i ${downloadPath} -an -f image2 ${previewPath}`);
+      cp.exec(`ffmpeg -ss 0.5 -i ${downloadPath} -t 1 -s 480x300 -f image2 ${previewPath}`);
       
       // ffmpeg -ss 00:02 -i ${downloadPath} -t 5 -s 480x270 -f image2 ${previewPath}
       // ffmpeg -i ${downloadPath} -r 10 -s 640x400 -f image2 frames/frame-${previewPath}
