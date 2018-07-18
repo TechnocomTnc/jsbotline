@@ -265,7 +265,7 @@ function handleText(message, replyToken, source) {
           baseUrl: `${baseURL}/static/rich`,
           altText: 'Imagemap alt text',
           baseSize: { width: 1040, height: 1040 },
-          actions: [
+          actions: [ 
             { area: { x: 0, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/manga/en' },
             { area: { x: 520, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/music/en' },
             { area: { x: 0, y: 520, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/play/en' },
