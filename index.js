@@ -357,15 +357,15 @@ function handleImage(message, replyToken, source) {
 }
 
 function handleVideo(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.avi`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.mp4`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
-      cp.exec(`ffmpeg -i ${downloadPath} ${previewPath}`);
+      cp.exec(`convert mp4:${downloadPath}[0]  jpeg:${previewPath}`);
       
 
       // ffmpeg -ss 00:02 -i ${downloadPath} -t 5 -s 480x270 -f image2 ${previewPath}
