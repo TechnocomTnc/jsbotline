@@ -265,7 +265,7 @@ function handleText(message, replyToken, source) {
           baseUrl: `${baseURL}/static/rich`,
           altText: 'Imagemap alt text',
           baseSize: { width: 1040, height: 1040 },
-          actions: [ 
+          actions: [
             { area: { x: 0, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/manga/en' },
             { area: { x: 520, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/music/en' },
             { area: { x: 0, y: 520, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/play/en' },
@@ -303,8 +303,17 @@ function handleImage(message, replyToken, source) {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+ 
       
-      
+      const image2base64 = require('image-to-base64');
+      image2base64(downloadPath)
+          .then(
+              (response) => {
+                datbase64 = 'data:image/jpeg;base64,' + response
+                console.log(datbase64); 
+              }
+            )
+
       // convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}
       var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
       var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
@@ -316,7 +325,7 @@ function handleImage(message, replyToken, source) {
                         replyToken,
                         {
                           type: 'text',
-                          text: originalContentUrlT + '\n\n' + previewImageUrlT
+                          text: datbase64
       })
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect().then(function () {
