@@ -304,22 +304,22 @@ function handleImage(message, replyToken, source) {
       // Please consider about security and performance by yourself
       cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
  
-      var datbase64
-      const image2base64 = require('image-to-base64');
-      image2base64(downloadPath)
-          .then(
-              (response) => {
-                datbase64 = 'data:image/jpeg;base64,' + response
-                return client.replyMessage(
-                  replyToken,
-                  {
-                    type: 'text',
-                    text: 'ss'
-                  })
-                // console.log(datbase64);
+      // var datbase64
+      // const image2base64 = require('image-to-base64');
+      // image2base64(downloadPath)
+      //     .then(
+      //         (response) => {
+      //           datbase64 = 'data:image/jpeg;base64,' + response
+      //           return client.replyMessage(
+      //             replyToken,
+      //             {
+      //               type: 'text',
+      //               text: 'ss'
+      //             })
+      //           // console.log(datbase64);
 
-              }
-            )
+      //         }
+      //       )
 
       // convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}
       var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
