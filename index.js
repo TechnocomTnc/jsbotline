@@ -304,7 +304,7 @@ function handleImage(message, replyToken, source) {
       // Please consider about security and performance by yourself
       cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
  
-      
+      var datbase64
       const image2base64 = require('image-to-base64');
       image2base64(downloadPath)
           .then(
