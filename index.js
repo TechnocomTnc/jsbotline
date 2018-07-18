@@ -357,7 +357,7 @@ function handleImage(message, replyToken, source) {
 }
 
 function handleVideo(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.gif`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
 
   return downloadContent(message.id, downloadPath)
@@ -365,7 +365,8 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
-      cp.exec(`ffmpeg -ss 4 -i ${downloadPath} -s 320x240 -frames:v 1 ${previewPath}`);
+      cp.exec(`ffmpeg -i ${downloadPath} -r 10 -s 640x400 -f image2 frames/frame-${previewPath}`);
+      // ffmpeg -i ${downloadPath} -r 10 -s 640x400 -f image2 frames/frame-${previewPath}
       // ffmpeg -ss 4 -i '+ downloadPath  +' -s 320x240 -frames:v 1 ' + previewPath
       // ffmpeg -ss 00:00:1 -t 00:00:00.04 -i ${downloadPath}  -r 25.0 ${previewPath}
       // convert -quiet -delay 1 ${downloadPath} -map ${previewPath}
