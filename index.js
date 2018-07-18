@@ -48,6 +48,11 @@ app.use('/downloaded', express.static('downloaded'));
 // app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
 
+app.get('/in', function (req, res) {
+    res.send('<h1>Hello Node.js</h1>');
+});
+
+
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
