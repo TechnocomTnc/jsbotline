@@ -361,9 +361,9 @@ function handleVideo(message, replyToken) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      
-      cp.exec(`convert mp4:${downloadPath}[0]  -crop 100x100+200+470 +repage  jpeg:${previewPath}`);
-      //cp.exec(`convert jpeg:${downloadPath}`); 
+      // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
+      // cp.exec(`convert mp4:${downloadPath}[0]  -crop 100x100+200+470 +repage  jpeg:${previewPath}`);
+      cp.exec(`convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}`); 
 
       return client.replyMessage(
         replyToken,
