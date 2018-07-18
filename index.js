@@ -286,7 +286,7 @@ function handleText(message, replyToken, source) {
       }
     default:
       //console.log(`Echo message to ${replyToken}: ${message.text}`);
-      return replyText(replyToken,"ooooooooo");
+      return replyText(replyToken,message.text);
   }
 }
 
@@ -303,24 +303,8 @@ function handleImage(message, replyToken, source) {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
- 
-      // var datbase64
-      // const image2base64 = require('image-to-base64');
-      // image2base64(downloadPath)
-      //     .then(
-      //         (response) => {
-      //           datbase64 = 'data:image/jpeg;base64,' + response
-      //           return client.replyMessage(
-      //             replyToken,
-      //             {
-      //               type: 'text',
-      //               text: 'ss'
-      //             })
-      //           // console.log(datbase64);
-
-      //         }
-      //       )
-
+      
+      
       // convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}
       var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
       var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
@@ -328,12 +312,12 @@ function handleImage(message, replyToken, source) {
       var AdownloadPath 
       var ApreviewPath
       var name
-      // return client.replyMessage(
-      //                   replyToken,
-      //                   {
-      //                     type: 'text',
-      //                     text: datbase64
-      // })
+      return client.replyMessage(
+                        replyToken,
+                        {
+                          type: 'text',
+                          text: originalContentUrlT + '\n\n' + previewImageUrlT
+      })
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect().then(function () {
       //               var req = new sql.Request(conn);
@@ -380,17 +364,19 @@ function handleVideo(message, replyToken) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
+
       // cp.exec(`ffmpeg -i ${downloadPath} -ss 00:00:02 -vframes 1 ${previewPath}`);
 
+      
       return client.replyMessage(
         replyToken,
         {
-          type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: 'https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.0-9/37258922_1088471231301714_9135099558294978560_n.jpg?_nc_cat=0&_nc_eui2=AeF5Qf7gWyvFvxG1-jDndYXdEd3Z-o5e4bNSvcGO5rvOwPLygZHhIYZfVPLs2nY2SRKf9ztjEeSx1XqTLHyxYpBaVDShw3QxqSQbi6gSi2-ocQ&oh=23d4d45530e9369965f7616e65bde979&oe=5BC9BFC2'
-          // type : 'text',
-          // //text : baseURL + '/downloaded/' + path.basename(downloadPath)          
-          // text : baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
+          // type: 'video',
+          // originalContentUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file.mp4',
+          // previewImageUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file-preview.jpg'
+          type : 'text',
+          //text : baseURL + '/downloaded/' + path.basename(downloadPath)          
+          text : baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
           // type: 'video',
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
