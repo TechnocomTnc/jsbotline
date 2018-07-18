@@ -302,7 +302,7 @@ function handleImage(message, replyToken, source) {
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`ffmpeg -i ${downloadPath} -vf scale=240:150 ${previewPath}`);
+      cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
       
       
       // convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}
@@ -357,7 +357,7 @@ function handleImage(message, replyToken, source) {
 }
 
 function handleVideo(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.gif`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
 
   return downloadContent(message.id, downloadPath)
