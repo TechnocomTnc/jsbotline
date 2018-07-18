@@ -362,7 +362,7 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
-      cp.exec(`convert ${downloadPath} ${previewPath}`);
+      cp.execSync(`convert ${downloadPath} ${previewPath}`);
       
  
 
