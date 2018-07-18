@@ -302,7 +302,7 @@ function handleImage(message, replyToken, source) {
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      //cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+      cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
       var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
       var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
@@ -362,8 +362,9 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       // convert -quiet -delay 1 ${downloadPath} -ordered-dither o8x8,23 +map ${previewPath}
-      // cp.exec(`convert mp4:${downloadPath}[0]  -crop 100x100+200+470 +repage  jpeg:${previewPath}`);
-      cp.exec('convert -quiet -delay 1 '+ downloadPath + ' -ordered-dither o8x8,23 +map ' + previewPath); 
+      cp.exec(`convert -quiet -delay 1 ${downloadPath} -map ${previewPath}`);
+      
+ 
 
       return client.replyMessage(
         replyToken,
