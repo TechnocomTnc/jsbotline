@@ -318,32 +318,32 @@ function handleImage(message, replyToken, source) {
       var ApreviewPath
       var name
       var dat64
-      // const image2base64 = require('image-to-base64');
-      //       image2base64(downloadPath)
-      //           .then(
-      //               (response) => {
-      //                 dat64 = 'data:image/jpeg;base64,'+ response
-      //                   console.log('data:image/jpeg;base64,'); 
-      //                   console.log(response); 
-      //                   return client.replyMessage(
-      //                       replyToken,
-      //                       {
-      //                         // type: 'image',
-      //                         // originalContentUrl: dat64,
-      //                         // previewImageUrl: previewImageUrlT
-      //                         type: 'text',
-      //                         text: 'image'
-      //                         //originalContentUrlT + '\n\n' + previewImageUrlT
-      //                       })
-      //               }
-      //           )
-      return client.replyMessage(
-                        replyToken,
-                        {
-                          type: 'text',
-                          text: downloadPath 
-                          //originalContentUrlT + '\n\n' + previewImageUrlT
-      })
+      const image2base64 = require('image-to-base64');
+            image2base64(originalContentUrlT)
+                .then(
+                    (response) => {
+                      dat64 = 'data:image/jpeg;base64,'+ response
+                        console.log('data:image/jpeg;base64,'); 
+                        console.log(response); 
+                        return client.replyMessage(
+                            replyToken,
+                            {
+                              // type: 'image',
+                              // originalContentUrl: dat64,
+                              // previewImageUrl: previewImageUrlT
+                              type: 'text',
+                              text: 'image'
+                              //originalContentUrlT + '\n\n' + previewImageUrlT
+                            })
+                    }
+                )
+      // return client.replyMessage(
+      //                   replyToken,
+      //                   {
+      //                     type: 'text',
+      //                     text: downloadPath 
+      //                     //originalContentUrlT + '\n\n' + previewImageUrlT
+      // })
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect().then(function () {
       //               var req = new sql.Request(conn);
