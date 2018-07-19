@@ -1,4 +1,5 @@
 'use strict';
+
 const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
@@ -316,13 +317,33 @@ function handleImage(message, replyToken, source) {
       var AdownloadPath 
       var ApreviewPath
       var name
-      return client.replyMessage(
-                        replyToken,
-                        {
-                          type: 'text',
-                          text: 'image'
-                          //originalContentUrlT + '\n\n' + previewImageUrlT
-      })
+      var dat64
+      const image2base64 = require('image-to-base64');
+            image2base64(downloadPath)
+                .then(
+                    (response) => {
+                      dat64 = 'data:image/jpeg;base64,'+ response
+                        console.log('data:image/jpeg;base64,'); 
+                        console.log(response); 
+                          return client.replyMessage(
+                            replyToken,
+                            {
+                              // type: 'image',
+                              // originalContentUrl: dat64,
+                              // previewImageUrl: previewImageUrlT
+                              type: 'text',
+                              text: 'image' + dat64
+                              //originalContentUrlT + '\n\n' + previewImageUrlT
+                            })
+                    }
+                )
+      // return client.replyMessage(
+      //                   replyToken,
+      //                   {
+      //                     type: 'text',
+      //                     text: 'image' 
+      //                     //originalContentUrlT + '\n\n' + previewImageUrlT
+      // })
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect().then(function () {
       //               var req = new sql.Request(conn);
