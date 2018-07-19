@@ -332,7 +332,7 @@ function handleImage(message, replyToken, source) {
                               // originalContentUrl: dat64,
                               // previewImageUrl: previewImageUrlT
                               type: 'text',
-                              text: 'image' + dat64
+                              text: 'image'
                               //originalContentUrlT + '\n\n' + previewImageUrlT
                             })
                     }
