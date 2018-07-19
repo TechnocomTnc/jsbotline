@@ -328,11 +328,11 @@ function handleImage(message, replyToken, source) {
                         return client.replyMessage(
                             replyToken,
                             {
-                              // type: 'image',
-                              // originalContentUrl: dat64,
-                              // previewImageUrl: previewImageUrlT
-                              type: 'text',
-                              text: 'image' + dat64
+                              type: 'image',
+                              originalContentUrl: dat64,
+                              previewImageUrl: previewImageUrlT
+                              // type: 'text',
+                              // text: 'image' + dat64
                               //originalContentUrlT + '\n\n' + previewImageUrlT
                             })
                     }
