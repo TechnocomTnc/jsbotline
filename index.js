@@ -186,24 +186,22 @@ function handleImage(message, replyToken, source) {
                         image64 = 'data:image/jpeg;base64,'+ response
                         // console.log('data:image/jpeg;base64,'); 
                         // console.log(response); 
-                        
-                        return client.replyMessage(
-                                replyToken,
-                                {
-                                // type: 'image',
-                                // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                                // previewImageUrl: previewImageUrlT
-                                type: 'text',
-                                text:  UsID + ' - ' + GrID + ' - ' +image64 
-                                //originalContentUrlT + '\n\n' + previewImageUrlT
-                                })
-
-                        var conn = new sql.ConnectionPool(dbConfig);
+                    
+                       var conn = new sql.ConnectionPool(dbConfig);
                         conn.connect().then(function () {
                             var req = new sql.Request(conn);
                             req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
                         });
-    
+                        return client.replyMessage(
+                            replyToken,
+                            {
+                            // type: 'image',
+                            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+                            // previewImageUrl: previewImageUrlT
+                            type: 'text',
+                            text:  UsID + ' - ' + GrID + ' - ' +image64 
+                            //originalContentUrlT + '\n\n' + previewImageUrlT
+                            })
                             
                     }
                 )
