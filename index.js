@@ -28,7 +28,7 @@ var dbConfig = {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.post('/webhook', (req, res) => {
+app.post('/callback', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     let msgtype = req.body.events[0].message.type
     let gid = req.body.events[0].source.groupId
