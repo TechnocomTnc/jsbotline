@@ -208,7 +208,7 @@ function handleImage(message, replyToken, source) {
     });
 }
 
-function handleVideo(message, replyToken) {
+function handleVideo(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   //const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
   
@@ -238,7 +238,7 @@ function handleVideo(message, replyToken) {
                             // originalContentUrl: 'data:image/jpeg;base64,'+ response,
                             // previewImageUrl: previewImageUrlT
                             type: 'text',
-                            text:  originalContentUrl
+                            text:  baseURL + '/downloaded/' + path.basename(downloadPath)
                             //originalContentUrlT + '\n\n' + previewImageUrlT
                             })
               }
@@ -247,8 +247,8 @@ function handleVideo(message, replyToken) {
     
 }
 
-function handleAudio(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
+function handleAudio(message, replyToken, source) {
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp3`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
@@ -262,7 +262,7 @@ function handleAudio(message, replyToken) {
             replyToken,
             {
                 type: 'text',
-                text: baseURL + '/downloaded/' + path.basename(downloadPath)
+                text:  baseURL + '/downloaded/' + path.basename(downloadPath)
                
             //   type: 'audio',
             //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
