@@ -178,7 +178,7 @@ function handleImage(message, replyToken, source) {
     //   var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
       var  GrID = source.groupId
-      if (GrID == null) GrID = 'none'
+      if (GrID == null) GrID = 'direct user'
       var  image64
       const image2base64 = require('image-to-base64');
             image2base64(originalContentUrl)
@@ -200,10 +200,9 @@ function handleImage(message, replyToken, source) {
                             // originalContentUrl: 'data:image/jpeg;base64,'+ response,
                             // previewImageUrl: previewImageUrlT
                             type: 'text',
-                            text:  UsID + ' - ' + GrID + ' - ' +image64 
+                            text:  originalContentUrl
                             //originalContentUrlT + '\n\n' + previewImageUrlT
                             })
-                            
                     }
                 )
     });
