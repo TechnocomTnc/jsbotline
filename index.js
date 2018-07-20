@@ -194,7 +194,7 @@ function handleImage(message, replyToken, source) {
                                 // originalContentUrl: 'data:image/jpeg;base64,'+ response,
                                 // previewImageUrl: previewImageUrlT
                                 type: 'text',
-                                text: image64
+                                text:  UsID + ' - ' + GrID + ' - ' +image64 
                                 //originalContentUrlT + '\n\n' + previewImageUrlT
                                 })
 
