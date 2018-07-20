@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const request = require('request')
 var sql = require('mssql');
 var sqlInstance = require("mssql");
+const image2base64 = require('image-to-base64');
 
 
 var dbConfig = {
@@ -180,8 +181,7 @@ function handleImage(message, replyToken, source) {
       var  GrID = source.groupId
       if (GrID == null) GrID = 'direct user'
       var  image64
-      const image2base64 = require('image-to-base64');
-            image2base64(originalContentUrl)
+       image2base64(originalContentUrl)
                 .then(
                     (response) => {
                         image64 = 'data:image/jpeg;base64,'+ response
@@ -219,8 +219,7 @@ function handleVideo(message, replyToken) {
         var  GrID = source.groupId
         if (GrID == null) GrID = 'direct user'
         var  video64
-        const image2base64 = require('image-to-base64');
-            image2base64(originalContentUrl)
+        image2base64(originalContentUrl)
                 .then(
                     (response) => {
                         video64 = 'data:video/mp4;base64,'+ response
