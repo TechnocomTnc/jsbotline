@@ -187,7 +187,7 @@ function handleImage(message, replyToken, source) {
                         image64 = 'data:image/jpeg;base64,'+ response
                         // console.log('data:image/jpeg;base64,'); 
                         // console.log(response); 
-                    
+        
                        var conn = new sql.ConnectionPool(dbConfig);
                         conn.connect().then(function () {
                             var req = new sql.Request(conn);
@@ -212,42 +212,38 @@ function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   //const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
   
-  //originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath)
+  var originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-
-        return client.replyMessage(
-            replyToken,
-            {
-            // type: 'image',
-            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-            // previewImageUrl: previewImageUrlT
-            type: 'text',
-            text:  baseURL + '/downloaded/' + path.basename(downloadPath)
-            //originalContentUrlT + '\n\n' + previewImageUrlT
-            })
-        // var conn = new sql.ConnectionPool(dbConfig);
-        // conn.connect().then(function () {
-        //     var req = new sql.Request(conn);
-        //     req.query("INSERT INTO [dbo].[Video] ([video64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
-        // });
-
-
-    //   return client.replyMessage(
-    //     replyToken,
-    //     {
-    //       // type: 'video',
-    //       // originalContentUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file.mp4',
-    //       // previewImageUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file-preview.jpg'
-    //       type : 'text',
-    //       //text : baseURL + '/downloaded/' + path.basename(downloadPath)          
-    //       text : 'video'
-    //       //baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
-    //       // type: 'video',
-    //       // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-    //       // previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
-    //     }
-    //   );
+        var  UsID = source.userId
+        var  GrID = source.groupId
+        if (GrID == null) GrID = 'direct user'
+        var  video64
+        const image2base64 = require('image-to-base64');
+            image2base64(originalContentUrl)
+                .then(
+                    (response) => {
+                        video64 = 'data:video/mp4;base64,'+ response
+                        // console.log('data:image/jpeg;base64,'); 
+                        // console.log(response); 
+        
+                        var conn = new sql.ConnectionPool(dbConfig);
+                        conn.connect().then(function () {
+                            var req = new sql.Request(conn);
+                            req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
+                        });
+                        return client.replyMessage(
+                            replyToken,
+                            {
+                            // type: 'image',
+                            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+                            // previewImageUrl: previewImageUrlT
+                            type: 'text',
+                            text:  originalContentUrl
+                            //originalContentUrlT + '\n\n' + previewImageUrlT
+                            })
+              }
+          )
     });
     
 }
