@@ -178,6 +178,7 @@ function handleImage(message, replyToken, source) {
     //   var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
       var  GrID = source.groupId
+      if (GrID == null) GrID = 'none'
       var  image64
       const image2base64 = require('image-to-base64');
             image2base64(originalContentUrl)
