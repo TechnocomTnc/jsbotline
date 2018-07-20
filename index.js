@@ -12,10 +12,10 @@ var sqlInstance = require("mssql");
 
 
 var dbConfig = {
-  user: 'sa',
-  password: 'P@ssw0rd1234',
-  server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-  database: 'LinebotDB',
+  user: 'linebot',
+  password: 'p@ssw0rd',
+  server: 'mgtfs.southeastasia.cloudapp.azure.com', 
+  database: 'LineBotChat',
   port:1433,
   options: {
       encrypt: true // Use this if you're on Windows Azure
@@ -44,13 +44,6 @@ const app = express();
 // serve static and downloaded files
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
-
-app.get('/in', function (req, res) {
-    res.send('<h1>Hello Node.js</h1>');
-});
 
 
 // webhook callback
@@ -89,38 +82,31 @@ function handleEvent(event) {
         case 'image':
           return handleImage(message, event.replyToken, event.source);
         case 'video':
-          return handleVideo(message, event.replyToken);
+          return handleVideo(message, event.replyToken, event.source);
         case 'audio':
-          return handleAudio(message, event.replyToken);
+          return handleAudio(message, event.replyToken, event.source);
         case 'location':
-          return handleLocation(message, event.replyToken);
+          return handleLocation(message, event.replyToken, event.source);
         case 'sticker':
           return handleSticker(message, event.replyToken);
         default:
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
-
-    case 'follow':
-      return replyText(event.replyToken, 'Got followed event');
-
-    case 'unfollow':
-      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
-
     case 'join':
       return replyText(event.replyToken, `Joined ${event.source.type}`);
 
-    case 'leave':
-      return console.log(`Left: ${JSON.stringify(event)}`);
+    // case 'leave':
+    //   return console.log(`Left: ${JSON.stringify(event)}`);
 
-    case 'postback':
-      let data = event.postback.data;
-      if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-        data += `(${JSON.stringify(event.postback.params)})`;
-      }
-      return replyText(event.replyToken, `Got postback: ${data}`);
+    // case 'postback':
+    //   let data = event.postback.data;
+    //   if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+    //     data += `(${JSON.stringify(event.postback.params)})`;
+    //   }
+    //   return replyText(event.replyToken, `Got postback: ${data}`);
 
-    case 'beacon':
-      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+    // case 'beacon':
+    //   return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
@@ -128,7 +114,7 @@ function handleEvent(event) {
 }
 
 function handleText(message, replyToken, source) {
-  const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
+//   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
   // return replyText(replyToken, message.type );
   switch (message.text) {
     case 'profile':
@@ -144,107 +130,6 @@ function handleText(message, replyToken, source) {
       } else {
         return replyText(replyToken, 'Bot can\'t use profile API without user ID');
       }
-    case 'buttons':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Buttons alt text',
-          template: {
-            type: 'buttons',
-            thumbnailImageUrl: buttonsImageURL,
-            title: 'My button sample',
-            text: 'Hello, my button',
-            actions: [
-              { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-              { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-              { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-              { label: 'Say message', type: 'message', text: 'Rice=米' },
-            ],
-          },
-        }
-      );
-    case 'confirm':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Confirm alt text',
-          template: {
-            type: 'confirm',
-            text: 'Do it?',
-            actions: [
-              { label: 'Yes', type: 'message', text: 'Yes!' },
-              { label: 'No', type: 'message', text: 'No!' },
-            ],
-          },
-        }
-      )
-    case 'carousel':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Carousel alt text',
-          template: {
-            type: 'carousel',
-            columns: [
-              {
-                thumbnailImageUrl: buttonsImageURL,
-                title: 'hoge',
-                text: 'fuga',
-                actions: [
-                  { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-                  { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-                ],
-              },
-              {
-                thumbnailImageUrl: buttonsImageURL,
-                title: 'hoge',
-                text: 'fuga',
-                actions: [
-                  { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-                  { label: 'Say message', type: 'message', text: 'Rice=米' },
-                ],
-              },
-            ],
-          },
-        }
-      );
-    case 'image carousel':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Image carousel alt text',
-          template: {
-            type: 'image_carousel',
-            columns: [
-              {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Go to LINE', type: 'uri', uri: 'https://line.me' },
-              },
-              {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-              },
-              {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Say message', type: 'message', text: 'Rice=米' },
-              },
-              {
-                imageUrl: buttonsImageURL,
-                action: {
-                  label: 'datetime',
-                  type: 'datetimepicker',
-                  data: 'DATETIME',
-                  mode: 'datetime',
-                },
-              },
-            ]
-          },
-        }
-      );
     case 'datetime':
       return client.replyMessage(
         replyToken,
@@ -262,22 +147,6 @@ function handleText(message, replyToken, source) {
           },
         }
       );
-    case 'imagemap':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'imagemap',
-          baseUrl: `${baseURL}/static/rich`,
-          altText: 'Imagemap alt text',
-          baseSize: { width: 1040, height: 1040 },
-          actions: [
-            { area: { x: 0, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/manga/en' },
-            { area: { x: 520, y: 0, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/music/en' },
-            { area: { x: 0, y: 520, width: 520, height: 520 }, type: 'uri', linkUri: 'https://store.line.me/family/play/en' },
-            { area: { x: 520, y: 520, width: 520, height: 520 }, type: 'message', text: 'URANAI!' },
-          ],
-        }
-      );
     case 'bye':
       switch (source.type) {
         case 'user':
@@ -291,7 +160,13 @@ function handleText(message, replyToken, source) {
       }
     default:
       //console.log(`Echo message to ${replyToken}: ${message.text}`);
-      return replyText(replyToken,'message.text');
+      var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function () {
+            var req = new sql.Request(conn);
+            // req.query("INSERT INTO [dbo].[groupName] ([groupID],[Gname]) VALUES ('" + gid + "','" + gid + "')")
+            req.query("CREATE TABLE [dbo].[Tabaa]([m_Id] [int] IDENTITY(1,1) NOT NULL,[UID] [varchar](500) NULL,[Mesg] [varchar](500) NULL)")                      
+        });
+      return replyText(replyToken,'ok');
   }
 }
 
@@ -299,116 +174,75 @@ function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  // const downloadPath = path.join('/app/downloaded/8257390405541.jpg')
-  // const previewPath = path.join('/app/downloaded/8257390405541-preview.jpg')
-
-
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
-      
-      
-      // convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}
-      var  originalContentUrlT = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
+      // cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+
+      var  originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+    //   var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
-      var AdownloadPath 
-      var ApreviewPath
-      var name
-      var dat64
+      var  GrID = source.groupId
+      var  image64
       const image2base64 = require('image-to-base64');
-            image2base64(originalContentUrlT)
+            image2base64(originalContentUrl)
                 .then(
                     (response) => {
-                      dat64 = 'data:image/jpeg;base64,'+ response
-                        console.log('data:image/jpeg;base64,'); 
-                        console.log(response); 
-                        return client.replyMessage(
-                            replyToken,
-                            {
-                              // type: 'image',
-                              // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                              // previewImageUrl: previewImageUrlT
-                              type: 'text',
-                              text: dat64
-                              //originalContentUrlT + '\n\n' + previewImageUrlT
-                            })
+                        image64 = 'data:image/jpeg;base64,'+ response
+                        // console.log('data:image/jpeg;base64,'); 
+                        // console.log(response); 
+                        var conn = new sql.ConnectionPool(dbConfig);
+                        conn.connect().then(function () {
+                            var req = new sql.Request(conn);
+                            req.query("INSERT INTO [dbo].[Image] ([image64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
+                        });
+    
+                            // return client.replyMessage(
+                            //     replyToken,
+                            //     {
+                            //     // type: 'image',
+                            //     // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+                            //     // previewImageUrl: previewImageUrlT
+                            //     type: 'text',
+                            //     text: dat64
+                            //     //originalContentUrlT + '\n\n' + previewImageUrlT
+                            //     })
                     }
                 )
-      // return client.replyMessage(
-      //                   replyToken,
-      //                   {
-      //                     type: 'text',
-      //                     text: downloadPath 
-      //                     //originalContentUrlT + '\n\n' + previewImageUrlT
-      // })
-      // var conn = new sql.ConnectionPool(dbConfig);
-      // conn.connect().then(function () {
-      //               var req = new sql.Request(conn);
-      //               req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('" + message.id + "','" + originalContentUrlT + "','" + previewImageUrlT + "','" + UsID + "')")
-      //               //req.query("INSERT INTO [dbo].["+ gid +"] ([UID],[Mesg]) VALUES ('" + uid + "','" + msg + "')")
-      //               req.query('SELECT * FROM Image').then(function (rows) 
-      //               {
-      //               for(var i=0;i<rows.rowsAffected;i++){
-      //                 if(rows.recordset[i].Image_id == message.id)
-      //                 {
-      //                   AdownloadPath = rows.recordset[i].oridinal;
-      //                   ApreviewPath = rows.recordset[i].preview;
-      //                 }
-      //               }
-                     
-      //                 //name = rows.recordset[1].Image_id;
-      //                return client.replyMessage(
-      //                 replyToken,
-      //                 {
-      //                   // type: 'text',
-      //                   // text: AdownloadPath + '\n' + ApreviewPath
-        
-      //                   type: 'image',
-      //                   originalContentUrl: AdownloadPath,
-      //                   previewImageUrl: ApreviewPath
-                        
-                         
-                        
-      //                 }
-      //               );
-
-      //               }) 
-      //             });
-
-      
     });
 }
 
 function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
-
+  //const previewPath = path.join(__dirname, 'downloaded', `${message.id}-pw.jpg`);
+  
+  //originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath)
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      // FFmpeg and ImageMagick is needed here to run 'convert'
-      // Please consider about security and performance by yourself
 
-      // cp.exec(`ffmpeg -i ${downloadPath} -ss 00:00:02 -vframes 1 ${previewPath}`);
+        var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function () {
+            var req = new sql.Request(conn);
+            req.query("INSERT INTO [dbo].[Video] ([video64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
+        });
 
-      
-      return client.replyMessage(
-        replyToken,
-        {
-          // type: 'video',
-          // originalContentUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file.mp4',
-          // previewImageUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file-preview.jpg'
-          type : 'text',
-          //text : baseURL + '/downloaded/' + path.basename(downloadPath)          
-          text : 'video'
-          //baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
-          // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
-        }
-      );
+
+    //   return client.replyMessage(
+    //     replyToken,
+    //     {
+    //       // type: 'video',
+    //       // originalContentUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file.mp4',
+    //       // previewImageUrl: 'https://r1---sn-30a7yne7.c.2mdn.net/videoplayback/id/3c2c72fb5a76d1fd/itag/343/source/doubleclick_dmm/ratebypass/yes/acao/yes/ip/0.0.0.0/ipbits/0/expire/3673239867/sparams/acao,expire,id,ip,ipbits,itag,mip,mm,mn,ms,mv,pl,ratebypass,source/signature/558883E84289FA0D99219F54D99F4376DE02191B.57F9B5616A2E2DC1E3690A466E293E27BB8BD595/key/cms1/cms_redirect/yes/mip/171.6.115.43/mm/42/mn/sn-30a7yne7/ms/onc/mt/1531807347/mv/m/pl/19/file/file-preview.jpg'
+    //       type : 'text',
+    //       //text : baseURL + '/downloaded/' + path.basename(downloadPath)          
+    //       text : 'video'
+    //       //baseURL + '/downloaded/' + path.basename(downloadPath) + '\n\n' + baseURL + '/downloaded/' + path.basename(previewPath)
+    //       // type: 'video',
+    //       // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+    //       // previewImageUrl: 'https://scontent.fbkk5-2.fna.fbcdn.net/v/t1.0-9/37188673_725471077628021_5597707026646958080_n.jpg?_nc_cat=0&_nc_eui2=AeGuXZ0RC4KZucEmO5dVf8CEUrw4DMxvYqFBNB3rl3D2JLimeOKkFuAsyqmWZEh7HOF5pPB4b63uuYFJ4jX_yfNRDKF-_8wdAvi9RbiMgC1AYw&oh=68807581c4e6e78a5c8ba7e1288f9794&oe=5BD8B6B4'
+    //     }
+    //   );
     });
     
 }
