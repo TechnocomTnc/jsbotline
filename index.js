@@ -34,15 +34,29 @@ app.post('/webhook', (req, res) => {
     let gid = req.body.events[0].source.groupId
     let uid = req.body.events[0].source.userId
     var msID = req.body.events[0].message.id
-    var abc = req.header
-    var chunks = [];
-    const client = new line.Client({
-        channelAccessToken: '7YR60AJ855Zu1Etxsc7aCdFqhip1o8yAKj7PzLe90ClE9Po0fz5o81BeghtpCki4+zFZ7FrYjjbrFvQw84+Axi+P1zWPnxSCTl/lF5gVTDaDqdC5IHk30qnjo7GQ1hHKizexgGNpBPn/Fwz3slJqkQdB04t89/1O/w1cDnyilFU'
-      });
       
-    if(msgtype == 'text') {
-        var text = req.body.events[0].message.text
-        reply(reply_token, text)
+       let headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer {7YR60AJ855Zu1Etxsc7aCdFqhip1o8yAKj7PzLe90ClE9Po0fz5o81BeghtpCki4+zFZ7FrYjjbrFvQw84+Axi+P1zWPnxSCTl/lF5gVTDaDqdC5IHk30qnjo7GQ1hHKizexgGNpBPn/Fwz3slJqkQdB04t89/1O/w1cDnyilFU=}'
+        }
+        let body = JSON.stringify({
+            replyToken: reply_token,
+            messages: [{
+                    type: 'text',
+                    text: 'aa'
+                }]
+        })
+        request.post({
+            url: 'https://api.line.me/v2/bot/message/reply',
+            headers: headers,
+            body: body
+        }, (err, res, body) => {
+            console.log('status = ' + res.statusCode);
+        });  
+
+    // if(msgtype == 'text') {
+    //     var text = req.body.events[0].message.text
+    //     reply(reply_token, text)
 
         // var conn = new sql.ConnectionPool(dbConfig);
         // conn.connect().then(function () {
@@ -50,7 +64,7 @@ app.post('/webhook', (req, res) => {
         //     // req.query("INSERT INTO [dbo].[groupName] ([groupID],[Gname]) VALUES ('" + gid + "','" + gid + "')")
         //     req.query("CREATE TABLE [dbo].["+ uid +"]([m_Id] [int] IDENTITY(1,1) NOT NULL,[UID] [varchar](500) NULL,[Mesg] [varchar](500) NULL)")                      
         // });
-    }
+    // }
 
     if(gid != null)
        groupMs(uid,gid,text)
