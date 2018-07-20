@@ -216,11 +216,21 @@ function handleVideo(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
 
-        var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function () {
-            var req = new sql.Request(conn);
-            req.query("INSERT INTO [dbo].[Video] ([video64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
-        });
+        return client.replyMessage(
+            replyToken,
+            {
+            // type: 'image',
+            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+            // previewImageUrl: previewImageUrlT
+            type: 'text',
+            text:  baseURL + '/downloaded/' + path.basename(downloadPath)
+            //originalContentUrlT + '\n\n' + previewImageUrlT
+            })
+        // var conn = new sql.ConnectionPool(dbConfig);
+        // conn.connect().then(function () {
+        //     var req = new sql.Request(conn);
+        //     req.query("INSERT INTO [dbo].[Video] ([video64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
+        // });
 
 
     //   return client.replyMessage(
@@ -256,9 +266,12 @@ function handleAudio(message, replyToken) {
           return client.replyMessage(
             replyToken,
             {
-              type: 'audio',
-              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: audioDuration * 1000
+                type: 'text',
+                text: baseURL + '/downloaded/' + path.basename(downloadPath)
+               
+            //   type: 'audio',
+            //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+            //   duration: audioDuration * 1000
             }
           );
         });
