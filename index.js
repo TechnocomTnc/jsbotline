@@ -160,13 +160,7 @@ function handleText(message, replyToken, source) {
       }
     default:
       //console.log(`Echo message to ${replyToken}: ${message.text}`);
-      var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function () {
-            var req = new sql.Request(conn);
-            // req.query("INSERT INTO [dbo].[groupName] ([groupID],[Gname]) VALUES ('" + gid + "','" + gid + "')")
-            req.query("CREATE TABLE [dbo].[Tabaa]([m_Id] [int] IDENTITY(1,1) NOT NULL,[UID] [varchar](500) NULL,[Mesg] [varchar](500) NULL)")                      
-        });
-      return replyText(replyToken,'ok');
+      return replyText(replyToken,'idk');
   }
 }
 
@@ -192,22 +186,25 @@ function handleImage(message, replyToken, source) {
                         image64 = 'data:image/jpeg;base64,'+ response
                         // console.log('data:image/jpeg;base64,'); 
                         // console.log(response); 
+                        
+                        return client.replyMessage(
+                                replyToken,
+                                {
+                                // type: 'image',
+                                // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+                                // previewImageUrl: previewImageUrlT
+                                type: 'text',
+                                text: image64
+                                //originalContentUrlT + '\n\n' + previewImageUrlT
+                                })
+
                         var conn = new sql.ConnectionPool(dbConfig);
                         conn.connect().then(function () {
                             var req = new sql.Request(conn);
-                            req.query("INSERT INTO [dbo].[Image] ([image64],[user_id],[group_id]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
+                            req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
                         });
     
-                            // return client.replyMessage(
-                            //     replyToken,
-                            //     {
-                            //     // type: 'image',
-                            //     // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                            //     // previewImageUrl: previewImageUrlT
-                            //     type: 'text',
-                            //     text: dat64
-                            //     //originalContentUrlT + '\n\n' + previewImageUrlT
-                            //     })
+                            
                     }
                 )
     });
