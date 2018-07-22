@@ -96,8 +96,11 @@ function handleEvent(event) {
     case 'join':
       return replyText(event.replyToken, `Joined ${event.source.type}`);
 
-    // case 'leave':
-    //   return console.log(`Left: ${JSON.stringify(event)}`);
+    case 'leave':
+      return console.log(`Left: ${JSON.stringify(event)}`);
+
+    case 'follow':
+     return replyText(event.replyToken, 'Got followed event');
 
     // case 'postback':
     //   let data = event.postback.data;
