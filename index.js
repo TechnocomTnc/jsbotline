@@ -100,10 +100,10 @@ function handleEvent(event) {
                 var req = new sql.Request(conn);
                 req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES (" + GrID + "')")
             });  
-      return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \n บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบ \n ข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ ขอบคุณครับ");
+      return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
 
-    case 'leave':
-      return console.log(`Left: ${JSON.stringify(event)}`);
+    // case 'leave':
+    //   return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'follow':
 
@@ -119,22 +119,6 @@ function handleEvent(event) {
                   });  
               // replyText(a,UsID + UsName)
             })
-            
-
-
-
-      
-
-    // case 'postback':
-    //   let data = event.postback.data;
-    //   if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-    //     data += `(${JSON.stringify(event.postback.params)})`;
-    //   }
-    //   return replyText(event.replyToken, `Got postback: ${data}`);
-
-    // case 'beacon':
-    //   return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
-
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
@@ -174,7 +158,7 @@ function handleText(message, replyToken, source) {
           },
         }
       );
-    case 'bye':
+    case 'goodbye BOT':
       switch (source.type) {
         case 'user':
           return replyText(replyToken, 'Bot can\'t leave from 1:1 chat');
@@ -219,16 +203,16 @@ function handleImage(message, replyToken, source) {
                             var req = new sql.Request(conn);
                             req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
                         });
-                        return client.replyMessage(
-                            replyToken,
-                            {
-                            // type: 'image',
-                            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                            // previewImageUrl: previewImageUrlT
-                            type: 'text',
-                            text:  originalContentUrl
-                            //originalContentUrlT + '\n\n' + previewImageUrlT
-                            })
+                        // return client.replyMessage(
+                        //     replyToken,
+                        //     {
+                        //     // type: 'image',
+                        //     // originalContentUrl: 'data:image/jpeg;base64,'+ response,
+                        //     // previewImageUrl: previewImageUrlT
+                        //     type: 'text',
+                        //     text:  originalContentUrl
+                        //     //originalContentUrlT + '\n\n' + previewImageUrlT
+                        //     })
                     }
                 )
     });
@@ -309,17 +293,30 @@ function downloadContent(messageId, downloadPath) {
     }));
 }
 
-function handleLocation(message, replyToken) {
-  return client.replyMessage(
-    replyToken,
-    {
-      type: 'location',
-      title: message.title,
-      address: message.address,
-      latitude: message.latitude,
-      longitude: message.longitude,
-    }
-  );
+function handleLocation(message, replyToken, source) {
+ 
+  var  UsID = source.userId
+  var  GrID = source.groupId
+  if (GrID == null) GrID = 'direct user'
+  var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect().then(function () {
+          var req = new sql.Request(conn);
+          req.query("INSERT INTO [dbo].[Location] ([address],[userId],[groupId]) VALUES ('" + message.address + "','" + UsID + "','" + GrID + "')")
+      });
+
+
+
+
+  // return client.replyMessage(
+  //   replyToken,
+  //   {
+  //     type: 'location',
+  //     title: message.title,
+  //     address: message.address,
+  //     latitude: message.latitude,
+  //     longitude: message.longitude,
+  //   }
+  // );
 }
 
 function handleSticker(message, replyToken) {
