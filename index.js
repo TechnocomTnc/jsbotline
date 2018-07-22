@@ -101,14 +101,10 @@ function handleEvent(event) {
 
     case 'follow':
 
-    return client.getProfile(event.source.userId)
-          .then((profile) => replyText(
-            replyToken,
-            [
-              `Display name: ${profile.displayName}`,
-              `Status message: ${profile.statusMessage}`,
-            ]
-          ));
+      return client.getProfile(event.source.userId)
+            .then((profile) => replyText(
+              event.replyToken,profile.displayName+ profile.statusMessage
+            ));
           //  var conn = new sql.ConnectionPool(dbConfig);
           //         conn.connect().then(function () {
           //             var req = new sql.Request(conn);
