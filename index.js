@@ -94,7 +94,7 @@ function handleEvent(event) {
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
     case 'join':
-      return replyText(event.replyToken, `Joined ${event.source.type}`);
+      return replyText(event.replyToken,event.source.groupId);
 
     case 'leave':
       return console.log(`Left: ${JSON.stringify(event)}`);
@@ -106,14 +106,12 @@ function handleEvent(event) {
               var a = event.replyToken
               var UsID = event.source.userId
               var UsName = profile.displayName
-              // var conn = new sql.ConnectionPool(dbConfig);
-              //     conn.connect().then(function () {
-              //         var req = new sql.Request(conn);
-              //         req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
-              //     });  
-              
-              
-              replyText(a,UsID + UsName)
+              var conn = new sql.ConnectionPool(dbConfig);
+                  conn.connect().then(function () {
+                      var req = new sql.Request(conn);
+                      req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES (" + UsID + "','" + UsName + "')")
+                  });  
+              // replyText(a,UsID + UsName)
             })
             
 
