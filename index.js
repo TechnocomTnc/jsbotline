@@ -102,7 +102,12 @@ function handleEvent(event) {
     case 'follow':
 
       return client.getProfile(event.source.userId)
-            .then((profile) => replyText(event.replyToken,profile.displayName+ profile.pictureUrl))
+            .then((profile) => {
+              var a = event.replyToken
+              var b = profile.displayName
+              var c = profile.pictureUrl
+              replyText(a,b)
+            })
             
 
 
