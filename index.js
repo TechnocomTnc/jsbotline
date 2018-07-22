@@ -114,7 +114,7 @@ function handleEvent(event) {
           //             var req = new sql.Request(conn);
           //             req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
           //         });
-      return replyText(event.replyToken, 'Got followed event' + event.source.userId);
+      return replyText(event.replyToken, 'Got followed event' + event.source.displayName);
 
     // case 'postback':
     //   let data = event.postback.data;
