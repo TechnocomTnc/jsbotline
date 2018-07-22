@@ -104,18 +104,21 @@ function handleEvent(event) {
       return client.getProfile(event.source.userId)
             .then((profile) => {
               var a = event.replyToken
-              var b = profile.displayName
-              var c = profile.pictureUrl
-              replyText(a,b)
+              var UsID = event.source.userId
+              var UsName = profile.displayName
+              // var conn = new sql.ConnectionPool(dbConfig);
+              //     conn.connect().then(function () {
+              //         var req = new sql.Request(conn);
+              //         req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
+              //     });  
+              
+              
+              replyText(a,UsID + UsName)
             })
             
 
 
-          //  var conn = new sql.ConnectionPool(dbConfig);
-          //         conn.connect().then(function () {
-          //             var req = new sql.Request(conn);
-          //             req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
-          //         });
+
       
 
     // case 'postback':
