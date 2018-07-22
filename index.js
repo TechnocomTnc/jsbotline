@@ -100,7 +100,13 @@ function handleEvent(event) {
       return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'follow':
-     return replyText(event.replyToken, 'Got followed event');
+
+          //  var conn = new sql.ConnectionPool(dbConfig);
+          //         conn.connect().then(function () {
+          //             var req = new sql.Request(conn);
+          //             req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
+          //         });
+     return replyText(event.replyToken, profile.displayName + rofile.statusMessage);
 
     // case 'postback':
     //   let data = event.postback.data;
