@@ -102,15 +102,19 @@ function handleEvent(event) {
     case 'follow':
 
       return client.getProfile(event.source.userId)
-            .then((profile) => replyText(
-              event.replyToken,profile.displayName+ profile.statusMessage
-            ));
+            .then((profile) => replyText(event.replyToken,profile.displayName+ profile.statusMessage),
+            replyText(event.replyToken,'Got followed event' )
+
+          )
+            
+
+
           //  var conn = new sql.ConnectionPool(dbConfig);
           //         conn.connect().then(function () {
           //             var req = new sql.Request(conn);
           //             req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
           //         });
-      // return replyText(event.replyToken,'Got followed event' + event.timestamp);
+      
 
     // case 'postback':
     //   let data = event.postback.data;
