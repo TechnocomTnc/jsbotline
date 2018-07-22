@@ -94,7 +94,13 @@ function handleEvent(event) {
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
     case 'join':
-      return replyText(event.replyToken,event.source.groupId);
+        var GrID = event.source.groupId
+        var conn = new sql.ConnectionPool(dbConfig);
+            conn.connect().then(function () {
+                var req = new sql.Request(conn);
+                req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES (" + GrID + "')")
+            });  
+      return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \n บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบ \n ข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ ขอบคุณครับ");
 
     case 'leave':
       return console.log(`Left: ${JSON.stringify(event)}`);
