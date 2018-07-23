@@ -120,6 +120,7 @@ function handleEvent(event) {
                         return replyText(event.replyToken,'ok');                   
                           })
                           .catch(function (err) {
+                            req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
                             return replyText(event.replyToken,'err'); 
                           });
                           
