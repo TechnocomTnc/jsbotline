@@ -411,14 +411,14 @@ function handleLocation(message, replyToken, source) {
 }
 
 function handleSticker(message, replyToken) {
-  return client.replyMessage(
-    replyToken,
-    {
-      type: 'sticker',
-      packageId: message.packageId,
-      stickerId: message.stickerId,
-    }
-  );
+  // return client.replyMessage(
+  //   replyToken,
+  //   {
+  //     type: 'sticker',
+  //     packageId: message.packageId,
+  //     stickerId: message.stickerId,
+  //   }
+  // );
 }
 
 // listen on port
