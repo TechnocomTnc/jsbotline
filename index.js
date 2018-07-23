@@ -98,7 +98,7 @@ function handleEvent(event) {
         var conn = new sql.ConnectionPool(dbConfig);
             conn.connect().then(function () {
                 var req = new sql.Request(conn);
-                req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES (" + GrID + "')")
+                req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
             });  
       return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
 
@@ -117,7 +117,6 @@ function handleEvent(event) {
                       req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
                       return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                 });  
-                  
                 })
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
