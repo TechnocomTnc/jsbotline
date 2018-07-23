@@ -209,44 +209,46 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
+
       var UsID = source.userId
       var  GrID = source.groupId
       if (GrID == null) GrID = 'direct user'
-      return client.getProfile(source.userId)
-            .then((profile) => {
-              // var UsID = source.userId
-              var UsName = profile.displayName
-              // var  GrID = source.groupId
-              // if (GrID == null) GrID = 'direct user'
-              var conn = new sql.ConnectionPool(dbConfig);
-                  conn.connect().then(function () {
-                      var req = new sql.Request(conn);
+      var conn = new sql.ConnectionPool(dbConfig);
+          conn.connect().then(function () {
+              var req = new sql.Request(conn);
+              req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
+                var num=0;
+                for(var i=0;i<rows.rowsAffected;i++){
+                  if(UsID == rows.recordset[i].userId)
+                    {
+                      num=1;
+                      return req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")                                     
+                    }
+                  else num+=2
+                }  
+                if(num > 1){
+                    req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','Unknow')")
+                    req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")                    
+                    
+                    return client.getProfile(source.userId)
+                    .then((profile) => {                  
+                      var UsName = profile.displayName
                       req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
-                        var num=0;
-                        if(rows.rowsAffected == 0){
-                            req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                        }else{
-                          for(var i=0;i<rows.rowsAffected;i++){
-                            if(UsID == rows.recordset[i].userId)
-                                {
-                                  num=1;
-                                  var ID = rows.recordset[i].Id
-                                  if(UsName != rows.recordset[i].userName){ 
-                                    req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)                                        
-                                }}
-                            else num+=2
-                          }  
-                          if(num > 1){
-                            req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                          }
-                      }
-                      })
-                      
-                });  
-            })
-            req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
-  }
-}
+                        for(var i=0;i<rows.rowsAffected;i++){
+                          if(UsID == rows.recordset[i].userId)
+                            {
+                              var ID = rows.recordset[i].Id
+                              if(UsName != rows.recordset[i].userName){ 
+                                req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)}
+                            }
+                        } 
+                      })        
+                    });  
+                  }
+              })
+          })               
+    }//END Switch
+}//END Function
 
 function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
