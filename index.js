@@ -122,10 +122,10 @@ function handleEvent(event) {
                                 num=1;
                                 break;
                               }
-                          else{num=2;}
+                          else{num+=2;}
                         }            
-                        if(num == 2){
-                          req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
+                        if(num > 1){
+                          // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
                           }
                         return replyText(event.replyToken,"สวัสดีครับ"+ num + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                       })
