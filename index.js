@@ -120,7 +120,8 @@ function handleEvent(event) {
                           if(UsID == rows.recordset[i].userId)
                               {
                                 num=1;
-                                break;
+                                return replyText(event.replyToken,"สวัสดีครับ"+ num +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
+//                                break;
                               }
                           else{num+=2;}
                         }            
