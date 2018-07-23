@@ -115,14 +115,14 @@ function handleEvent(event) {
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
-                      req.query('SELECT * FROM User').then(function (err , rows) 
-                          {if(err){
-                            abc = 'errrrrr';
-                            // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
-                          }else {
-                            abc = 'aasdasd';
-                          }
-                          return replyText(event.replyToken,abc);
+                      req.query('SELECT * FROM User').then(function (rows) {
+                        res.send(rows);
+                        return replyText(event.replyToken,'ok');                   
+                          })
+                          .catch(function (err) {
+                            return replyText(event.replyToken,'err'); 
+                          });
+                          
                           // if(rows.rowsAffected == 0){
                             // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                           // }
@@ -133,7 +133,7 @@ function handleEvent(event) {
                           //     ApreviewPath = rows.recordset[i].preview;
                           //   }
                           // }
-                        })
+                     
                       // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
                       // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                 });  
