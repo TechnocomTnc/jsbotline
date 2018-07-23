@@ -125,8 +125,8 @@ function handleEvent(event) {
                                 {
                                   num=1;
                                   if(UsName != rows.recordset[i].userName){
-                                    req.query("UPDATE [dbo].[User] SET [userName] ="+ UsName +" WHERE userId =" + UsID)  
-                                    return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
+                                    req.query("UPDATE [dbo].[User] SET [userName] ="+ UsName +" WHERE userId >"+ 1)  
+                                    return replyText(event.replyToken,"สวัสดีครับ"+ UsName + rows.recordset[i].userName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                                 }}
                             else num+=2
                           }  
