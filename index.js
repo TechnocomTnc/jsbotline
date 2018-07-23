@@ -7,8 +7,8 @@ const path = require('path');
 var sql = require('mssql');
 const image2base64 = require('image-to-base64');
 
-var date = new Date();
-//var date = dateG0.toLocaleTimeString('en-US')
+var date2 = new Date();
+var date = date2.toLocaleTimeString('en-US');
 
 var dbConfig = {
   user: 'linebot',
