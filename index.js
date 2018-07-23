@@ -111,22 +111,23 @@ function handleEvent(event) {
               var a = event.replyToken
               var UsID = event.source.userId
               var UsName = profile.displayName
-              var num;
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
                       req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
+                        var num=0;
                         for(var i=0;i<=rows.rowsAffected;i++){
                           if(UsID == rows.recordset[i].userId)
                               {
-                                num +=1;
+                                num=1;
                                 break;
                               }
+                          else{num=2;}
                         }            
-                        if(num == 0){
+                        if(num == 2){
                           req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
                           }
-                          return replyText(event.replyToken,"สวัสดีครับ มีแล้ว" + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
+                        return replyText(event.replyToken,"สวัสดีครับ"+ num + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                       })
                       
                             // if(num == 1){
