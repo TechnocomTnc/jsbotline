@@ -116,7 +116,7 @@ function handleEvent(event) {
                       var req = new sql.Request(conn);
                       req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
                         var num=0;
-                        for(var i=0;i<=rows.rowsAffected;i++){
+                        for(var i=0;i<rows.rowsAffected;i++){
                           if(UsID == rows.recordset[i].userId)
                               {
                                 num=1;
