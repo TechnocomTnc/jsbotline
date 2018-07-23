@@ -117,11 +117,11 @@ function handleEvent(event) {
                       var req = new sql.Request(conn);
                       req.query('SELECT * FROM User').then(function (rows) {
                         // res.send(rows);
-                        return replyText(event.replyToken,'ok');                   
+                        return replyText(event.replyToken,'a= '+rows.rowsAffected);                   
                           })
                           .catch(function (err) {
                             req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
-                            return replyText(event.replyToken,'a= '+rows.rowsAffected); 
+                            return replyText(event.replyToken,'err ' + UsName); 
                           });
                           
                           // if(rows.rowsAffected == 0){
