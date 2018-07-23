@@ -106,7 +106,6 @@ function handleEvent(event) {
     //   return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'follow':
-
       return client.getProfile(event.source.userId)
             .then((profile) => {
               var a = event.replyToken
@@ -117,7 +116,7 @@ function handleEvent(event) {
                       var req = new sql.Request(conn);
                       req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES (" + UsID + "','" + UsName + "')")
                   });  
-                  return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                  return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                 })
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
