@@ -121,7 +121,7 @@ function handleEvent(event) {
                           })
                           .catch(function (err) {
                             req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
-                            return replyText(event.replyToken,'err'); 
+                            return replyText(event.replyToken,'a= '+rows.rowsAffected); 
                           });
                           
                           // if(rows.rowsAffected == 0){
