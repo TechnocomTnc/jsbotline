@@ -8,7 +8,7 @@ var sql = require('mssql');
 const image2base64 = require('image-to-base64');
 
 var date2 = new Date();
-var date = date2.toUTCString();
+var date = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 var dbConfig = {
   user: 'linebot',
