@@ -124,6 +124,8 @@ function handleEvent(event) {
                             if(UsID == rows.recordset[i].userId)
                                 {
                                   num=1;
+                                  if(UsName != rows.recordset[i].userName)
+                                  req.query("UPDATE [dbo].[User] SET [userName] ="+ UsName +" WHERE userId =" + UsID)  
                                   return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                                 }
                             else num+=2
