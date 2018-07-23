@@ -11,6 +11,7 @@ var sql = require('mssql');
 var sqlInstance = require("mssql");
 const image2base64 = require('image-to-base64');
 
+var date = Date()
 
 var dbConfig = {
   user: 'linebot',
@@ -222,13 +223,13 @@ function handleText(message, replyToken, source) {
                   if(UsID == rows.recordset[i].userId)
                     {
                       num=1;
-                      return req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")                                     
+                      return req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                                     
                     }
                   else num+=2
                 }  
                 if(num > 1){
                     req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','Unknow')")
-                    req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")                    
+                    req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                    
                     
                     return client.getProfile(source.userId)
                     .then((profile) => {                  
@@ -276,7 +277,7 @@ function handleImage(message, replyToken, source) {
                        var conn = new sql.ConnectionPool(dbConfig);
                         conn.connect().then(function () {
                             var req = new sql.Request(conn);
-                            req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "')")
+                            req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId],[date]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "','" + date + "')")
                         });
                         // return client.replyMessage(
                         //     replyToken,
@@ -304,18 +305,18 @@ function handleVideo(message, replyToken, source) {
         var  GrID = source.groupId
         if (GrID == null) GrID = 'direct user'
         var  video64
-        image2base64(originalContentUrl)
-                .then(
-                    (response) => {
-                        video64 = 'data:video/mp4;base64,'+ response
+        // image2base64(originalContentUrl)
+        //         .then(
+        //             (response) => {
+                        // video64 = 'data:video/mp4;base64,'+ response
                         // console.log('data:image/jpeg;base64,'); 
                         // console.log(response); 
-        
-                        var conn = new sql.ConnectionPool(dbConfig);
-                        conn.connect().then(function () {
-                            var req = new sql.Request(conn);
-                            req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
-                        });
+  
+                        // var conn = new sql.ConnectionPool(dbConfig);
+                        // conn.connect().then(function () {
+                        //     var req = new sql.Request(conn);
+                        //     req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
+                        // });
                         return client.replyMessage(
                             replyToken,
                             {
@@ -326,8 +327,8 @@ function handleVideo(message, replyToken, source) {
                             text:  baseURL + '/downloaded/' + path.basename(downloadPath)
                             //originalContentUrlT + '\n\n' + previewImageUrlT
                             })
-              }
-          )
+              // }
+          // )
     });
     
 }
@@ -376,7 +377,7 @@ function handleLocation(message, replyToken, source) {
   var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function () {
           var req = new sql.Request(conn);
-          req.query("INSERT INTO [dbo].[Location] ([address],[userId],[groupId]) VALUES ('" + message.address + "','" + UsID + "','" + GrID + "')")
+          req.query("INSERT INTO [dbo].[Location] ([address],[userId],[groupId],[date]) VALUES ('" + message.address + "','" + UsID + "','" + GrID + "','" + date + "')")
       });
 
 
