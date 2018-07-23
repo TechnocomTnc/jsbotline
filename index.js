@@ -115,7 +115,7 @@ function handleEvent(event) {
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
-                      req.query('SELECT * FROM User').then(function (rows) {
+                      req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
                         // res.send(rows);
                         return replyText(event.replyToken,'a= ');                   
                           })
