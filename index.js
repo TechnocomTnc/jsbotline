@@ -190,10 +190,12 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
-      return client.getProfile(event.source.userId)
+      return client.getProfile(source.userId)
               .then((profile) => {
-                var UsID = event.source.userId
+                var UsID = source.userId
                 var UsName = profile.displayName
+                var  GrID = source.groupId
+                if (GrID == null) GrID = 'direct user'
                 var conn = new sql.ConnectionPool(dbConfig);
                     conn.connect().then(function () {
                         var req = new sql.Request(conn);
