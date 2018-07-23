@@ -116,7 +116,7 @@ function handleEvent(event) {
                       var req = new sql.Request(conn);
                       req.query('SELECT * FROM User').then(function (rows) 
                           {
-                          if(rows.rowsAffected == 0){
+                          // if(rows.rowsAffected <= 0){
                             return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                           }
                           // for(var i=0;i<rows.rowsAffected;i++){
