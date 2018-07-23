@@ -209,12 +209,15 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
+      var UsID = source.userId
+      var  GrID = source.groupId
+      if (GrID == null) GrID = 'direct user'
       return client.getProfile(source.userId)
             .then((profile) => {
-              var UsID = source.userId
+              // var UsID = source.userId
               var UsName = profile.displayName
-              var  GrID = source.groupId
-              if (GrID == null) GrID = 'direct user'
+              // var  GrID = source.groupId
+              // if (GrID == null) GrID = 'direct user'
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
@@ -238,9 +241,10 @@ function handleText(message, replyToken, source) {
                           }
                       }
                       })
-                      req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
+                      
                 });  
             })
+            req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
   }
 }
 
