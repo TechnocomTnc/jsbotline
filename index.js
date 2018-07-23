@@ -114,10 +114,15 @@ function handleEvent(event) {
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
-                      req.query('SELECT * FROM User').then(function (rows) 
-                          {
+                      req.query('SELECT * FROM User').then(function (err , rows) 
+                          {if(err){
+                            abc = 'errrrrr';
+                            // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                          }else {
+                            abc = 'aasdasd';
+                          }
                           // if(rows.rowsAffected == 0){
-                            return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                            // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                           // }
                           // for(var i=0;i<rows.rowsAffected;i++){
                           //   if(rows.recordset[i].Image_id == message.id)
@@ -130,6 +135,7 @@ function handleEvent(event) {
                       // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
                       // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                 });  
+                return replyText(event.replyToken,abc);
                 })
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
