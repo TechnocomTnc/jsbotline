@@ -223,7 +223,22 @@ function handleText(message, replyToken, source) {
                   if(UsID == rows.recordset[i].userId)
                     {
                       num=1;
-                      return req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                                     
+                      req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                                     
+                      return client.getProfile(source.userId)
+                      .then((profile) => {                  
+                        var UsName = profile.displayName
+                        req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
+                          for(var i=0;i<rows.rowsAffected;i++){
+                            if(UsID == rows.recordset[i].userId)
+                              {
+                                var ID = rows.recordset[i].Id
+                                if(UsName != rows.recordset[i].userName){ 
+                                  req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)}
+                              }
+                          } 
+                        })        
+                      }); 
+                    
                     }
                   else num+=2
                 }  
