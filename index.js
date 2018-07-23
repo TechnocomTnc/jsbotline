@@ -116,7 +116,7 @@ function handleEvent(event) {
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
                       req.query('SELECT * FROM User').then(function (rows) {
-                        res.send(rows);
+                        // res.send(rows);
                         return replyText(event.replyToken,'ok');                   
                           })
                           .catch(function (err) {
