@@ -111,6 +111,7 @@ function handleEvent(event) {
               var a = event.replyToken
               var UsID = event.source.userId
               var UsName = profile.displayName
+              var abc
               var conn = new sql.ConnectionPool(dbConfig);
                   conn.connect().then(function () {
                       var req = new sql.Request(conn);
@@ -121,6 +122,7 @@ function handleEvent(event) {
                           }else {
                             abc = 'aasdasd';
                           }
+                          return replyText(event.replyToken,abc);
                           // if(rows.rowsAffected == 0){
                             // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                           // }
@@ -135,7 +137,7 @@ function handleEvent(event) {
                       // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
                       // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                 });  
-                return replyText(event.replyToken,abc);
+              
                 })
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
