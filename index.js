@@ -94,32 +94,32 @@ function handleEvent(event) {
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
     case 'join':
-              var  GrID = source.groupId
-              var conn = new sql.ConnectionPool(dbConfig);
-                  conn.connect().then(function () {
-                      var req = new sql.Request(conn);
-                      req.query('SELECT * FROM [dbo].[Group]').then(function (rows) {
-                        var num=0;
-                        if(rows.rowsAffected == 0) {
-                          req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
-                          return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
-                        }
-                        else{
-                          for(var i=0;i<rows.rowsAffected;i++){
-                            if(GrID == rows.recordset[i].groupId)
-                                {
-                                  num=1;
-                                  return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                                        
-                                }
-                            else num+=2
-                          }  
-                          if(num > 1){
-                            req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
+        var  GrID = event.source.groupId
+        var conn = new sql.ConnectionPool(dbConfig);
+            conn.connect().then(function () {
+                var req = new sql.Request(conn);
+                req.query('SELECT * FROM [dbo].[Group]').then(function (rows) {
+                  var num=0;
+                  if(rows.rowsAffected == 0) {
+                    req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
+                    return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                  }
+                  else{
+                    for(var i=0;i<rows.rowsAffected;i++){
+                      if(GrID == rows.recordset[i].groupId)
+                          {
+                            num=1;
                             return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                                        
                           }
-                        }
-                      });  
-                  })
+                      else num+=2
+                    }  
+                    if(num > 1){
+                      req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
+                      return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                                        
+                    }
+                  }
+                });  
+            })
 
     // case 'leave':
     //   return console.log(`Left: ${JSON.stringify(event)}`);
