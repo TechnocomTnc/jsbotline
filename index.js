@@ -4,11 +4,17 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const cp = require('child_process');
+const bodyParser = require('body-parser')
+const request = require('request')
 var sql = require('mssql');
+var sqlInstance = require("mssql");
 const image2base64 = require('image-to-base64');
 
-var date2 = new Date();
-var date = Intl.DateTimeFormat().resolvedOptions().timeZone
+var time = require('time')(Date);
+var d = new Date();
+var date = 'Time:' + d.setTimezone('Asia/Bangkok')
+
 
 var dbConfig = {
   user: 'linebot',
