@@ -127,7 +127,7 @@ function handleEvent(event) {
                                   var ID = rows.recordset[i].Id
                                   if(UsName != rows.recordset[i].userName){
                                     req.query("UPDATE [dbo].[User] SET [userName] ="+ UsName +" WHERE Id ="+ ID)  
-                                    return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
+                                    return replyText(event.replyToken,"สวัสดีครับ"+ ID +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                                 }}
                             else num+=2
                           }  
