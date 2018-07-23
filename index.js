@@ -171,6 +171,14 @@ function handleText(message, replyToken, source) {
       }
     default:
       //console.log(`Echo message to ${replyToken}: ${message.text}`);
+      var  UsID = source.userId
+      var  GrID = source.groupId
+      if (GrID == null) GrID = 'direct user'
+      var conn = new sql.ConnectionPool(dbConfig);
+          conn.connect().then(function () {
+              var req = new sql.Request(conn);
+              req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")
+          });
       return replyText(replyToken,'idk');
   }
 }
