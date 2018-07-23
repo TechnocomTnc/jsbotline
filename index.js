@@ -108,7 +108,6 @@ function handleEvent(event) {
     case 'follow':
       return client.getProfile(event.source.userId)
             .then((profile) => {
-              var a = event.replyToken
               var UsID = event.source.userId
               var UsName = profile.displayName
               var conn = new sql.ConnectionPool(dbConfig);
@@ -118,43 +117,25 @@ function handleEvent(event) {
                         var num=0;
                         if(rows.rowsAffected == 0){
                             req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                            return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                            return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \nผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
                         }else{
                           for(var i=0;i<rows.rowsAffected;i++){
                             if(UsID == rows.recordset[i].userId)
                                 {
                                   num=1;
                                   var ID = rows.recordset[i].Id
-                                  if(UsName != rows.recordset[i].userName){
+                                  if(UsName != rows.recordset[i].userName){ 
                                     req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)  
-                                    return replyText(event.replyToken,"สวัสดีครับ"+ ID +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
+                                    return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \nผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                 
                                 }}
                             else num+=2
                           }  
                           if(num > 1){
                             req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                            return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                           
+                            return replyText(event.replyToken,"สวัสดีครับ"+ UsName +" \nผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                           
                           }
                       }
-                      })
-                      
-                                      
-                      
-
-                          
-                          // if(rows.rowsAffected == 0){
-                            // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
-                          // }
-                          // for(var i=0;i<rows.rowsAffected;i++){
-                          //   if(rows.recordset[i].Image_id == message.id)
-                          //   {
-                          //     AdownloadPath = rows.recordset[i].oridinal;
-                          //     ApreviewPath = rows.recordset[i].preview;
-                          //   }
-                          // }
-                     
-                      // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
-                      // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                      })      
                 });  
               
                 })
@@ -209,16 +190,47 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
+      return client.getProfile(event.source.userId)
+              .then((profile) => {
+                var UsID = event.source.userId
+                var UsName = profile.displayName
+                var conn = new sql.ConnectionPool(dbConfig);
+                    conn.connect().then(function () {
+                        var req = new sql.Request(conn);
+                        req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
+                          var num=0;
+                          if(rows.rowsAffected == 0){
+                              req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
+                          }else{
+                            for(var i=0;i<rows.rowsAffected;i++){
+                              if(UsID == rows.recordset[i].userId)
+                                  {
+                                    num=1;
+                                    var ID = rows.recordset[i].Id
+                                    if(UsName != rows.recordset[i].userName){ 
+                                      req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)                                        
+                                  }}
+                              else num+=2
+                            }  
+                            if(num > 1){
+                              req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
+                            }
+                        }
+                        })
+                        req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
+                  });  
+                
+                  })
       //console.log(`Echo message to ${replyToken}: ${message.text}`);
-      var  UsID = source.userId
-      var  GrID = source.groupId
-      if (GrID == null) GrID = 'direct user'
-      var conn = new sql.ConnectionPool(dbConfig);
-          conn.connect().then(function () {
-              var req = new sql.Request(conn);
-              req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")
-          });
-      return replyText(replyToken,'idk');
+      // var  UsID = source.userId
+      // var  GrID = source.groupId
+      // if (GrID == null) GrID = 'direct user'
+      // var conn = new sql.ConnectionPool(dbConfig);
+      //     conn.connect().then(function () {
+      //         var req = new sql.Request(conn);
+      //         req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")
+      //     });
+      // return replyText(replyToken,'idk');
   }
 }
 
