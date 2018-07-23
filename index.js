@@ -4,11 +4,7 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const cp = require('child_process');
-const bodyParser = require('body-parser')
-const request = require('request')
 var sql = require('mssql');
-var sqlInstance = require("mssql");
 const image2base64 = require('image-to-base64');
 
 var date = Date()
@@ -23,9 +19,6 @@ var dbConfig = {
       encrypt: true // Use this if you're on Windows Azure
   }
 };
-
-
-
 
 // create LINE SDK config from env variables
 const config = {
@@ -122,9 +115,6 @@ function handleEvent(event) {
                 });  
             })
 
-    // case 'leave':
-    //   return console.log(`Left: ${JSON.stringify(event)}`);
-
     case 'follow':
       return client.getProfile(event.source.userId)
             .then((profile) => {
@@ -165,8 +155,6 @@ function handleEvent(event) {
 }
 
 function handleText(message, replyToken, source) {
-//   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
-  // return replyText(replyToken, message.type );
   switch (message.text) {
     case 'profile':
       if (source.userId) {
@@ -181,23 +169,6 @@ function handleText(message, replyToken, source) {
       } else {
         return replyText(replyToken, 'Bot can\'t use profile API without user ID');
       }
-    case 'datetime':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Datetime pickers alt text',
-          template: {
-            type: 'buttons',
-            text: 'Select date / time !',
-            actions: [
-              { type: 'datetimepicker', label: 'date', data: 'DATE', mode: 'date' },
-              { type: 'datetimepicker', label: 'time', data: 'TIME', mode: 'time' },
-              { type: 'datetimepicker', label: 'datetime', data: 'DATETIME', mode: 'datetime' },
-            ],
-          },
-        }
-      );
     case 'goodbye BOT':
       switch (source.type) {
         case 'user':
@@ -210,7 +181,6 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
-
       var UsID = source.userId
       var  GrID = source.groupId
       if (GrID == null) GrID = 'direct user'
@@ -235,10 +205,9 @@ function handleText(message, replyToken, source) {
                                 if(UsName != rows.recordset[i].userName){ 
                                   req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)}
                               }
-                          } 
+                          }
                         })        
                       }); 
-                    
                     }
                   else num+=2
                 }  
@@ -268,16 +237,10 @@ function handleText(message, replyToken, source) {
 
 function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      // ImageMagick is needed here to run 'convert'
-      // Please consider about security and performance by yourself
-      // cp.exec(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
-
       var  originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
-    //   var  previewImageUrlT = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
       var  GrID = source.groupId
       if (GrID == null) GrID = 'direct user'
@@ -285,25 +248,12 @@ function handleImage(message, replyToken, source) {
        image2base64(originalContentUrl)
                 .then(
                     (response) => {
-                        image64 = 'data:image/jpeg;base64,'+ response
-                        // console.log('data:image/jpeg;base64,'); 
-                        // console.log(response); 
-        
-                       var conn = new sql.ConnectionPool(dbConfig);
-                        conn.connect().then(function () {
+                      image64 = 'data:image/jpeg;base64,'+ response
+                      var conn = new sql.ConnectionPool(dbConfig);
+                      conn.connect().then(function () {
                             var req = new sql.Request(conn);
                             req.query("INSERT INTO [dbo].[Image] ([image64],[userId],[groupId],[date]) VALUES ('" + image64 + "','" + UsID + "','" + GrID + "','" + date + "')")
                         });
-                        // return client.replyMessage(
-                        //     replyToken,
-                        //     {
-                        //     // type: 'image',
-                        //     // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                        //     // previewImageUrl: previewImageUrlT
-                        //     type: 'text',
-                        //     text:  originalContentUrl
-                        //     //originalContentUrlT + '\n\n' + previewImageUrlT
-                        //     })
                     }
                 )
     });
@@ -316,34 +266,12 @@ function handleVideo(message, replyToken, source) {
   var originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-        var  UsID = source.userId
-        var  GrID = source.groupId
-        if (GrID == null) GrID = 'direct user'
-        var  video64
-        // image2base64(originalContentUrl)
-        //         .then(
-        //             (response) => {
-                        // video64 = 'data:video/mp4;base64,'+ response
-                        // console.log('data:image/jpeg;base64,'); 
-                        // console.log(response); 
-  
-                        // var conn = new sql.ConnectionPool(dbConfig);
-                        // conn.connect().then(function () {
-                        //     var req = new sql.Request(conn);
-                        //     req.query("INSERT INTO [dbo].[Video] ([video64],[userId],[groupId]) VALUES ('" + video64 + "','" + UsID + "','" + GrID + "')")
-                        // });
-                        return client.replyMessage(
-                            replyToken,
-                            {
-                            // type: 'image',
-                            // originalContentUrl: 'data:image/jpeg;base64,'+ response,
-                            // previewImageUrl: previewImageUrlT
-                            type: 'text',
-                            text:  baseURL + '/downloaded/' + path.basename(downloadPath)
-                            //originalContentUrlT + '\n\n' + previewImageUrlT
-                            })
-              // }
-          // )
+        return client.replyMessage(
+            replyToken,
+            {
+            type: 'text',
+            text:  originalContentUrl
+            })
     });
     
 }
@@ -364,10 +292,6 @@ function handleAudio(message, replyToken, source) {
             {
                 type: 'text',
                 text:  baseURL + '/downloaded/' + path.basename(downloadPath)
-               
-            //   type: 'audio',
-            //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-            //   duration: audioDuration * 1000
             }
           );
         });
@@ -385,7 +309,6 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken, source) {
- 
   var  UsID = source.userId
   var  GrID = source.groupId
   if (GrID == null) GrID = 'direct user'
@@ -394,20 +317,6 @@ function handleLocation(message, replyToken, source) {
           var req = new sql.Request(conn);
           req.query("INSERT INTO [dbo].[Location] ([address],[userId],[groupId],[date]) VALUES ('" + message.address + "','" + UsID + "','" + GrID + "','" + date + "')")
       });
-
-
-
-
-  // return client.replyMessage(
-  //   replyToken,
-  //   {
-  //     type: 'location',
-  //     title: message.title,
-  //     address: message.address,
-  //     latitude: message.latitude,
-  //     longitude: message.longitude,
-  //   }
-  // );
 }
 
 function handleSticker(message, replyToken) {
