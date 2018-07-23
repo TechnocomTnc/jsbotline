@@ -94,13 +94,32 @@ function handleEvent(event) {
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
     case 'join':
-        var GrID = event.source.groupId
-        var conn = new sql.ConnectionPool(dbConfig);
-            conn.connect().then(function () {
-                var req = new sql.Request(conn);
-                req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
-            });  
-      return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+              var  GrID = source.groupId
+              var conn = new sql.ConnectionPool(dbConfig);
+                  conn.connect().then(function () {
+                      var req = new sql.Request(conn);
+                      req.query('SELECT * FROM [dbo].[Group]').then(function (rows) {
+                        var num=0;
+                        if(rows.rowsAffected == 0) {
+                          req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
+                          return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
+                        }
+                        else{
+                          for(var i=0;i<rows.rowsAffected;i++){
+                            if(GrID == rows.recordset[i].groupId)
+                                {
+                                  num=1;
+                                  return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                                        
+                                }
+                            else num+=2
+                          }  
+                          if(num > 1){
+                            req.query("INSERT INTO [dbo].[Group] ([groupId]) VALUES ('" + GrID + "')")
+                            return replyText(event.replyToken,"สวัสดีครับ ผมคือระบบอัตโนมัติ \nบทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");                                        
+                          }
+                        }
+                      });  
+                  })
 
     // case 'leave':
     //   return console.log(`Left: ${JSON.stringify(event)}`);
@@ -191,48 +210,37 @@ function handleText(message, replyToken, source) {
       }
     default:
       return client.getProfile(source.userId)
-              .then((profile) => {
-                var UsID = source.userId
-                var UsName = profile.displayName
-                var  GrID = source.groupId
-                if (GrID == null) GrID = 'direct user'
-                var conn = new sql.ConnectionPool(dbConfig);
-                    conn.connect().then(function () {
-                        var req = new sql.Request(conn);
-                        req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
-                          var num=0;
-                          if(rows.rowsAffected == 0){
-                              req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                          }else{
-                            for(var i=0;i<rows.rowsAffected;i++){
-                              if(UsID == rows.recordset[i].userId)
-                                  {
-                                    num=1;
-                                    var ID = rows.recordset[i].Id
-                                    if(UsName != rows.recordset[i].userName){ 
-                                      req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)                                        
-                                  }}
-                              else num+=2
-                            }  
-                            if(num > 1){
-                              req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
-                            }
-                        }
-                        })
-                        req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
-                  });  
-                
-                  })
-      //console.log(`Echo message to ${replyToken}: ${message.text}`);
-      // var  UsID = source.userId
-      // var  GrID = source.groupId
-      // if (GrID == null) GrID = 'direct user'
-      // var conn = new sql.ConnectionPool(dbConfig);
-      //     conn.connect().then(function () {
-      //         var req = new sql.Request(conn);
-      //         req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")
-      //     });
-      // return replyText(replyToken,'idk');
+            .then((profile) => {
+              var UsID = source.userId
+              var UsName = profile.displayName
+              var  GrID = source.groupId
+              if (GrID == null) GrID = 'direct user'
+              var conn = new sql.ConnectionPool(dbConfig);
+                  conn.connect().then(function () {
+                      var req = new sql.Request(conn);
+                      req.query('SELECT * FROM [dbo].[User]').then(function (rows) {
+                        var num=0;
+                        if(rows.rowsAffected == 0){
+                            req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
+                        }else{
+                          for(var i=0;i<rows.rowsAffected;i++){
+                            if(UsID == rows.recordset[i].userId)
+                                {
+                                  num=1;
+                                  var ID = rows.recordset[i].Id
+                                  if(UsName != rows.recordset[i].userName){ 
+                                    req.query("UPDATE [dbo].[User] SET [userName] = '"+ UsName +"' WHERE Id ="+ ID)                                        
+                                }}
+                            else num+=2
+                          }  
+                          if(num > 1){
+                            req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")              
+                          }
+                      }
+                      })
+                      req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "')")      
+                });  
+            })
   }
 }
 
