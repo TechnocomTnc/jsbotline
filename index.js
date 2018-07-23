@@ -119,10 +119,10 @@ function handleEvent(event) {
                         // res.send(rows);
                         return replyText(event.replyToken,'a= ');                   
                           })
-                          // .catch(function (err) {
-                          //   req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
-                          //   return replyText(event.replyToken,'err ' + UsName); 
-                          // });
+                          .catch(function (err) {
+                            // req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','" + UsName + "')")
+                            return replyText(event.replyToken,'err ' + UsName); 
+                          });
                           
                           // if(rows.rowsAffected == 0){
                             // return replyText(event.replyToken,"สวัสดีครับ " + UsName +" \n ผมคือระบบอัตโนมัติ บทสนทนาที่เกิดขึ้นภายในกลุ่มนี้จะถูกบันทึกเพื่อนำไปปรับปรุงและพัฒนาระบบต่อไป \nข้อมูลทุกอย่างจะถูกเก็บเป็นความลับและไม่มีการเปิดเผยต่อสาธารณะ \nขอบคุณครับ");
