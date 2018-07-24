@@ -11,8 +11,8 @@ var sql = require('mssql');
 var sqlInstance = require("mssql");
 const image2base64 = require('image-to-base64');
 
-var time = require('time')(Date);
-var date = new Date();
+// var time = require('time')(Date);
+var date = Date();
 // var date = '' + d.setTimezone('Asia/Bangkok')
 
 
