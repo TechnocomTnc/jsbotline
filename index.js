@@ -12,8 +12,7 @@ var sqlInstance = require("mssql");
 const image2base64 = require('image-to-base64');
 
 // var time = require('time')(Date);
-var date = Date();
-// var date = '' + d.setTimezone('Asia/Bangkok')
+
 
 
 var dbConfig = {
@@ -199,6 +198,8 @@ function handleText(message, replyToken, source) {
                 for(var i=0;i<rows.rowsAffected;i++){
                   if(UsID == rows.recordset[i].userId)
                     {
+                      var d = new Date();
+                      var date = '' + d.setTimezone('Asia/Bangkok')
                       num=1;
                       req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                                     
                       return client.getProfile(source.userId)
@@ -219,6 +220,8 @@ function handleText(message, replyToken, source) {
                   else num+=2
                 }  
                 if(num > 1){
+                    var d = new Date();
+                    var date = '' + d.setTimezone('Asia/Bangkok')
                     req.query("INSERT INTO [dbo].[User] ([userId],[userName]) VALUES ('" + UsID + "','Unknow')")
                     req.query("INSERT INTO [dbo].[Message] ([text],[userId],[groupId],[date]) VALUES ('" + message.text + "','" + UsID + "','" + GrID + "','" + date + "')")                    
                     
@@ -256,6 +259,8 @@ function handleImage(message, replyToken, source) {
                 .then(
                     (response) => {
                       image64 = 'data:image/jpeg;base64,'+ response
+                      var d = new Date();
+                      var date = '' + d.setTimezone('Asia/Bangkok')
                       var conn = new sql.ConnectionPool(dbConfig);
                       conn.connect().then(function () {
                             var req = new sql.Request(conn);
@@ -319,6 +324,8 @@ function handleLocation(message, replyToken, source) {
   var  UsID = source.userId
   var  GrID = source.groupId
   if (GrID == null) GrID = 'direct user'
+  var d = new Date();
+  var date = '' + d.setTimezone('Asia/Bangkok')
   var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function () {
           var req = new sql.Request(conn);
